@@ -1,5 +1,6 @@
 package ProductWindow;
 
+import Exceptions.ProductValidator;
 import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ public class Controller{
 
 
     @FXML
-    private TextField txtName;
+    private TextField txtProductName;
 
     @FXML
     private TextField txtProductNumber;
@@ -55,20 +56,22 @@ public class Controller{
 
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
-        String name = txtName.getText();
+        String name = txtProductName.getText();
         String type = txtType.getText();
         String brand = txtBrand.getText();
-        String stringProductNumber = txtProductNumber.getText();
-        int productNumber = Integer.parseInt(stringProductNumber);
+        String productNumber = txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
 
+        /*return new Product(name, productNumber, numberOfProducts, type, brand, price);*/
 
 
-
-        return new Product(name, productNumber, numberOfProducts, type, brand, price);
+        return new Product(ProductValidator.testProductName(name), ProductValidator.testProductNumber(productNumber),
+                ProductValidator.testNumberOfProducts(numberOfProducts),ProductValidator.testProductType(type),
+                ProductValidator.testProductBrand(brand),ProductValidator.testPrice(price));
 
     }
 }
+

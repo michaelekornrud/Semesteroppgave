@@ -6,25 +6,25 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Product {
 
-    private SimpleStringProperty txtName, txtType, txtBrand;
-    private SimpleIntegerProperty txtNumberOfProducts, txtProductNumber;
+    private SimpleStringProperty txtProductName, txtType, txtBrand, txtProductNumber;
+    private SimpleIntegerProperty txtNumberOfProducts;
     private SimpleDoubleProperty txtPrice;
 
-    public Product(String name,int productNumber,int numberOfProducts ,String type, String brand, double price
+    public Product(String name, String productNumber,int numberOfProducts ,String type, String brand, double price
     ){
         if (name != null && type != null && brand != null && numberOfProducts > 0 && price > 0 ){
-            this.txtName = new SimpleStringProperty(name);
+            this.txtProductName = new SimpleStringProperty(name);
             this.txtType = new SimpleStringProperty(type);
             this.txtBrand = new SimpleStringProperty(brand);
             this.txtNumberOfProducts = new SimpleIntegerProperty(numberOfProducts);
             this.txtPrice = new SimpleDoubleProperty(price);
-            this.txtProductNumber = new SimpleIntegerProperty(productNumber);
+            this.txtProductNumber = new SimpleStringProperty(productNumber);
         }
 
     }
 
-    public String getTxtName(){return txtName.getValue();}
-    public void setTxtName(String txtName){this.txtName.set(txtName);}
+    public String getTxtProductName(){return txtProductName.getValue();}
+    public void setTxtProductName(String txtProductName){this.txtProductName.set(txtProductName);}
 
     public String getTxtType(){return txtType.getValue();}
     public void setTxtType(String txtType){this.txtType.set(txtType);}
@@ -32,17 +32,17 @@ public class Product {
     public String getTxtBrand(){return txtBrand.getValue();}
     public void setTxtBrand(String txtBrand){this.txtBrand.set(txtBrand);}
 
-    public int getTxtNumber(){return txtNumberOfProducts.getValue();}
-    public void setTxtNumber(int txtNumber){this.txtNumberOfProducts.set(txtNumber);}
+    public int getTxtNumberOfProducts(){return txtNumberOfProducts.getValue();}
+    public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts.set(txtNumberOfProducts);}
 
-    public int getTxtProductNumber(){return txtProductNumber.getValue();}
-    public void setTxtProductNumber(int txtProductNumber){this.txtProductNumber.set(txtProductNumber);}
+    public String getTxtProductNumber(){return txtProductNumber.getValue();}
+    public void setTxtProductNumber(String txtProductNumber){this.txtProductNumber.set(txtProductNumber);}
 
     public double getTxtPrice(){return txtPrice.getValue();}
     public void setTxtPrice(double txtPrice){this.txtPrice.set(txtPrice);}
 
     public String toString(){
-        return String.format("\b%s;%s;%s;%s;%s;%s\b",getTxtName(), getTxtProductNumber() ,getTxtType(), getTxtBrand(), getTxtPrice(), getTxtNumber());
+        return String.format("\b%s;%s;%s;%s;%s;%s\b",getTxtProductName(), getTxtProductNumber() ,getTxtType(), getTxtBrand(), getTxtPrice(), getTxtNumberOfProducts());
     }
 
 
