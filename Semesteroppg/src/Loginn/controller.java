@@ -6,25 +6,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-
-class logInn {
-    public String adminUser = "admin";
-    public String adminPW = "admin";
-    public String checkUser, checkPW;
-
-    public logInn (String adminUser, String adminPW, String  checkUser, String checkPW){
-        this.adminUser = adminUser;
-        this.adminPW = adminPW;
-        this.checkUser = checkUser;
-        this.checkPW = checkPW;
-
-    }
-}
 
 public class controller {
 
@@ -32,7 +19,7 @@ public class controller {
     private TextField txtBrukernavn;
 
     @FXML
-    private TextField  txtPassord;
+    private PasswordField txtPassord;
 
     @FXML
     private Button btnLogInn;
@@ -51,8 +38,8 @@ public class controller {
         String brukerPW = "user";
         String checkUser, checkPW;
 
-        checkUser = txtBrukernavn.getText().toString();
-        checkPW =  txtPassord.getText().toString();
+        checkUser = txtBrukernavn.getText();
+        checkPW = txtPassord.getText();
         if(checkUser.equals(adminUser) && checkPW.equals(adminPW) || checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
             try {
                 Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("PCBygging/PCBygging.fxml"));
