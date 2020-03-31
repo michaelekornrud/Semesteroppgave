@@ -3,7 +3,7 @@ package Exceptions;
 public class ProductValidator {
 
     public static String testProductName(String name) throws InvalidProductNameException{
-        if (!name.matches("[a-zæøåA-ZÆØÅ0-9-]*")){
+        if (!name.matches("[a-zæøåA-ZÆØÅ0-9- ]*")){
             throw new InvalidProductNameException("Productname is invalid!");
         }
         return name;
