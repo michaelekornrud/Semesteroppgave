@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Loginn.controller">
    <children>
       <Label layoutX="51.0" layoutY="81.0" text="Brukernavn" />
       <Label layoutX="51.0" layoutY="131.0" text="Passord" />
-      <TextField layoutX="139.0" layoutY="76.0" promptText="username" />
-      <TextField layoutX="139.0" layoutY="126.0" promptText="***********" />
-      <Button layoutX="245.0" layoutY="187.0" mnemonicParsing="false" text="Avbryt" />
-      <Button layoutX="182.0" layoutY="187.0" mnemonicParsing="false" text="Log inn" />
-      <Label layoutX="51.0" layoutY="30.0" prefHeight="17.0" prefWidth="246.0" text="Logg inn">
+      <TextField fx:id="txtBrukernavn" layoutX="139.0" layoutY="76.0" promptText="username" />
+      <TextField fx:id="txtPassord" layoutX="139.0" layoutY="126.0" promptText="***********" />
+      <Button fx:id="btnLukk" layoutX="245.0" layoutY="187.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avbryt" />
+      <Button fx:id="btnLogInn" layoutX="182.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogInn" text="Log inn" />
+      <Label layoutX="51.0" layoutY="30.0" prefHeight="17.0" prefWidth="246.0" text="Logg  inn">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
+      <Button fx:id="btnRegistrer" layoutX="111.0" layoutY="187.0" mnemonicParsing="false" onAction="#Registrer" text="Registrer" />
    </children>
 </AnchorPane>
