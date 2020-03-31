@@ -39,7 +39,7 @@ public class ProductValidator {
 
     public static String testProductNumber(String number) throws InvalidProductNumberException{
         if (!number.matches("([a-zæøåA-ZÆØÅ]{2})+([0-9]{8})")){
-            throw new InvalidProductNumberException("Invalid input in productnumber-field");
+            throw new InvalidProductNumberException("Invalid input in productnumber-field.\nYou must follow this layout: xx12345678 (2 letters first, then 8 numbers)");
         }
         return number;
     }
