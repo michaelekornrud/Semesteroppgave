@@ -1,5 +1,11 @@
 package Exceptions;
 
+import ProductWindow.Controller;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ProductValidator {
 
     public static String testProductName(String name) throws InvalidProductNameException{
@@ -37,12 +43,29 @@ public class ProductValidator {
         return price;
     }
 
-    public static String testProductNumber(String number) throws InvalidProductNumberException{
+    public static String testProductNumber(String number /*String test*/) throws InvalidProductNumberException{
+
+        //Metode for å teste om prduktnr er unikt!
+        // Trenger å koble denne sammen med innholdet i coice-boksene for å sjekke om nummeret er unikt.
+
+        /*if (test.contains(number)){
+            throw new InvalidProductNumberException("Error! The productNr already exists.");
+        }*/
+
         if (!number.matches("([a-zæøåA-ZÆØÅ]{2})+([0-9]{8})")){
             throw new InvalidProductNumberException("Invalid input in productnumber-field.\nYou must follow this layout: xx12345678 (2 letters first, then 8 numbers)");
         }
         return number;
     }
+
+
+
+
+
+
+
+
+
 
 
 }

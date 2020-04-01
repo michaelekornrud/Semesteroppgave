@@ -20,39 +20,39 @@
       <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake" />
     <TableView fx:id="tableView" layoutX="199.0" layoutY="68.0" prefHeight="222.0" prefWidth="394.0">
         <columns>
-            <TableColumn prefWidth="64.0" text="Navn">
+            <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="64.0" text="Navn">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtProductName" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="68.0" text="ProdNr">
+            <TableColumn fx:id="colProdNr" onEditCommit="#editTableview_prodNr" prefWidth="68.0" text="ProdNr">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtProductNumber" />
                 </cellValueFactory>
 
             </TableColumn>
-            <TableColumn prefWidth="37.0" text="Antall">
+            <TableColumn fx:id="colNumberOfProduct" onEditCommit="#editTableview_NumberOfProducts" prefWidth="37.0" text="Antall">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtNumberOfProducts" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn prefWidth="70.0" text="Type">
+            <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="70.0" text="Type">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtType" />
                 </cellValueFactory>
             </TableColumn>
 
 
-            <TableColumn prefWidth="76.0" text="Merke">
+            <TableColumn fx:id="colBrand" onEditCommit="#editTableview_Brand" prefWidth="76.0" text="Merke">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtBrand" />
                 </cellValueFactory>
             </TableColumn>
 
 
-            <TableColumn prefWidth="75.0" text="Pris">
+            <TableColumn fx:id="colPrice" onEditCommit="#editTableview_Price" prefWidth="75.0" text="Pris">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtPrice" />
                 </cellValueFactory>
