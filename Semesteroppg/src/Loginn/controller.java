@@ -40,22 +40,35 @@ public class controller {
 
         checkUser = txtBrukernavn.getText();
         checkPW = txtPassord.getText();
-        if(checkUser.equals(adminUser) && checkPW.equals(adminPW) || checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
+        if(checkUser.equals(adminUser) && checkPW.equals(adminPW)){
             try {
-                Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("PCBygging/PCBygging.fxml"));
+                Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info
                 Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
                 PCWindow.setScene(PCByggingScene);
+                PCWindow.setTitle("Build your own PC");
                 PCWindow.show();
             }
             catch (IOException e){
                 e.printStackTrace();
             }
         }
-        else{
-            throw new IOException("Feil i brukernavn/passord");
+        else if (checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
+            try {
+                Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Bruker/bruker.fxml"));
+                Scene PCByggingScene = new Scene(PCByggingParent);
+
+                //Denne linjen henter stage info
+                Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+                PCWindow.setScene(PCByggingScene);
+                PCWindow.setTitle("Build your own PC");
+                PCWindow.show();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
         }
 
 

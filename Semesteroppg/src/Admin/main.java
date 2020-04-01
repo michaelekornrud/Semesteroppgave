@@ -1,4 +1,4 @@
-package PCBygging;
+package Admin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +10,11 @@ public class main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage BuildPCStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PCBygging.fxml"));
-        primaryStage.setTitle("Lag din egen PC");
-        primaryStage.setScene(new Scene(root, 350, 250));
-        primaryStage.show();
+        BuildPCStage.setTitle("Lag din egen PC");
+        BuildPCStage.setScene(new Scene(root, 350, 250));
+        BuildPCStage.show();
     }
 
 

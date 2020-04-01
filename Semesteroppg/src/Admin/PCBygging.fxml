@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="449.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.controller">
+   <children>
+      <Button fx:id="btnLeggTil" layoutX="25.0" layoutY="395.0" mnemonicParsing="false" onAction="#addComponent" text="Legg/fjern til komponent" />
+      <Label layoutX="45.0" layoutY="38.0" text="Bygg  din egen PC">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="87.0" text="Kabinett" />
+      <ChoiceBox layoutX="45.0" layoutY="104.0" prefWidth="150.0" />
+      <Label layoutX="45.0" layoutY="141.0" text="Hovedkort" />
+      <ChoiceBox layoutX="45.0" layoutY="158.0" prefWidth="150.0" />
+      <Label layoutX="45.0" layoutY="192.0" text="Prosessor" />
+      <ChoiceBox layoutX="45.0" layoutY="209.0" prefWidth="150.0" />
+      <Label layoutX="45.0" layoutY="254.0" text="Skjermkort" />
+      <ChoiceBox layoutX="45.0" layoutY="271.0" prefWidth="150.0" />
+      <Label layoutX="45.0" layoutY="307.0" text="Minne (RAM)" />
+      <ChoiceBox layoutX="45.0" layoutY="325.0" prefWidth="150.0" />
+      <Label layoutX="229.0" layoutY="87.0" text="Strømforskyning" />
+      <ChoiceBox layoutX="229.0" layoutY="104.0" prefWidth="150.0" />
+      <Label layoutX="229.0" layoutY="141.0" text="Harddisk" />
+      <ChoiceBox layoutX="229.0" layoutY="158.0" prefWidth="150.0" />
+      <Label layoutX="229.0" layoutY="192.0" text="Harddisk" />
+      <ChoiceBox layoutX="229.0" layoutY="211.0" prefWidth="150.0" />
+      <Label layoutX="229.0" layoutY="254.0" text="CPU -Vifte" />
+      <ChoiceBox layoutX="229.0" layoutY="271.0" prefWidth="150.0" />
+      <Label layoutX="229.0" layoutY="307.0" text="Vifter" />
+      <ChoiceBox layoutX="229.0" layoutY="325.0" prefWidth="150.0" />
+      <Label layoutX="423.0" layoutY="87.0" text="Casemods" />
+      <ChoiceBox layoutX="423.0" layoutY="104.0" prefWidth="150.0" />
+      <Label layoutX="423.0" layoutY="141.0" text="Skjerm" />
+      <ChoiceBox layoutX="423.0" layoutY="158.0" prefWidth="150.0" />
+      <Label layoutX="423.0" layoutY="192.0" text="Tastatur" />
+      <ChoiceBox layoutX="423.0" layoutY="211.0" prefWidth="150.0" />
+      <Label layoutX="423.0" layoutY="254.0" text="Mus" />
+      <ChoiceBox layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
+      <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
+      <ChoiceBox layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
+      <Label layoutX="349.0" layoutY="400.0" text="Totalpris:" />
+      <Label layoutX="408.0" layoutY="400.0" text="Pris" />
+      <Button layoutX="473.0" layoutY="395.0" mnemonicParsing="false" text="Vis handlekurv" />
+   </children>
+</AnchorPane>

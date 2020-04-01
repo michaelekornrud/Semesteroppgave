@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-        <?import javafx.scene.control.Button?>
-        <?import javafx.scene.control.TableColumn?>
-        <?import javafx.scene.control.TableView?>
-        <?import javafx.scene.control.TextField?>
-        <?import javafx.scene.control.cell.PropertyValueFactory?>
-        <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller">
 <children>
     <TextField fx:id="txtProductName" layoutX="23.0" layoutY="55.0" promptText="Navn" />
     <TextField fx:id="txtProductNumber" layoutX="23.0" layoutY="88.0" promptText="ProduktNummer" />
@@ -16,7 +16,8 @@
     <TextField fx:id="txtBrand" layoutX="23.0" layoutY="216.0" promptText="Merke" />
     <TextField fx:id="txtPrice" layoutX="23.0" layoutY="260.0" promptText="Pris" />
     <Button layoutX="31.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnAdd" text="Add" />
-    <Button layoutX="99.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnDelete" text="Delete" />
+    <Button layoutX="82.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnDelete" text="Delete" />
+      <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake" />
     <TableView fx:id="tableView" layoutX="199.0" layoutY="68.0" prefHeight="222.0" prefWidth="394.0">
         <columns>
             <TableColumn prefWidth="64.0" text="Navn">
@@ -60,4 +61,3 @@
     </TableView>
 </children>
 </AnchorPane>
-

@@ -5,12 +5,18 @@ import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Controller{
 
@@ -52,6 +58,26 @@ public class Controller{
         productChosen = tableView.getSelectionModel().getSelectedItems();
         allProducts.removeAll(productChosen);
 
+    }
+
+    @FXML
+    private Button btnTilbake;
+
+    @FXML
+    void Tilbake (ActionEvent event) throws IOException {
+        try {
+        Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
+        Scene PCByggingScene = new Scene(PCByggingParent);
+
+        //Denne linjen henter stage info
+        Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+        PCWindow.setScene(PCByggingScene);
+        PCWindow.show();
+    }
+        catch (IOException e){
+            e.printStackTrace();
+
+        }
     }
 
     @FXML
