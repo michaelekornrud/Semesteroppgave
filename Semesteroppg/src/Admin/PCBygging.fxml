@@ -46,6 +46,6 @@
       <ChoiceBox layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
       <Label layoutX="349.0" layoutY="400.0" text="Totalpris:" />
       <Label layoutX="408.0" layoutY="400.0" text="Pris" />
-      <Button layoutX="473.0" layoutY="395.0" mnemonicParsing="false" text="Vis handlekurv" />
+      <Button fx:id="btnHandlekurv" layoutX="473.0" layoutY="395.0" mnemonicParsing="false" onAction="#Handlekurv" text="Vis handlekurv" />
    </children>
 </AnchorPane>
