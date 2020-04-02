@@ -2,6 +2,7 @@ package ProductWindow;
 
 
 import Exceptions.ProductValidator;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,9 @@ import java.io.IOException;
 
 public class Controller{
 
+    ObservableList<String> componentType = FXCollections.observableArrayList("Kabinett", "Hovedkort" ,"Prosessor", "Skjermkort", "Minne","Strømforskyvning",
+            "Harddisk", "CPU-Vifte", "Vifter", "Casemods","Skjerm", "Tastatur", "Hodetelefoner","Mus");
+
     @FXML
     private TextField txtProductName;
 
@@ -30,7 +34,7 @@ public class Controller{
     private TextField txtNumberOfProducts;
 
     @FXML
-    private ChoiceBox<Product> choType;
+    private ChoiceBox<String> choType;
 
     @FXML
     private TextField txtBrand;
@@ -46,9 +50,6 @@ public class Controller{
 
     @FXML
     private TableColumn<Product, String> colNumberOfProduct;
-
-    @FXML
-    private TableColumn<Product, String> colType;
 
     @FXML
     private TableColumn<Product, String> colBrand;
@@ -71,6 +72,8 @@ public class Controller{
         /*colType.setCellFactory(TextFieldTableCell.forTableColumn());*/
         //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
         //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
+        choType.setItems(componentType);
+
 
     }
 
@@ -80,6 +83,8 @@ public class Controller{
         Product newProduct = createProductObjectFromGUI();
         ProductRegister.addElement(newProduct);
         resetTxtFields();
+
+
 
     }
 

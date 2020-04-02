@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ChoiceboxLoader {
-    private String[] componentNames = new String[]{"Kabinett", "Prosessor"};
+    private String[] componentNames = new String[]{"Kabinett", "Hovedkort" ,"Prosessor", "Skjermkort", "Minne","Strømforskyvning",
+    "Harddisk", "CPU-Vifte", "Vifter", "Casemods","Skjerm", "Tastatur", "Hodetelefoner","Mus"};  //Her er alle komponent-typene, legg til om det blir fler.
 
     public ChoiceboxLoader(){
         load();
@@ -67,6 +68,7 @@ public class ChoiceboxLoader {
             String name = component[1];
             double price = Double.parseDouble(component[2]);
             String type = component[3];
+            //Legg til fler om det skal være flere basis-typer
 
             BaseComponent comp = new BaseComponent(id, name, price, type);
 
@@ -74,7 +76,7 @@ public class ChoiceboxLoader {
             String mapId = type.toLowerCase();
             List<BaseComponent> compList = mappedComponents.get(mapId);
 
-            if(compList == null){
+            if(compList == null){ //Kontrollere om det er data i complist
                 compList = new ArrayList<>();
             }
 

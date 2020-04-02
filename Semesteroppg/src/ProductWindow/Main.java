@@ -29,5 +29,6 @@ public class Main extends Application {
 
         //System.out.println(containsNei);
         launch(args);
+        new ChoiceboxLoader();
     }
 }

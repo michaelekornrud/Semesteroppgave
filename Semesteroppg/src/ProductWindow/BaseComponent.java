@@ -1,6 +1,7 @@
 package ProductWindow;
 
 public class BaseComponent {  //Klasse som lagrer basisinformasjonen til komponenten
+    //For å få spesifikke detaljer i komponentene, kan man lage en ny klasse som exstends denne klassen med konstruktør og legge inn for eksempel minne osv.
 
     private String type;
     private String id;
