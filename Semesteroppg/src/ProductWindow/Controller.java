@@ -105,6 +105,7 @@ public class Controller{
 
         //Denne linjen henter stage info
         Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+        PCWindow.setTitle("Build your own PC");
         PCWindow.setScene(PCByggingScene);
         PCWindow.show();
     }

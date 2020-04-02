@@ -25,6 +25,7 @@ public class controller {
 
             //Denne linjen henter stage info
             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            PCWindow.setTitle("Legg til komponent");
             PCWindow.setScene(PCByggingScene);
             PCWindow.show();
         }
