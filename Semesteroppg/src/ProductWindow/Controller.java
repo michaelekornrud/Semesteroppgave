@@ -30,7 +30,7 @@ public class Controller{
     private TextField txtNumberOfProducts;
 
     @FXML
-    private TextField txtType;
+    private ChoiceBox<Product> choType;
 
     @FXML
     private TextField txtBrand;
@@ -67,11 +67,9 @@ public class Controller{
         tableView.setEditable(true);
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());
-        colType.setCellFactory(TextFieldTableCell.forTableColumn());
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
+        /*colType.setCellFactory(TextFieldTableCell.forTableColumn());*/
         //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
-
-
         //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
 
     }
@@ -118,7 +116,7 @@ public class Controller{
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
         String name = txtProductName.getText();
-        String type = txtType.getText();
+        //String type = txtType.getText();
         String brand = txtBrand.getText();
         String productNumber = txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
@@ -135,7 +133,7 @@ public class Controller{
         }*/
 
             return new Product(ProductValidator.testProductName(name),ProductValidator.testProductNumber(productNumber),
-                ProductValidator.testNumberOfProducts(numberOfProducts),ProductValidator.testProductType(type),
+                ProductValidator.testNumberOfProducts(numberOfProducts),/*ProductValidator.testProductType(type),*/
                 ProductValidator.testProductBrand(brand),ProductValidator.testPrice(price));
 
     }
@@ -170,14 +168,14 @@ public class Controller{
         tableView.refresh();
     }
 
-    @FXML
+    /*@FXML
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
         ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
-    }
+    }*/
 
 
     @FXML
@@ -204,7 +202,6 @@ public class Controller{
         txtProductName.setText("");
         txtProductNumber.setText("");
         txtNumberOfProducts.setText("");
-        txtType.setText("");
         txtBrand.setText("");
         txtPrice.setText("");
     }
