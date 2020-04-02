@@ -15,11 +15,11 @@
          </font>
       </Label>
       <Label layoutX="45.0" layoutY="87.0" text="Kabinett" />
-      <ChoiceBox layoutX="45.0" layoutY="104.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choKabinett" layoutX="45.0" layoutY="104.0" prefWidth="150.0" />
       <Label layoutX="45.0" layoutY="141.0" text="Hovedkort" />
-      <ChoiceBox layoutX="45.0" layoutY="158.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choHovedkort" layoutX="45.0" layoutY="158.0" prefWidth="150.0" />
       <Label layoutX="45.0" layoutY="192.0" text="Prosessor" />
-      <ChoiceBox layoutX="45.0" layoutY="209.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choProsessor" layoutX="45.0" layoutY="209.0" prefWidth="150.0" />
       <Label layoutX="45.0" layoutY="254.0" text="Skjermkort" />
       <ChoiceBox layoutX="45.0" layoutY="271.0" prefWidth="150.0" />
       <Label layoutX="45.0" layoutY="307.0" text="Minne (RAM)" />
