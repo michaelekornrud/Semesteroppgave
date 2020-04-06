@@ -1,12 +1,15 @@
 package Exceptions;
 
 import ProductWindow.Controller;
+import ProductWindow.Product;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ProductValidator {
+    List<Product> newProduct;
 
     public static String testProductName(String name) throws InvalidProductNameException{
         if (!name.matches("[a-zæøåA-ZÆØÅ0-9- ]*")){
@@ -57,6 +60,19 @@ public class ProductValidator {
         }
         return number;
     }
+
+    public boolean testID(String id){
+        for (Product p : newProduct){
+            if (id.equals(p.getTxtProductNumber())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 
 
 

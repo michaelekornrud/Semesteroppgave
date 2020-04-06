@@ -51,6 +51,7 @@
                     <PropertyValueFactory property="txtPrice" />
                 </cellValueFactory>
             </TableColumn>
+            <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
         </columns>
     </TableView>
       <ChoiceBox fx:id="choType" layoutX="24.0" layoutY="68.0" prefHeight="27.0" prefWidth="155.0" />

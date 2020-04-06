@@ -1,5 +1,6 @@
 package Admin;
 
+import ProductWindow.ChoiceboxLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
@@ -20,6 +22,9 @@ public class controller {
 
     @FXML
     private Button btnHandlekurv;
+
+    @FXML
+    public ChoiceBox<String> choMus;
 
     @FXML
     void addComponent (ActionEvent event) throws IOException {
@@ -36,6 +41,7 @@ public class controller {
         catch (IOException e){
             e.printStackTrace();
         }
+
     }
 
     @FXML

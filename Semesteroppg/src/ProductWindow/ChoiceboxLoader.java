@@ -13,12 +13,13 @@ public class ChoiceboxLoader {
     private String[] componentNames = new String[]{"Kabinett", "Hovedkort" ,"Prosessor", "Skjermkort", "Minne","Strømforskyvning",
     "Harddisk", "CPU-Vifte", "Vifter", "Casemods","Skjerm", "Tastatur", "Hodetelefoner","Mus"};  //Her er alle komponent-typene, legg til om det blir fler.
 
-    public ChoiceboxLoader(){
+    public ChoiceboxLoader()
+    {
         load();
     }
 
 
-    private void load(){  //Metode for å laste inn csv-data, og "mappe" dataen.
+    public void load(){  //Metode for å laste inn csv-data, og "mappe" dataen.
 
         String projectDirectory = System.getProperty("user.dir");
         String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
@@ -60,7 +61,7 @@ public class ChoiceboxLoader {
 
     }
 
-    private void createChoiceBoxes(List<String[]> componentData) {  //Metode for å laste inn komponenter
+    public void createChoiceBoxes(List<String[]> componentData) {  //Metode for å laste inn komponenter
         Map<String, List<BaseComponent>> mappedComponents = new HashMap<>();
 
         for (String[] component : componentData){
@@ -86,7 +87,9 @@ public class ChoiceboxLoader {
         }
 
 
-        String idToLookFor = "hei";  //Legg denne inn i add metoden. Den sjekker om prodID eksisterer fra før av.
+
+
+        String idToLookFor = "HK12345678";  //Legg denne inn i add metoden. Den sjekker om prodID eksisterer fra før av.
         boolean containsId = false;
 
         for (String key : mappedComponents.keySet()){
@@ -98,5 +101,7 @@ public class ChoiceboxLoader {
         }
 
         System.out.println("Contains id: " + idToLookFor +": " + containsId);
+
     }
+
 }

@@ -24,6 +24,11 @@ public class Controller{
     ObservableList<String> componentType = FXCollections.observableArrayList("Kabinett", "Hovedkort" ,"Prosessor", "Skjermkort", "Minne","Strømforskyvning",
             "Harddisk", "CPU-Vifte", "Vifter", "Casemods","Skjerm", "Tastatur", "Hodetelefoner","Mus");
 
+    public ObservableList<String> choiceConverter(ObservableList<String> componentType){
+        return
+        this.componentType = componentType;
+    }
+
     @FXML
     private TextField txtProductName;
 
@@ -58,6 +63,9 @@ public class Controller{
     private TableColumn<Product, String> colPrice;
 
     @FXML
+    private TableColumn<Product, String> colType;
+
+    @FXML
     private TableView<Product> tableView;
     private ProductRegister newObjects = new ProductRegister();
 
@@ -69,7 +77,7 @@ public class Controller{
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        /*colType.setCellFactory(TextFieldTableCell.forTableColumn());*/
+        colType.setCellFactory(TextFieldTableCell.forTableColumn());
         //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
         //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
         choType.setItems(componentType);
@@ -84,6 +92,11 @@ public class Controller{
         ProductRegister.addElement(newProduct);
         resetTxtFields();
 
+       /* String choiceb = choType.getSelectionModel().getSelectedItem();
+
+        if (choiceb == "Mus"){
+            tableView.getItems();
+        }*/
 
 
     }
@@ -121,13 +134,13 @@ public class Controller{
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
         String name = txtProductName.getText();
-        //String type = txtType.getText();
         String brand = txtBrand.getText();
         String productNumber = txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
+
 
         /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
 
@@ -138,8 +151,8 @@ public class Controller{
         }*/
 
             return new Product(ProductValidator.testProductName(name),ProductValidator.testProductNumber(productNumber),
-                ProductValidator.testNumberOfProducts(numberOfProducts),/*ProductValidator.testProductType(type),*/
-                ProductValidator.testProductBrand(brand),ProductValidator.testPrice(price));
+                ProductValidator.testNumberOfProducts(numberOfProducts),
+                ProductValidator.testProductBrand(brand),ProductValidator.testPrice(price), choiceConverter(componentType));
 
     }
 

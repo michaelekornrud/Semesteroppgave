@@ -41,7 +41,7 @@
       <Label layoutX="423.0" layoutY="192.0" text="Tastatur" />
       <ChoiceBox layoutX="423.0" layoutY="211.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="254.0" text="Mus" />
-      <ChoiceBox layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choMus" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
       <ChoiceBox layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
       <Label layoutX="349.0" layoutY="400.0" text="Totalpris:" />
