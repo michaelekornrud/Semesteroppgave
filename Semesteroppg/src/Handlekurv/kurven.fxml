@@ -21,9 +21,10 @@
       <Label layoutX="113.0" layoutY="356.0" text="mva  pris" />
       <Label layoutX="48.0" layoutY="330.0" text="Pris: " />
       <Label layoutX="113.0" layoutY="330.0" text="pris eksl mva." />
-      <Button fx:id="btnLagre" layoutX="319.0" layoutY="64.0" mnemonicParsing="false" onAction="#Onskeliste" text="Lagre som øsnkeliste" />
-      <Button fx:id="btnBetalinig" layoutX="319.0" layoutY="109.0" mnemonicParsing="false" onAction="#Betal" text="Gå til betaling" />
-      <Button fx:id="btnTilbake" layoutX="319.0" layoutY="156.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake til bygging" />
-      <Button fx:id="btnLukkProgram" layoutX="319.0" layoutY="202.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avlutt" />
+      <Button fx:id="btnLagre" layoutX="319.0" layoutY="64.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
+      <Button fx:id="btnBetalinig" layoutX="319.0" layoutY="141.0" mnemonicParsing="false" onAction="#Betal" text="Gå til betaling" />
+      <Button fx:id="btnTilbake" layoutX="319.0" layoutY="180.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake til bygging" />
+      <Button fx:id="btnLukkProgram" layoutX="319.0" layoutY="219.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avlutt" />
+      <Button fx:id="btnOpenØnskeliste" layoutX="319.0" layoutY="103.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
    </children>
 </AnchorPane>
