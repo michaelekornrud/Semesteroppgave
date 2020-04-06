@@ -4,13 +4,17 @@ import javafx.fxml.FXML;
 
 import javafx.event.*;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Node;
+import javax.swing.text.BadLocationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +51,22 @@ public class controller implements Initializable {
     private ListView LWHandlekurv;
 
     @FXML
-    void LagreOnskeliste (ActionEvent event){
+    void LagreOnskeliste (ActionEvent event)throws IOException, BadLocationException {
+        FileChooser saveAs = new FileChooser();
+        File saveFile = saveAs.showSaveDialog(null);
+        String formated = CartFormater.cartFormat(NewData.liste);
+
+        if (saveFile != null){
+            Path filePath = Paths.get(saveFile.getAbsolutePath());
+
+            try {
+                LagreHandlekurv.writeToFile(filePath,formated);
+            }
+            catch (IOException e){
+                System.err.println("Noe gikk galt");
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -61,17 +80,45 @@ public class controller implements Initializable {
     }
 
     @FXML
-    void Betal (ActionEvent event){
+    void FullførOrdre (ActionEvent event){
+        try {
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("FullførOrdre/Fulfør.fxml")));
+            Scene PCByggingScene = new Scene(PCByggingParent);
+
+            //Denne linjen henter stage info
+            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            PCWindow.setTitle("Fullfør ordre");
+            PCWindow.setScene(PCByggingScene);
+            PCWindow.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void Tilbake (ActionEvent event){
+        try {
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
+            Scene PCByggingScene = new Scene(PCByggingParent);
+
+            //Denne linjen henter stage info
+            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            PCWindow.setTitle("Build your own PC");
+            PCWindow.setScene(PCByggingScene);
+            PCWindow.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     void LukkProgram (ActionEvent event){
+        Stage lukkProgram = (Stage) btnLukkProgram.getScene().getWindow();
+        lukkProgram.close();
 
     }
 }

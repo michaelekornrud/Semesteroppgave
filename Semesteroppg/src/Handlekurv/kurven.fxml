@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="422.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Handlekurv.controller">
    <children>
       <ListView fx:id="LWHandlekurv" layoutX="47.0" layoutY="64.0" prefHeight="254.0" prefWidth="228.0" />
@@ -22,9 +21,9 @@
       <Label layoutX="48.0" layoutY="330.0" text="Pris: " />
       <Label layoutX="113.0" layoutY="330.0" text="pris eksl mva." />
       <Button fx:id="btnLagre" layoutX="319.0" layoutY="64.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
-      <Button fx:id="btnBetalinig" layoutX="319.0" layoutY="141.0" mnemonicParsing="false" onAction="#Betal" text="Gå til betaling" />
+      <Button fx:id="btnBetalinig" layoutX="319.0" layoutY="141.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre" />
       <Button fx:id="btnTilbake" layoutX="319.0" layoutY="180.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake til bygging" />
-      <Button fx:id="btnLukkProgram" layoutX="319.0" layoutY="219.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avlutt" />
+      <Button fx:id="btnLukkProgram" layoutX="319.0" layoutY="219.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt" />
       <Button fx:id="btnOpenØnskeliste" layoutX="319.0" layoutY="103.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
    </children>
 </AnchorPane>
