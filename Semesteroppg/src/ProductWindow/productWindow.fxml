@@ -28,7 +28,7 @@
 
             <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="68.0" text="Navn">
                 <cellValueFactory>
-                    <PropertyValueFactory property="txtProductName " />
+                    <PropertyValueFactory property="txtProductName" />
                 </cellValueFactory>
 
             </TableColumn>

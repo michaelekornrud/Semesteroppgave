@@ -1,4 +1,4 @@
-﻿id,name,numberOfProducts,price;brand,type
-1;AcerPro;3;20.00;Acer;Processor
-
-
+id;name;numberOfProducts;brand;price;type
+1;AcerMaster69;7;Acer;20;Processor
+2;ab3000;9;HP;80;Kabinett
+3;hh69;5;Apple;20;Harddrive

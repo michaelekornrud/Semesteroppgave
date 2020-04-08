@@ -125,7 +125,7 @@ public class Controller_Admin {
         ObservableList<String> MainCardNames = getCoponentNames(ComponentType.MAINCARD, newData);
         ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.SKJERMKORT, newData);
         ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MINNE, newData);
-        ObservableList<String> EnergyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING, newData);
+        ObservableList<String> PowerSupplyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING, newData);
         ObservableList<String> CPU_Names = getCoponentNames(ComponentType.CPU_VIFTE, newData);
         ObservableList<String> FanNames = getCoponentNames(ComponentType.VIFTER, newData);
         ObservableList<String> CaseModkNames = getCoponentNames(ComponentType.CASEMODS, newData);
@@ -139,7 +139,7 @@ public class Controller_Admin {
         choProcessor.setItems(ProsessorNames);
         choCaseMods.setItems(CaseModkNames);
         choCPU.setItems(CPU_Names);
-        choEnergy.setItems(EnergyNames);
+        choEnergy.setItems(PowerSupplyNames);
         choFan.setItems(FanNames);
         choHeadsett.setItems(HeadSetNames);
         choKeyboard.setItems(KeyboadNames);

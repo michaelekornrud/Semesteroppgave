@@ -16,14 +16,13 @@ public class Product {
 
 
 
-    public Product(String productNumber, String name, int numberOfProducts , double price ,String brand, String type
-    ){
+    public Product(String productNumber, String name, int numberOfProducts ,String brand, double price, String type){
         if (name != null && brand != null && numberOfProducts > 0 && price > 0 ){
-            this.txtProductName = new SimpleStringProperty(name);
-            this.txtBrand = new SimpleStringProperty(brand);
-            this.txtNumberOfProducts = new SimpleIntegerProperty(numberOfProducts);
-            this.txtPrice = new SimpleDoubleProperty(price);
             this.txtProductNumber = new SimpleStringProperty(productNumber);
+            this.txtProductName = new SimpleStringProperty(name);
+            this.txtNumberOfProducts = new SimpleIntegerProperty(numberOfProducts);
+            this.txtBrand = new SimpleStringProperty(brand);
+            this.txtPrice = new SimpleDoubleProperty(price);
             this.txtType = new SimpleStringProperty(type);
 
         }

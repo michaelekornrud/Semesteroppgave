@@ -80,19 +80,19 @@ public class Component_DataHandler {
             String id = component[0];
             String name = component[1];
             int numberOfProducts = Integer.parseInt(component[2]);
-            double price = Double.parseDouble(component[3]);
-            String brand = component[4];
+            String brand = component[3];
+            double price = Double.parseDouble(component[4]);
             String type = component[5];
             //Legg til fler om det skal være flere typer
 
-            Product prod = new Product(id, name,numberOfProducts, price, brand ,type);
+            Product prod = new Product(id,name,numberOfProducts,brand,price,type);
 
 
 
             //String mapId = type.toLowerCase();
             List<Product> compList = mappedComponents.get(type);
 
-            if(compList == null){ //Kontrollere om det er data i complist
+            if(compList == null){ //Kontrollerer om det er data i complist
                 compList = new ArrayList<>();
             }
 

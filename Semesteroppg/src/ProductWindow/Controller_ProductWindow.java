@@ -151,8 +151,8 @@ public class Controller_ProductWindow {
             return new Product(ProductValidator.testProductNumber(productNumber)
                                 ,ProductValidator.testProductName(name)
                                 , ProductValidator.testNumberOfProducts(numberOfProducts)
-                                , ProductValidator.testPrice(price)
                                 , ProductValidator.testProductBrand(brand)
+                                , ProductValidator.testPrice(price)
                                 , ProductValidator.testProductType(value));
 
         /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
