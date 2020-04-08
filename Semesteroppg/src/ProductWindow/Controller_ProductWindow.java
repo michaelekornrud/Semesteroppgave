@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class Controller_ProductWindow {
 
-    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.CPU_VIFTE
+    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
     
@@ -155,7 +155,7 @@ public class Controller_ProductWindow {
                                 , ProductValidator.testNumberOfProducts(numberOfProducts)
                                 , ProductValidator.testProductBrand(brand)
                                 , ProductValidator.testPrice(price)
-                                , ProductValidator.testProductType(value));
+                                , value);
 
         /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
         /*String[] prodNr = new String[]{productNumber};
@@ -199,7 +199,7 @@ public class Controller_ProductWindow {
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
-        ProductValidator.testProductType(type);
+        //ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
     }
