@@ -49,7 +49,7 @@ public class Product {
     public void setTxtType(String txtType){this.txtType.set(txtType);}
 
     public String toString(){
-        return String.format("\n%s;%s;%s;%s;%s;%s", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
+        return String.format("\n" +"%s;%s;%s;%s;%s;%s", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
 
 }

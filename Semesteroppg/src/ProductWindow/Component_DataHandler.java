@@ -122,7 +122,11 @@ public class Component_DataHandler {
 
     public void write(Product product) throws IOException {  //Her blir det lagt til Product produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
         FileWriter pw = new FileWriter(csvFile, true);
-        try { pw.write(product.toString());}
+        String products = product.toString();
+        try {
+            BOMreader.removeUTF8BOM(products);
+            pw.write(products);
+        }
 
 
         catch (FileNotFoundException e) {  //Endre til egne exceptons
