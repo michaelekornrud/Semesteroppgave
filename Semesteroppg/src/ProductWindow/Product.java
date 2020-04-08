@@ -5,15 +5,18 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 public class Product {
 
-    private SimpleStringProperty txtProductName, txtBrand, txtProductNumber, txtType;
+    private SimpleStringProperty txtProductName, txtBrand, txtType,txtProductNumber;
     private SimpleIntegerProperty txtNumberOfProducts;
     private SimpleDoubleProperty txtPrice;
 
-    public Product(String name, String productNumber, int numberOfProducts, String brand, double price, ObservableList<String> type
+
+
+
+    public Product(String productNumber, String name, int numberOfProducts , double price ,String brand, String type
     ){
         if (name != null && brand != null && numberOfProducts > 0 && price > 0 ){
             this.txtProductName = new SimpleStringProperty(name);
@@ -21,7 +24,8 @@ public class Product {
             this.txtNumberOfProducts = new SimpleIntegerProperty(numberOfProducts);
             this.txtPrice = new SimpleDoubleProperty(price);
             this.txtProductNumber = new SimpleStringProperty(productNumber);
-            /*this.txtType = new SimpleStringProperty(type);*/
+            this.txtType = new SimpleStringProperty(type);
+
         }
 
     }
@@ -46,8 +50,11 @@ public class Product {
     public void setTxtType(String txtType){this.txtType.set(txtType);}
 
     public String toString(){
-        return String.format("\b%s;%s;%s;%s;%s;%s\b",getTxtProductName(), getTxtProductNumber() , getTxtBrand(), getTxtPrice(), getTxtNumberOfProducts(), getTxtType());
+        return String.format("\b%s;%s;%s;%s;%s;%s\b", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
+
+
+
 
 
 

@@ -6,10 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
-import java.util.List;
+
 
 public class Main extends Application {
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -29,6 +30,6 @@ public class Main extends Application {
 
         //System.out.println(containsNei);
         launch(args);
-        new ChoiceboxLoader();
+        new Component_DataHandler();
     }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller_ProductWindow">
 <children>
     <TextField fx:id="txtProductName" layoutX="23.0" layoutY="107.0" promptText="Navn" />
     <TextField fx:id="txtProductNumber" layoutX="23.0" layoutY="143.0" promptText="ProduktNummer" />
@@ -20,15 +20,15 @@
       <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake" />
     <TableView fx:id="tableView" layoutX="199.0" layoutY="68.0" prefHeight="222.0" prefWidth="394.0">
         <columns>
-            <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="64.0" text="Navn">
+            <TableColumn fx:id="colProdNr" onEditCommit="#editTableview_prodNr" prefWidth="64.0" text="Id">
                 <cellValueFactory>
-                    <PropertyValueFactory property="txtProductName" />
+                    <PropertyValueFactory property="txtProductNumber" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn fx:id="colProdNr" onEditCommit="#editTableview_prodNr" prefWidth="68.0" text="ProdNr">
+            <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="68.0" text="Navn">
                 <cellValueFactory>
-                    <PropertyValueFactory property="txtProductNumber" />
+                    <PropertyValueFactory property="txtProductName " />
                 </cellValueFactory>
 
             </TableColumn>
@@ -51,7 +51,7 @@
                     <PropertyValueFactory property="txtPrice" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="75.0" text="Type" />
         </columns>
     </TableView>
       <ChoiceBox fx:id="choType" layoutX="24.0" layoutY="68.0" prefHeight="27.0" prefWidth="155.0" />

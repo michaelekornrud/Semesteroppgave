@@ -18,8 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-
-public class Controller{
+public class Controller_ProductWindow {
 
     ObservableList<String> componentType = FXCollections.observableArrayList("Kabinett", "Hovedkort" ,"Prosessor", "Skjermkort", "Minne","Strømforskyvning",
             "Harddisk", "CPU-Vifte", "Vifter", "Casemods","Skjerm", "Tastatur", "Hodetelefoner","Mus");
@@ -28,6 +27,10 @@ public class Controller{
         return
         this.componentType = componentType;
     }
+
+    Component_DataHandler dataHandler = new Component_DataHandler();
+
+    //UUID id = UUID.randomUUID();
 
     @FXML
     private TextField txtProductName;
@@ -78,19 +81,20 @@ public class Controller{
         colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
+        choType.setItems(componentType);
         //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
         //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
-        choType.setItems(componentType);
 
 
     }
 
     @FXML
-    void btnAdd(ActionEvent event) {
+    void btnAdd(ActionEvent event) throws IOException {
         initialize();
         Product newProduct = createProductObjectFromGUI();
         ProductRegister.addElement(newProduct);
         resetTxtFields();
+        dataHandler.write(newProduct);
 
        /* String choiceb = choType.getSelectionModel().getSelectedItem();
 
@@ -133,27 +137,30 @@ public class Controller{
 
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
+
         String name = txtProductName.getText();
         String brand = txtBrand.getText();
-        String productNumber = txtProductNumber.getText();
+        String productNumber =txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
 
+        String value = (String)choType.getSelectionModel().getSelectedItem();
+
+            return new Product(ProductValidator.testProductNumber(productNumber)
+                                ,ProductValidator.testProductName(name)
+                                , ProductValidator.testNumberOfProducts(numberOfProducts)
+                                , ProductValidator.testPrice(price)
+                                , ProductValidator.testProductBrand(brand)
+                                , ProductValidator.testProductType(value));
 
         /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
-
-       /*String[] prodNr = new String[]{productNumber};
+        /*String[] prodNr = new String[]{productNumber};
         List<String> list = Arrays.asList(prodNr);
         if (list.contains(productNumber)){
             throw new InvalidProductNumberException("The number already exists!");
         }*/
-
-            return new Product(ProductValidator.testProductName(name),ProductValidator.testProductNumber(productNumber),
-                ProductValidator.testNumberOfProducts(numberOfProducts),
-                ProductValidator.testProductBrand(brand),ProductValidator.testPrice(price), choiceConverter(componentType));
-
     }
 
     @FXML
@@ -186,14 +193,14 @@ public class Controller{
         tableView.refresh();
     }
 
-    /*@FXML
+    @FXML
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
         ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
-    }*/
+    }
 
 
     @FXML

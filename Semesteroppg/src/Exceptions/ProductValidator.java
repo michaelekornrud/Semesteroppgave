@@ -1,12 +1,8 @@
 package Exceptions;
 
-import ProductWindow.Controller;
 import ProductWindow.Product;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ProductValidator {
     List<Product> newProduct;
