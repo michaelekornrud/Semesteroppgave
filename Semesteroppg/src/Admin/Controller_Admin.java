@@ -134,6 +134,9 @@ public class Controller_Admin {
         ObservableList<String> HeadSetNames = getCoponentNames(ComponentType.HODETELEFONER, newData);
         ObservableList<String> MouseNames = getCoponentNames(ComponentType.MUS , newData);
 
+        //Vi må sette inn muligheten for å legge til 2 harddisker
+        //Det er bare den ene chioceboxen i scenebuilder som har fått en fx:id
+
         choKabinett.setItems(kabinettNames);
         choHarddrive.setItems(HarddiskNames);
         choProcessor.setItems(ProsessorNames);
@@ -166,7 +169,7 @@ public class Controller_Admin {
 
 
 
-    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData ){
+    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData ) throws IOException {
 
         List<Product> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();
@@ -177,6 +180,7 @@ public class Controller_Admin {
                 kabinettNames.add(prod.getTxtProductName());
             }
         }
+
 
 
 

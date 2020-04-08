@@ -1,9 +1,9 @@
 id;name;numberOfProducts;brand;price;type
 1;AcerMaster69;7;Acer;20;Processor
 2;ab3000;9;HP;80;Kabinett
-3;hh69;5;Apple;20;Harddrive
-4;Bose3000;4;Bose;3000.0;Headset
-5;Casemmod2000;12;HP;500.0;Casemods
+3;hh69;5;Apple;20;Harddrive
+4;Bose3000;4;Bose;3000.0;Headset
+5;Casemmod2000;12;HP;500.0;Casemods
 HK33333333;Sc1222;12;KK;12.0;Screen
-
 HK12345678;JOs;12;ff;23.0;CPU-fan
+CF12121212;IntelSTD;1;Intel;400.0;CPU-fan

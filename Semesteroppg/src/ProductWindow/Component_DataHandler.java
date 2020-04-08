@@ -120,9 +120,11 @@ public class Component_DataHandler {
 
     }
 
-    public void write(Product product) throws IOException {  //Her blir det lagt til PRoduct produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
+    public String write(Product product) throws IOException {  //Her blir det lagt til PRoduct produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
         FileWriter pw = new FileWriter(csvFile, true);
-        try { pw.write(product.toString());}
+        try {
+            String products = pw.write(String.valueOf(product));
+        }
 
 
         catch (FileNotFoundException e) {  //Endre til egne exceptons
