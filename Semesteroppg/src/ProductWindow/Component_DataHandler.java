@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Component_DataHandler {
-    private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Energy",
-    "Harddrive", "CPU-Fan", "Fans", "Casemods","Screen", "Keyboard", "Headset","Mouse"};//Her er alle komponent-typene, legg til om det blir fler.
-
+    /*private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Powersupply",
+    "Harddrive", "CPU-Fan", "Fans", "Casemods","Screen", "Keyboard", "Headset","Mouse"};//Her er alle komponent-typene, legg til om det blir fler.*/
     private String csvFile;
 
     public Component_DataHandler()
@@ -23,9 +22,8 @@ public class Component_DataHandler {
 
     public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
 
-        //Kan butte ut basecomponent med product!!!!!!!!<3
-        //String projectDirectory = System.getProperty("user.dir");
-        //String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
+        String projectDirectory = System.getProperty("user.dir");
+        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
 
         BufferedReader br = null;
         String currentLine = "";
@@ -86,7 +84,6 @@ public class Component_DataHandler {
             //Legg til fler om det skal være flere typer
 
             Product prod = new Product(id,name,numberOfProducts,brand,price,type);
-
 
 
             //String mapId = type.toLowerCase();
