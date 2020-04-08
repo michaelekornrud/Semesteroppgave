@@ -147,15 +147,14 @@ public class Controller_ProductWindow {
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
-
-        String value = (String)choType.getSelectionModel().getSelectedItem();
+        String value = choType.getSelectionModel().getSelectedItem();
 
             return new Product(ProductValidator.testProductNumber(productNumber)
                                 ,ProductValidator.testProductName(name)
-                                , ProductValidator.testNumberOfProducts(numberOfProducts)
-                                , ProductValidator.testProductBrand(brand)
-                                , ProductValidator.testPrice(price)
-                                , value);
+                                ,ProductValidator.testNumberOfProducts(numberOfProducts)
+                                ,ProductValidator.testProductBrand(brand)
+                                ,ProductValidator.testPrice(price)
+                                ,ProductValidator.testProductType(value));
 
         /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
         /*String[] prodNr = new String[]{productNumber};
@@ -232,6 +231,5 @@ public class Controller_ProductWindow {
         txtBrand.setText("");
         txtPrice.setText("");
     }
-
 }
 

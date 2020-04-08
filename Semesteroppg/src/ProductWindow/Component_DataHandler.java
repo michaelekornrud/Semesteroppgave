@@ -22,8 +22,8 @@ public class Component_DataHandler {
 
     public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
 
-        String projectDirectory = System.getProperty("user.dir");
-        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
+        /*String projectDirectory = System.getProperty("user.dir");
+        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";*/
 
         BufferedReader br = null;
         String currentLine = "";
@@ -120,7 +120,7 @@ public class Component_DataHandler {
 
     }
 
-    public void write(Product product) throws IOException {  //Her blir det lagt til PRoduct produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
+    public void write(Product product) throws IOException {  //Her blir det lagt til Product produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
         FileWriter pw = new FileWriter(csvFile, true);
         try { pw.write(product.toString());}
 

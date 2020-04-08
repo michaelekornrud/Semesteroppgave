@@ -14,12 +14,12 @@ public class ProductValidator {
         return name;
     }
 
-    /*public static String testProductType(String type) throws InvalidTypeException{
+    public static String testProductType(String type) throws InvalidTypeException{
         if (!type.matches("[a-zæøåA-ZÆØÅ]*")){
             throw new InvalidTypeException("Product-type is invalid");
         }
         return type;
-    }*/
+    }
 
     public static String testProductBrand(String brand) throws InvalidBrandException{
         if (!brand.matches("[a-zA-Z]*")){

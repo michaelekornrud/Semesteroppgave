@@ -1,9 +1,9 @@
 id;name;numberOfProducts;brand;price;type
-1;AcerMaster69;7;Acer;20;Processor
-2;ab3000;9;HP;80;Kabinett
-3;hh69;5;Apple;20;Harddrive
-4;Bose3000;4;Bose;3000.0;Headset
-5;Casemmod2000;12;HP;500.0;Casemods
-HK33333333;Sc1222;12;KK;12.0;Screen
-
-HK12345678;JOs;12;ff;23.0;CPU-fan
+HK12345673;AcerMaster69;7;Acer;20;Processor
+HK12345678;CPU12;12;gg;12.0;CPU-fan
+HK87654321;Kabmaster42;12;Kab;65.0;Kabinett
+HK98989898;cas33;78;ii;9.0;Casemods
+BS12345678;Boseextreme;98;Bose;98.0;Headset
+MK12345678;Minnekort;12;Minnemaster;900.0;Memory
+HK12332112;HDskjerm42;43;Samsung;4000.0;Screen
+HK98765432;Keyboard5000;12;Jesus;12.0;Keyboard
