@@ -51,7 +51,12 @@
                     <PropertyValueFactory property="txtPrice" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="75.0" text="Type" >
+            <cellValueFactory>
+                <PropertyValueFactory property="txtType" />
+            </cellValueFactory>
+
+            </TableColumn>
         </columns>
     </TableView>
       <ChoiceBox fx:id="choType" layoutX="24.0" layoutY="68.0" prefHeight="27.0" prefWidth="155.0" />
