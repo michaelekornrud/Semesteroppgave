@@ -1,6 +1,7 @@
 package ProductWindow;
 
 
+import Exceptions.InvalidProductNumberException;
 import Exceptions.ProductValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,12 +11,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class Controller_ProductWindow {
@@ -23,6 +31,9 @@ public class Controller_ProductWindow {
     ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
+
+
+    Map<String, List<Product>> mappedComponents = new HashMap<>(); //Legger til en mapped components
     
 
     public ObservableList<String> choiceConverter(ObservableList<String> componentType){
@@ -98,6 +109,8 @@ public class Controller_ProductWindow {
         resetTxtFields();
         dataHandler.write(newProduct);
 
+
+
        /* String choiceb = choType.getSelectionModel().getSelectedItem();
 
         if (choiceb == "Mus"){
@@ -156,8 +169,21 @@ public class Controller_ProductWindow {
                                 ,ProductValidator.testPrice(price)
                                 ,ProductValidator.testProductType(value));
 
-        /*String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview*/
-        /*String[] prodNr = new String[]{productNumber};
+
+       /* boolean containsId = false;
+
+        for (String key : mappedComponents.keySet()){  //Metode for å sjekke om en id eksistere fra før av
+            List<Product> Proditems = mappedComponents.get(key);
+            containsId = Proditems.stream().anyMatch(prodItems -> prodItems.getTxtProductNumber().equals(productNumber));
+            if(containsId){
+                break;
+            }
+        }
+
+        System.out.println("Contains id: " + productNumber +": " + containsId);*
+
+            /* String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview
+        String[] prodNr = new String[]{productNumber};
         List<String> list = Arrays.asList(prodNr);
         if (list.contains(productNumber)){
             throw new InvalidProductNumberException("The number already exists!");

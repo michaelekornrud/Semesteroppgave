@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller_ProductWindow">
 <children>
     <TextField fx:id="txtProductName" layoutX="23.0" layoutY="107.0" promptText="Navn" />
-    <TextField fx:id="txtProductNumber" layoutX="23.0" layoutY="143.0" promptText="ProduktNummer" />
+    <TextField fx:id="txtProductNumber" layoutX="23.0" layoutY="143.0" promptText="ProduktNummer"/>
     <TextField fx:id="txtNumberOfProducts" layoutX="23.0" layoutY="179.0" promptText="Antall" />
     <TextField fx:id="txtBrand" layoutX="23.0" layoutY="216.0" promptText="Merke" />
     <TextField fx:id="txtPrice" layoutX="23.0" layoutY="250.0" promptText="Pris" />

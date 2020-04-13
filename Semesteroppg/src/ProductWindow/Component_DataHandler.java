@@ -1,10 +1,7 @@
 package ProductWindow;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Component_DataHandler {
     /*private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Powersupply",
@@ -75,7 +72,7 @@ public class Component_DataHandler {
 
 
         for (String[] component : componentData){
-            String id = component[0];
+            String id = component[0]; //Gjøre denne om til en int og få random unik number generator tilkoblet
             String name = component[1];
             int numberOfProducts = Integer.parseInt(component[2]);
             String brand = component[3];
@@ -102,21 +99,18 @@ public class Component_DataHandler {
 
 
 
-
-
-        /*String idToLookFor = "HK12345678";  //Legg denne inn i add metoden. Den sjekker om prodID eksisterer fra før av.
+       /* String idToLookFor = "";    //Legg dnne i add metoden. Den sjekker om id eksisterer.
         boolean containsId = false;
 
-        for (String key : mappedComponents.keySet()){
-            List<BaseComponent> comps = mappedComponents.get(key);
-            containsId = comps.stream().anyMatch(baseComp -> baseComp.getId().equals(idToLookFor));
+        for (String key : mappedComponents.keySet()){  //Metode for å sjekke om en id eksistere fra før av
+            List<Product> Proditems = mappedComponents.get(key);
+            containsId = Proditems.stream().anyMatch(prodItems -> prodItems.getTxtProductNumber().equals(idToLookFor));
             if(containsId){
                 break;
             }
         }
 
         System.out.println("Contains id: " + idToLookFor +": " + containsId);*/
-
 
     }
 
