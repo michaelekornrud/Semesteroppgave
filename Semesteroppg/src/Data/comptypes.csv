@@ -14,3 +14,10 @@ HK12345678;CasemodTest;12;Acer;300.0;Casemods
 HK12345678;Casetest2;1;Acer;12.0;Casemods
 HK12345678;HarddriveTest;12;Acer;12.0;Harddrive
 HK12345678;HarddriveTest2;12;Acer;12.0;Harddrive
+HK12345678;ProsessorTest;12;Acer;12.0;Processor
+HK12345678;CaseTest;12;dd;12.0;Casemods
+HK12345678;HDtest;12;JEsus;12.0;Harddrive
+HK12345678;Test;12;ff;12.0;Videocard
+079d87e5-ff25-4de0-949f-a487788b9ef4;Js;12;dd;12.0;CPUfan
+9f25d78e-6241-4740-8933-d7416df92c64;JO;12;dd;12.0;Maincard
+bce5ed70-c828-4529-ad4d-cb810812b84a;HDtest2;5;Acer;50.0;Harddrive

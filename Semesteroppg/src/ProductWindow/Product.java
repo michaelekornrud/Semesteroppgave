@@ -3,7 +3,6 @@ package ProductWindow;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ObservableList;
 
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ public class Product {
 
 
 
-    public Product(String productNumber, String name, int numberOfProducts ,String brand, double price, String type){
+    public Product(String productNumber, String name, int numberOfProducts , String brand, double price, String type){
         if (name != null && brand != null && numberOfProducts > 0 && price > 0 ){
             this.txtProductNumber = new SimpleStringProperty(productNumber);
             this.txtProductName = new SimpleStringProperty(name);
@@ -24,6 +23,7 @@ public class Product {
             this.txtBrand = new SimpleStringProperty(brand);
             this.txtPrice = new SimpleDoubleProperty(price);
             this.txtType = new SimpleStringProperty(type);
+
 
         }
 

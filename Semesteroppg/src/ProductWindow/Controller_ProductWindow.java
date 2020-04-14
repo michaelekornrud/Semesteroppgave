@@ -20,10 +20,7 @@ import javafx.stage.Stage;
 
 import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class Controller_ProductWindow {
@@ -31,6 +28,9 @@ public class Controller_ProductWindow {
     ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
+
+    UniqueIDGenerator test = new UniqueIDGenerator();
+
 
 
     Map<String, List<Product>> mappedComponents = new HashMap<>(); //Legger til en mapped components
@@ -101,6 +101,7 @@ public class Controller_ProductWindow {
 
     }
 
+
     @FXML
     void btnAdd(ActionEvent event) throws IOException {
         initialize();
@@ -108,7 +109,6 @@ public class Controller_ProductWindow {
         ProductRegister.addElement(newProduct);
         resetTxtFields();
         dataHandler.write(newProduct);
-
 
 
        /* String choiceb = choType.getSelectionModel().getSelectedItem();
@@ -153,16 +153,19 @@ public class Controller_ProductWindow {
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
 
+
+        String uniqueID = UUID.randomUUID().toString();
         String name = txtProductName.getText();
         String brand = txtBrand.getText();
-        String productNumber =txtProductNumber.getText();
+        //String productNumber =txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
         String value = choType.getSelectionModel().getSelectedItem();
 
-            return new Product(ProductValidator.testProductNumber(productNumber)
+
+            return new Product(uniqueID
                                 ,ProductValidator.testProductName(name)
                                 ,ProductValidator.testNumberOfProducts(numberOfProducts)
                                 ,ProductValidator.testProductBrand(brand)
@@ -252,7 +255,6 @@ public class Controller_ProductWindow {
     @FXML
     private void resetTxtFields() {
         txtProductName.setText("");
-        txtProductNumber.setText("");
         txtNumberOfProducts.setText("");
         txtBrand.setText("");
         txtPrice.setText("");

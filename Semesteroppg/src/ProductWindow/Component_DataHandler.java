@@ -68,7 +68,9 @@ public class Component_DataHandler {
 
 
     public Map<String, List<Product>>  createChoiceBoxes(List<String[]> componentData) {  //Metode for å laste inn komponenter
+
         Map<String, List<Product>> mappedComponents = new HashMap<>();
+
 
 
         for (String[] component : componentData){

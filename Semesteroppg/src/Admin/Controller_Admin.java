@@ -24,7 +24,9 @@ import java.util.Objects;
 
 public class Controller_Admin {
 
+
     Component_DataHandler cdh = new Component_DataHandler();
+    //private ObservableList<Product> myItems = FXCollections.checkedObservableList(new Product("HK12345678", "HD5000", 5, "Acer", 500, "Headset"));
 
     @FXML
     private Button btnLeggTil;
@@ -78,6 +80,12 @@ public class Controller_Admin {
     @FXML
     public void initialize() throws IOException {
         LoadData();
+    }
+
+
+    public void registerDataFromChoiceBoxToTextfield(){
+        String headset = choHeadsett.getValue();
+
     }
 
 
