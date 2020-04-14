@@ -19,7 +19,7 @@
       <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake" />
     <TableView fx:id="tableView" layoutX="199.0" layoutY="68.0" prefHeight="222.0" prefWidth="394.0">
         <columns>
-            <TableColumn fx:id="colProdNr" onEditCommit="#editTableview_prodNr" prefWidth="64.0" text="Id">
+            <TableColumn fx:id="colProdNr"  prefWidth="64.0" text="Id">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtProductNumber" />
                 </cellValueFactory>
