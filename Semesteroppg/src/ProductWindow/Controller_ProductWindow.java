@@ -29,9 +29,6 @@ public class Controller_ProductWindow {
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
 
-    UniqueIDGenerator test = new UniqueIDGenerator();
-
-
 
     Map<String, List<Product>> mappedComponents = new HashMap<>(); //Legger til en mapped components
     
@@ -43,13 +40,11 @@ public class Controller_ProductWindow {
 
     Component_DataHandler dataHandler = new Component_DataHandler();
 
-    //UUID id = UUID.randomUUID();
+
 
     @FXML
     private TextField txtProductName;
 
-    @FXML
-    private TextField txtProductNumber;
 
     @FXML
     private TextField txtNumberOfProducts;
@@ -91,10 +86,10 @@ public class Controller_ProductWindow {
         newObjects.attachToTableView(tableView);
         tableView.setEditable(true);
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
         choType.setItems(componentType);
+        /*colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());*/
         //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
         //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -157,12 +152,12 @@ public class Controller_ProductWindow {
         String uniqueID = UUID.randomUUID().toString();
         String name = txtProductName.getText();
         String brand = txtBrand.getText();
-        //String productNumber =txtProductNumber.getText();
         String stringNumberOfProducts = txtNumberOfProducts.getText();
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
         String value = choType.getSelectionModel().getSelectedItem();
+        //String productNumber =txtProductNumber.getText();
 
 
             return new Product(uniqueID
@@ -203,7 +198,7 @@ public class Controller_ProductWindow {
     }
 
 
-    @FXML
+    /*@FXML
     public void editTableview_prodNr(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String prodNr = edit.getNewValue();
@@ -211,7 +206,7 @@ public class Controller_ProductWindow {
         prod.setTxtProductNumber(prodNr);
         tableView.refresh();
 
-    }
+    }*/
 
     @FXML //Må fikses på!! Fungerer ikke
     public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){

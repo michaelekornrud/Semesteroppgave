@@ -40,7 +40,6 @@ public class Product {
     public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts.set(txtNumberOfProducts);}
 
     public String getTxtProductNumber(){return txtProductNumber.getValue();}
-    public void setTxtProductNumber(String txtProductNumber){this.txtProductNumber.set(txtProductNumber);}
 
     public double getTxtPrice(){return txtPrice.getValue();}
     public void setTxtPrice(double txtPrice){this.txtPrice.set(txtPrice);}
