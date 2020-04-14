@@ -13,7 +13,6 @@ public class Component_DataHandler {
         String projectDirectory = System.getProperty("user.dir");
         csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
         load();
-
     }
 
 

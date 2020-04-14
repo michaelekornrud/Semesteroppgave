@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.*;
 
 
+
 public class Controller_ProductWindow {
 
     ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES
@@ -127,6 +128,10 @@ public class Controller_ProductWindow {
     @FXML
     private Button btnTilbake;
 
+
+
+
+
     @FXML
     void Tilbake (ActionEvent event) throws IOException {
         try {
@@ -147,8 +152,6 @@ public class Controller_ProductWindow {
 
     @FXML
     private Product createProductObjectFromGUI(){ //Metode for å lage et produkt fra guiet.
-
-
         String uniqueID = UUID.randomUUID().toString();
         String name = txtProductName.getText();
         String brand = txtBrand.getText();
@@ -222,9 +225,9 @@ public class Controller_ProductWindow {
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
-        //ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
+        //ProductValidator.testProductType(type);
     }
 
 

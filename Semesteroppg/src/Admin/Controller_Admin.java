@@ -3,6 +3,7 @@ package Admin;
 import ProductWindow.ComponentType;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
+import com.sun.codemodel.internal.JVar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import sun.jvm.hotspot.code.Location;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,6 +27,8 @@ import java.util.Objects;
 
 
 public class Controller_Admin {
+
+  private ObservableList<String> myItems =  FXCollections.observableArrayList(ComponentType.KABINETT);
 
 
     Component_DataHandler cdh = new Component_DataHandler();
@@ -78,8 +84,34 @@ public class Controller_Admin {
 
 
     @FXML
+    private TableColumn<Product, String> colID;
+
+    @FXML
+    private TableColumn<Product, String> colName;
+
+    @FXML
+    private TableColumn<Product, String> colNumberOfProducts;
+
+    @FXML
+    private TableColumn<Product, String> colBrand;
+
+    @FXML
+    private TableColumn<Product, String> colPrice;
+
+    @FXML
+    private TableColumn<Product, String> colType;
+
+    @FXML
+    private TableView<Product> tableView;
+
+
+
+    @FXML
     public void initialize() throws IOException {
         LoadData();
+        choKabinett.setItems(myItems);
+        //tableView.getColumns().addAll(colID, colName, colNumberOfProducts, colPrice, colBrand, colType);
+        //tableView.getItems().add((Product) choHarddrive.getItems());
     }
 
 
@@ -157,6 +189,17 @@ public class Controller_Admin {
         choScreen.setItems(ScreenNames);
         choScreenCard.setItems(ScreenCardNames);
 
+
+
+        //tableView.getItems().add(person);
+
+        //tableView.getItems().add((Product) choMouse.getOnAction());
+
+
+
+
+
+
         /*FXCollections.observableArrayList();;*/
         /*for (BaseComponent comp : kabinettComponents){
             kabinettNames.add(comp.getName());
@@ -191,6 +234,8 @@ public class Controller_Admin {
         return kabinettNames;
 
     }
+
+
 
 
 
