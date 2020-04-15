@@ -13,7 +13,7 @@ public class main extends Application {
     public void start(Stage BuildPCStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PCBygging.fxml"));
         BuildPCStage.setTitle("Lag din egen PC");
-        BuildPCStage.setScene(new Scene(root, 640, 650));
+        BuildPCStage.setScene(new Scene(root, 640, 675));
         BuildPCStage.show();
     }
 

@@ -3,7 +3,7 @@ package Admin;
 import ProductWindow.ComponentType;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
-import com.sun.codemodel.internal.JVar;
+import ProductWindow.ProductRegister;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,27 +12,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import sun.jvm.hotspot.code.Location;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
+import java.util.*;
 
 
 public class Controller_Admin {
 
-  private ObservableList<String> myItems =  FXCollections.observableArrayList(ComponentType.KABINETT);
-
-
+  //private ObservableList<String> myItems =  FXCollections.observableArrayList(ComponentType.KABINETT);
+  //public ProductRegister newObjects = new ProductRegister();
     Component_DataHandler cdh = new Component_DataHandler();
-    //private ObservableList<Product> myItems = FXCollections.checkedObservableList(new Product("HK12345678", "HD5000", 5, "Acer", 500, "Headset"));
+   // ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.HODETELEFONER);
+
 
     @FXML
     private Button btnLeggTil;
@@ -80,7 +78,7 @@ public class Controller_Admin {
     private ChoiceBox<String> choMouse;
 
     @FXML
-    private ChoiceBox<String> choHeadsett;
+    public ChoiceBox<String> choHeadsett;
 
 
     @FXML
@@ -109,16 +107,21 @@ public class Controller_Admin {
     @FXML
     public void initialize() throws IOException {
         LoadData();
-        choKabinett.setItems(myItems);
-        //tableView.getColumns().addAll(colID, colName, colNumberOfProducts, colPrice, colBrand, colType);
-        //tableView.getItems().add((Product) choHarddrive.getItems());
+
+
+
+    }
+
+    @FXML
+    void LeggTilDataITablevieW(ActionEvent event) {
+        String newProduct = choCaseMods.getSelectionModel().getSelectedItem();
+        String newProduct1 = choCPU.getSelectionModel().getSelectedItem();
+        System.out.println(newProduct);
+        System.out.println(newProduct1);
+        //tableView.setItems(data);
     }
 
 
-    public void registerDataFromChoiceBoxToTextfield(){
-        String headset = choHeadsett.getValue();
-
-    }
 
 
     @FXML
@@ -194,6 +197,8 @@ public class Controller_Admin {
         //tableView.getItems().add(person);
 
         //tableView.getItems().add((Product) choMouse.getOnAction());
+
+
 
 
 

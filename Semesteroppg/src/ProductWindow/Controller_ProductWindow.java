@@ -32,7 +32,6 @@ public class Controller_ProductWindow {
 
 
     Map<String, List<Product>> mappedComponents = new HashMap<>(); //Legger til en mapped components
-    
 
     public ObservableList<String> choiceConverter(ObservableList<String> componentType){
         return
