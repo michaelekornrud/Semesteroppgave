@@ -26,10 +26,10 @@ import java.util.*;
 
 public class Controller_Admin {
 
-  //private ObservableList<String> myItems =  FXCollections.observableArrayList(ComponentType.KABINETT);
-  //public ProductRegister newObjects = new ProductRegister();
+    //private ObservableList<String> myItems =  FXCollections.observableArrayList(ComponentType.KABINETT);
+    //public ProductRegister newObjects = new ProductRegister();
     Component_DataHandler cdh = new Component_DataHandler();
-   // ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.HODETELEFONER);
+    private Map<String, List<Product>> data;
 
 
     @FXML
@@ -103,79 +103,117 @@ public class Controller_Admin {
     private TableView<Product> tableView;
 
 
-
     @FXML
     public void initialize() throws IOException {
         LoadData();
-
 
 
     }
 
     @FXML
     void LeggTilDataITablevieW(ActionEvent event) {
-        String newProduct = choCaseMods.getSelectionModel().getSelectedItem();
-        String newProduct1 = choCPU.getSelectionModel().getSelectedItem();
-        System.out.println(newProduct);
-        System.out.println(newProduct1);
-        //tableView.setItems(data);
+        String casemods = choCaseMods.getSelectionModel().getSelectedItem();
+        String cpu = choCPU.getSelectionModel().getSelectedItem();
+        String kabinett = choKabinett.getSelectionModel().getSelectedItem();
+        String mc =choMainCard.getSelectionModel().getSelectedItem();
+        String prosessor = choProcessor.getSelectionModel().getSelectedItem();
+        String screencard = choScreenCard.getSelectionModel().getSelectedItem();
+        String memory = choMemory.getSelectionModel().getSelectedItem();
+        String energy = choEnergy.getSelectionModel().getSelectedItem();
+        String harddrive = choHarddrive.getSelectionModel().getSelectedItem();
+        String fan = choFan.getSelectionModel().getSelectedItem();
+        String screen = choScreen.getSelectionModel().getSelectedItem();
+        String keyboard = choKeyboard.getSelectionModel().getSelectedItem();
+        String mouse = choMouse.getSelectionModel().getSelectedItem();
+        String headsett = choHeadsett.getSelectionModel().getSelectedItem();
+
+        ObservableList<Product> observableList = FXCollections.observableArrayList();
+
+        observableList.add(getProductByName(casemods));
+        observableList.add(getProductByName(cpu));
+        observableList.add(getProductByName(kabinett));
+        observableList.add(getProductByName(mc));
+        observableList.add(getProductByName(prosessor));
+        observableList.add(getProductByName(screencard));
+        observableList.add(getProductByName(memory));
+        observableList.add(getProductByName(energy));
+        observableList.add(getProductByName(harddrive));
+        observableList.add(getProductByName(fan));
+        observableList.add(getProductByName(screen));
+        observableList.add(getProductByName(keyboard));
+        observableList.add(getProductByName(mouse));
+        observableList.add(getProductByName(headsett));
+
+
+
+        tableView.setItems(observableList);
+    }
+
+    public Product getProductByName(String typeName) {
+
+        for (List<Product> productList : data.values()) {
+            for (Product product : productList) {
+                if (product.getTxtProductName().equals(typeName)) {
+                    return product;
+                }
+
+
+            }
+        }
+        return null;
     }
 
 
-
-
     @FXML
-    void addComponent (ActionEvent event) throws IOException {
+    void addComponent(ActionEvent event) throws IOException {
         try {
             Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("ProductWindow/productWindow.fxml"));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info
-            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage PCWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
             PCWindow.setTitle("Legg til komponent");
             PCWindow.setScene(PCByggingScene);
             PCWindow.show();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    void Handlekurv (ActionEvent event) throws IOException {
+    void Handlekurv(ActionEvent event) throws IOException {
         try {
             Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Handlekurv/kurven.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info
-            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage PCWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
             PCWindow.setTitle("Handlekurv");
             PCWindow.setScene(PCByggingScene);
             PCWindow.show();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void updatedData(Map<String, List<Product>> newData) throws IOException{ //Metode for å legge inn verdi i choicebox kabinett
+    void updatedData() throws IOException { //Metode for å legge inn verdi i choicebox kabinett
         //List<BaseComponent> kabinettComponents = newData.get(ComponentType.KABINETT);
-        ObservableList<String> kabinettNames = getCoponentNames(ComponentType.KABINETT, newData);
-        ObservableList<String> ProsessorNames = getCoponentNames(ComponentType.PROCESSOR, newData);
-        ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDISK, newData);
-        ObservableList<String> MainCardNames = getCoponentNames(ComponentType.MAINCARD, newData);
-        ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.SKJERMKORT, newData);
-        ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MINNE, newData);
-        ObservableList<String> PowerSupplyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING, newData);
-        ObservableList<String> ProsessorFanNames = getCoponentNames(ComponentType.PROSESSOR_FAN_NAMES, newData);
-        ObservableList<String> FanNames = getCoponentNames(ComponentType.VIFTER, newData);
-        ObservableList<String> CaseModkNames = getCoponentNames(ComponentType.CASEMODS, newData);
-        ObservableList<String> ScreenNames = getCoponentNames(ComponentType.SKJERM , newData);
-        ObservableList<String> KeyboadNames = getCoponentNames(ComponentType.TASTATUR, newData);
-        ObservableList<String> HeadSetNames = getCoponentNames(ComponentType.HODETELEFONER, newData);
-        ObservableList<String> MouseNames = getCoponentNames(ComponentType.MUS , newData);
+        ObservableList<String> kabinettNames = getCoponentNames(ComponentType.KABINETT, data);
+        ObservableList<String> ProsessorNames = getCoponentNames(ComponentType.PROCESSOR, data);
+        ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDISK, data);
+        ObservableList<String> MainCardNames = getCoponentNames(ComponentType.MAINCARD, data);
+        ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.SKJERMKORT, data);
+        ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MINNE, data);
+        ObservableList<String> PowerSupplyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING, data);
+        ObservableList<String> ProsessorFanNames = getCoponentNames(ComponentType.PROSESSOR_FAN_NAMES, data);
+        ObservableList<String> FanNames = getCoponentNames(ComponentType.VIFTER, data);
+        ObservableList<String> CaseModkNames = getCoponentNames(ComponentType.CASEMODS, data);
+        ObservableList<String> ScreenNames = getCoponentNames(ComponentType.SKJERM, data);
+        ObservableList<String> KeyboadNames = getCoponentNames(ComponentType.TASTATUR, data);
+        ObservableList<String> HeadSetNames = getCoponentNames(ComponentType.HODETELEFONER, data);
+        ObservableList<String> MouseNames = getCoponentNames(ComponentType.MUS, data);
 
         choKabinett.setItems(kabinettNames);
         choHarddrive.setItems(HarddiskNames);
@@ -191,7 +229,6 @@ public class Controller_Admin {
         choMouse.setItems(MouseNames);
         choScreen.setItems(ScreenNames);
         choScreenCard.setItems(ScreenCardNames);
-
 
 
         //tableView.getItems().add(person);
@@ -211,18 +248,16 @@ public class Controller_Admin {
         }*/
 
 
-
     }
 
     @FXML
     void LoadData() throws IOException {
-        Map<String, List<Product>> newData = cdh.load();
-        updatedData(newData);
+        data = cdh.load();
+        updatedData();
     }
 
 
-
-    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData ){
+    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) {
 
         List<Product> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();
@@ -235,16 +270,9 @@ public class Controller_Admin {
         }
 
 
-
         return kabinettNames;
 
     }
-
-
-
-
-
-
 
 
 }

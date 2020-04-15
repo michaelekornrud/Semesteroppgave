@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="693.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
    <children>
       <Button fx:id="btnLeggTil" layoutX="25.0" layoutY="395.0" mnemonicParsing="false" onAction="#addComponent" text="Legg/fjern til komponent" />
@@ -51,12 +52,44 @@
       <Button fx:id="btnHandlekurv" layoutX="473.0" layoutY="395.0" mnemonicParsing="false" onAction="#Handlekurv" text="Vis handlekurv" />
       <TableView fx:id="tableView" layoutX="102.0" layoutY="438.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="colNumberOfProducts" prefWidth="75.0" text="Number" />
-            <TableColumn fx:id="colBrand" prefWidth="75.0" text="Brand" />
-            <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
-            <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+
+           <TableColumn fx:id="colProdNr"  prefWidth="64.0" text="Id">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtProductNumber" />
+              </cellValueFactory>
+           </TableColumn>
+
+           <TableColumn fx:id="colName"  prefWidth="68.0" text="Navn">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtProductName" />
+              </cellValueFactory>
+
+           </TableColumn>
+           <TableColumn fx:id="colNumberOfProduct"  prefWidth="37.0" text="Antall">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtNumberOfProducts" />
+              </cellValueFactory>
+           </TableColumn>
+
+
+           <TableColumn fx:id="colBrand"  prefWidth="76.0" text="Merke">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtBrand" />
+              </cellValueFactory>
+           </TableColumn>
+
+
+           <TableColumn fx:id="colPrice" prefWidth="75.0" text="Pris">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtPrice" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="colType"  prefWidth="75.0" text="Type">
+              <cellValueFactory>
+                 <PropertyValueFactory property="txtType" />
+              </cellValueFactory>
+
+           </TableColumn>
         </columns>
       </TableView>
       <Button layoutX="247.0" layoutY="646.0" mnemonicParsing="false" onAction="#LeggTilDataITablevieW" text="Legg til data i tableview" />
