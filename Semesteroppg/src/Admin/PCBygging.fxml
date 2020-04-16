@@ -59,20 +59,22 @@
               </cellValueFactory>
            </TableColumn>
 
-           <TableColumn fx:id="colName"  prefWidth="68.0" text="Navn">
+           <TableColumn fx:id="colName" onEditCommit="#editTableview_Name"  prefWidth="68.0" text="Navn">
               <cellValueFactory>
                  <PropertyValueFactory property="txtProductName" />
               </cellValueFactory>
 
            </TableColumn>
-           <TableColumn fx:id="colNumberOfProduct"  prefWidth="37.0" text="Antall">
+
+
+           <TableColumn fx:id="colNumberOfProduct" onEditCommit="#editTableview_NumberOfProducts"  prefWidth="37.0" text="Antall">
               <cellValueFactory>
                  <PropertyValueFactory property="txtNumberOfProducts" />
               </cellValueFactory>
            </TableColumn>
 
 
-           <TableColumn fx:id="colBrand"  prefWidth="76.0" text="Merke">
+           <TableColumn fx:id="colBrand" onEditCommit="#editTableview_Brand"  prefWidth="76.0" text="Merke">
               <cellValueFactory>
                  <PropertyValueFactory property="txtBrand" />
               </cellValueFactory>
@@ -84,7 +86,8 @@
                  <PropertyValueFactory property="txtPrice" />
               </cellValueFactory>
            </TableColumn>
-           <TableColumn fx:id="colType"  prefWidth="75.0" text="Type">
+
+           <TableColumn fx:id="colType" onEditCommit="#editTableview_Type"  prefWidth="75.0" text="Type">
               <cellValueFactory>
                  <PropertyValueFactory property="txtType" />
               </cellValueFactory>

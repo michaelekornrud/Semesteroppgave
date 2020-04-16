@@ -1,7 +1,5 @@
 package ProductWindow;
 
-
-import Exceptions.InvalidProductNumberException;
 import Exceptions.ProductValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,14 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-
-import javax.xml.crypto.Data;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.util.*;
 
@@ -30,13 +27,6 @@ public class Controller_ProductWindow {
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
 
-
-    Map<String, List<Product>> mappedComponents = new HashMap<>(); //Legger til en mapped components
-
-    public ObservableList<String> choiceConverter(ObservableList<String> componentType){
-        return
-        this.componentType = componentType;
-    }
 
     Component_DataHandler dataHandler = new Component_DataHandler();
 
@@ -65,19 +55,20 @@ public class Controller_ProductWindow {
     private TableColumn<Product, String> colProdNr;
 
     @FXML
-    private TableColumn<Product, String> colNumberOfProduct;
+    private TableColumn<Product, Integer> colNumberOfProduct;
 
     @FXML
     private TableColumn<Product, String> colBrand;
 
     @FXML
-    private TableColumn<Product, String> colPrice;
+    private TableColumn<Product, Double> colPrice;
 
     @FXML
     private TableColumn<Product, String> colType;
 
     @FXML
     private TableView<Product> tableView;
+
     private ProductRegister newObjects = new ProductRegister();
 
 
@@ -88,13 +79,12 @@ public class Controller_ProductWindow {
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
+        colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         choType.setItems(componentType);
-        /*colProdNr.setCellFactory(TextFieldTableCell.forTableColumn());*/
-        //colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn());
-        //colPrice.setCellFactory(TextFieldTableCell.forTableColumn());
-
 
     }
+
 
 
     @FXML

@@ -21,6 +21,7 @@ public class ProductValidator {
         return type;
     }
 
+
     public static String testProductBrand(String brand) throws InvalidBrandException{
         if (!brand.matches("[a-zA-Z]*")){
             throw new InvalidBrandException("Product-brand is invalid");
@@ -42,14 +43,7 @@ public class ProductValidator {
         return price;
     }
 
-    public static String testProductNumber(String number /*String test*/) throws InvalidProductNumberException{
-
-        //Metode for å teste om prduktnr er unikt!
-        // Trenger å koble denne sammen med innholdet i coice-boksene for å sjekke om nummeret er unikt.
-
-        /*if (test.contains(number)){
-            throw new InvalidProductNumberException("Error! The productNr already exists.");
-        }*/
+   /* public static String testProductNumber(String number /*String test) throws InvalidProductNumberException{
 
         if (!number.matches("([a-zæøåA-ZÆØÅ]{2})+([0-9]{8})")){
             throw new InvalidProductNumberException("Invalid input in productnumber-field.\nYou must follow this layout: xx12345678 (2 letters first, then 8 numbers)");
@@ -64,20 +58,6 @@ public class ProductValidator {
             }
         }
         return false;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }*/
 
 }

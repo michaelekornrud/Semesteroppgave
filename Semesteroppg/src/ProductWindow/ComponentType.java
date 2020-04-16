@@ -16,10 +16,4 @@ public class ComponentType { //Hvilke ulike komponent-typer vi har
     public static final String HODETELEFONER  = "Headset";
     public static final String MUS  = "Mouse";
 
-
-
-
-
-
-
 }

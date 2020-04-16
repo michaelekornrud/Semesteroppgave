@@ -19,7 +19,7 @@ public class Controller_Main {
    public Controller_Main()
    {
       data = dh.load();
-      admin_Controller = new Controller_Admin();
+
 
    }
 
