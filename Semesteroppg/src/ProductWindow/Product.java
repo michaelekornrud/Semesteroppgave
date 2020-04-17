@@ -1,5 +1,6 @@
 package ProductWindow;
 
+import Admin.Controller_Admin;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -26,12 +27,16 @@ public class Product {
 
 
         }
+        
+
+
+
 
     }
 
 
     public String getTxtProductName(){return txtProductName.getValue();}
-    public void setTxtProductName(String txtProductName){this.txtProductName.set(txtProductName);}
+    public void setTxtProductName(String txtProductName){this.txtProductName = new SimpleStringProperty(txtProductName);}
 
     public String getTxtBrand(){return txtBrand.getValue();}
     public void setTxtBrand(String txtBrand){this.txtBrand.set(txtBrand);}

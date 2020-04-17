@@ -37,7 +37,7 @@ public class ProductValidator {
     }
 
     public static double testPrice(double price) throws InvalidPriceException{
-        if (price < 0){
+        if (price <= 0){
             throw new InvalidPriceException("Invalid input in price-field");
         }
         return price;

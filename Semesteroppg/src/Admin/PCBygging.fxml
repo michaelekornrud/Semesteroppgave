@@ -67,7 +67,7 @@
            </TableColumn>
 
 
-           <TableColumn fx:id="colNumberOfProduct" onEditCommit="#editTableview_NumberOfProducts"  prefWidth="37.0" text="Antall">
+           <TableColumn fx:id="colNumberOfProducts" onEditCommit="#editTableview_NumberOfProducts"  prefWidth="37.0" text="Antall">
               <cellValueFactory>
                  <PropertyValueFactory property="txtNumberOfProducts" />
               </cellValueFactory>
@@ -81,7 +81,7 @@
            </TableColumn>
 
 
-           <TableColumn fx:id="colPrice" prefWidth="75.0" text="Pris">
+           <TableColumn fx:id="colPrice"  onEditCommit="#editTableview_Price" prefWidth="75.0" text="Pris">
               <cellValueFactory>
                  <PropertyValueFactory property="txtPrice" />
               </cellValueFactory>

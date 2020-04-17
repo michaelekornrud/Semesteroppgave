@@ -4,20 +4,20 @@ import Exceptions.ProductValidator;
 import ProductWindow.ComponentType;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -29,6 +29,7 @@ public class Controller_Admin {
 
   ;
     Component_DataHandler cdh = new Component_DataHandler();
+
     private Map<String, List<Product>> data;
 
 
@@ -102,23 +103,43 @@ public class Controller_Admin {
     private TableView<Product> tableView;
 
 
+
     @FXML
     public void initialize() throws IOException {
         LoadData();
         tableView.setEditable(true);
-        resetchoiceBoxes();
-        colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        colType.setCellFactory(TextFieldTableCell.forTableColumn());
-        //colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
+        colName.setOnEditCommit(event -> (event.getTableView().getItems().get(event.getTablePosition().getRow())).setTxtProductName(String.valueOf(event.getNewValue())));
+
+        colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBrand.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtBrand(String.valueOf(event.getNewValue())));
+
+        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        colPrice.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Double.parseDouble(String.valueOf(event.getNewValue()))));
+
+        colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colNumberOfProducts.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Integer.parseInt(String.valueOf(event.getNewValue()))));
+
+
+        resetchoiceBoxes();
 
     }
 
 
     @FXML
     void LeggTilDataITablevieW(ActionEvent event) {
+
+       /* ObservableList<Product> obsList = FXCollections.observableArrayList();
+
+        for (ChoiceBox box : compList  ) {
+            String selectedName = (String) box.getSelectionModel().getSelectedItem();
+            obsList.add(getProductByName(selectedName));
+        }
+
+        tableView.setItems(obsList);*/
+
+
         String casemods = choCaseMods.getSelectionModel().getSelectedItem();
         String cpu = choCPU.getSelectionModel().getSelectedItem();
         String kabinett = choKabinett.getSelectionModel().getSelectedItem();
@@ -162,8 +183,6 @@ public class Controller_Admin {
                 if (product.getTxtProductName().equals(typeName)) {
                     return product;
                 }
-
-
             }
         }
         return null;
@@ -199,13 +218,23 @@ public class Controller_Admin {
 
     }
 
-    @FXML //Må fikses på!! Fungerer ikke
+   @FXML //Må fikses på!! Fungerer ikke
     public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String number = edit.getNewValue();
         int intNumber = Integer.parseInt(number);
         ProductValidator.testNumberOfProducts(intNumber);
         prod.setTxtNumberOfProducts(intNumber);
+        tableView.refresh();
+    }
+
+    @FXML  //Må fikses på!! Fungerer ikke
+    public void editTableview_Price(TableColumn.CellEditEvent<Product, String> edit){
+        Product prod = tableView.getSelectionModel().getSelectedItem();
+        String price = edit.getNewValue();
+        double doubPrice = Double.parseDouble(price);
+        ProductValidator.testPrice(doubPrice);
+        prod.setTxtPrice(doubPrice);
         tableView.refresh();
     }
 
@@ -228,6 +257,7 @@ public class Controller_Admin {
         choCPU.setValue("");
         choProcessor.setValue("");
         choScreen.setValue("");
+
     }
 
 
