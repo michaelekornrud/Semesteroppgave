@@ -15,6 +15,8 @@ public class main extends Application {
         BuildPCStage.setTitle("Lag din egen PC");
         BuildPCStage.setScene(new Scene(root, 640, 675));
         BuildPCStage.show();
+
+
     }
 
 

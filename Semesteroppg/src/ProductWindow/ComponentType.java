@@ -8,6 +8,7 @@ public class ComponentType { //Hvilke ulike komponent-typer vi har
     public static final String MINNE  = "Memory";
     public static final String STRØMFORSKYVNING  = "Powersupply";
     public static final String HARDDISK  = "Harddrive";
+    public static final String HDD = "HDD";
     public static final String PROSESSOR_FAN_NAMES = "CPUfan";
     public static final String VIFTER  = "Fans";
     public static final String CASEMODS  = "Casemods";

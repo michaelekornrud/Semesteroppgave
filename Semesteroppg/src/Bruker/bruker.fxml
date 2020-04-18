@@ -3,10 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="449.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Bruker.controller">
+<AnchorPane prefHeight="449.0" prefWidth="1292.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Bruker.controller">
     <children>
         <Label layoutX="45.0" layoutY="26.0" text="Bygg  din egen PC">
             <font>
@@ -14,37 +17,85 @@
             </font>
         </Label>
         <Label layoutX="45.0" layoutY="87.0" text="Kabinett" />
-        <ChoiceBox layoutX="45.0" layoutY="104.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choCabinet" layoutX="45.0" layoutY="104.0" prefWidth="150.0" />
         <Label layoutX="45.0" layoutY="141.0" text="Hovedkort" />
-        <ChoiceBox layoutX="45.0" layoutY="158.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choMotherboard" layoutX="45.0" layoutY="158.0" prefWidth="150.0" />
         <Label layoutX="45.0" layoutY="192.0" text="Prosessor" />
-        <ChoiceBox layoutX="45.0" layoutY="209.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choProcessor" layoutX="45.0" layoutY="209.0" prefWidth="150.0" />
         <Label layoutX="45.0" layoutY="254.0" text="Skjermkort" />
-        <ChoiceBox layoutX="45.0" layoutY="271.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choGraphicscard" layoutX="45.0" layoutY="271.0" prefWidth="150.0" />
         <Label layoutX="45.0" layoutY="307.0" text="Minne (RAM)" />
-        <ChoiceBox layoutX="45.0" layoutY="325.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choMemory" layoutX="45.0" layoutY="325.0" prefWidth="150.0" />
         <Label layoutX="229.0" layoutY="87.0" text="Strømforskyning" />
-        <ChoiceBox layoutX="229.0" layoutY="104.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choPowersupply" layoutX="229.0" layoutY="104.0" prefWidth="150.0" />
         <Label layoutX="229.0" layoutY="141.0" text="Harddisk" />
-        <ChoiceBox layoutX="229.0" layoutY="158.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choHDD" layoutX="229.0" layoutY="158.0" prefWidth="150.0" />
         <Label layoutX="229.0" layoutY="192.0" text="Harddisk" />
-        <ChoiceBox layoutX="229.0" layoutY="211.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choSSD" layoutX="229.0" layoutY="211.0" prefWidth="150.0" />
         <Label layoutX="229.0" layoutY="254.0" text="CPU -Vifte" />
-        <ChoiceBox layoutX="229.0" layoutY="271.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choCPUfan" layoutX="229.0" layoutY="271.0" prefWidth="150.0" />
         <Label layoutX="229.0" layoutY="307.0" text="Vifter" />
-        <ChoiceBox layoutX="229.0" layoutY="325.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choFans" layoutX="229.0" layoutY="325.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="87.0" text="Casemods" />
-        <ChoiceBox layoutX="423.0" layoutY="104.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choCasemods" layoutX="423.0" layoutY="104.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="141.0" text="Skjerm" />
-        <ChoiceBox layoutX="423.0" layoutY="158.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choMonitor" layoutX="423.0" layoutY="158.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="192.0" text="Tastatur" />
-        <ChoiceBox layoutX="423.0" layoutY="211.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choKeyboard" layoutX="423.0" layoutY="211.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="254.0" text="Mus" />
-        <ChoiceBox layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
-        <ChoiceBox layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-        <Label layoutX="349.0" layoutY="400.0" text="Totalpris:" />
-        <Label layoutX="408.0" layoutY="400.0" text="Pris" />
-        <Button fx:id="btnHandlekurv" layoutX="473.0" layoutY="395.0" mnemonicParsing="false" onAction="#Handlekurv" text="Vis handlekurv" />
+        <ChoiceBox fx:id="choHeadphones" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
+        <Button fx:id="btnHandlekurv" layoutX="449.0" layoutY="396.0" mnemonicParsing="false" onAction="#Handlekurv" text="Legg til i handlekurv" />
+      <Label layoutX="616.0" layoutY="38.0" prefHeight="17.0" prefWidth="140.0" text="Handlekurv">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="617.0" layoutY="394.0" text="Totalpris:" />
+      <Label layoutX="682.0" layoutY="394.0" text="pris" />
+      <Label layoutX="617.0" layoutY="368.0" text="MVA 25%" />
+      <Label layoutX="682.0" layoutY="368.0" text="mva  pris" />
+      <Label layoutX="617.0" layoutY="342.0" text="Pris: " />
+      <Label layoutX="682.0" layoutY="342.0" text="pris eksl mva." />
+      <Button fx:id="btnLagre" layoutX="1120.0" layoutY="135.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
+      <Button fx:id="btnBetalinig" layoutX="1120.0" layoutY="212.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre" />
+      <Button fx:id="btnTilbake" layoutX="1120.0" layoutY="251.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake til bygging" />
+      <Button fx:id="btnLukkProgram" layoutX="1120.0" layoutY="290.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt" />
+      <Button fx:id="btnOpenØnskeliste" layoutX="1120.0" layoutY="174.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
+      <TableView fx:id="TVcart" layoutX="617.0" layoutY="104.0" prefHeight="232.0" prefWidth="489.0">
+        <columns>
+          <TableColumn fx:id="colNumber" prefWidth="62.0" text="Nummer">
+            <cellValueFactory>
+                <PropertyValueFactory property="txtNumber" />
+            </cellValueFactory>
+          </TableColumn>
+
+          <TableColumn fx:id="colName" prefWidth="123.0" text="Navn ">
+              <cellValueFactory>
+                  <PropertyValueFactory property="txtName" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn fx:id="colType" prefWidth="102.0" text="Type" />
+
+            <TableColumn fx:id="colQuantity" prefWidth="48.0" text="Antall">
+                <cellValueFactory>
+                    <PropertyValueFactory property="txtQuantity" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="colPrice" prefWidth="85.0" text="Pris pr. stykk">
+                <cellValueFactory>
+                    <PropertyValueFactory property="txtPrice" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="colTotPrice" prefWidth="73.0" text="Totalpris">
+                <cellValueFactory>
+                    <PropertyValueFactory property="txtTotPride" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

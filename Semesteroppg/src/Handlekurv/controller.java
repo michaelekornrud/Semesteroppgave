@@ -1,5 +1,9 @@
 package Handlekurv;
 
+import Admin.Controller_Admin;
+import ProductWindow.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.event.*;
@@ -23,13 +27,17 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class controller implements Initializable {
+public class controller implements Initializable  {
 
     NewData addNewComponents = new NewData();
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
-        addNewComponents.attachListView(LWHandlekurv);
+        try {
+            NewData.attachListView(LWHandlekurv);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -48,7 +56,15 @@ public class controller implements Initializable {
     private Button btnOpenØnskeliste;
 
     @FXML
-    private ListView LWHandlekurv;
+    public static ListView LWHandlekurv;
+
+    public static void addtoLv(ObservableList<Product> o){
+        ObservableList liste = FXCollections.observableArrayList();
+        liste.add(o);
+
+        LWHandlekurv.setItems(liste);
+
+    }
 
     @FXML
     void LagreOnskeliste (ActionEvent event)throws IOException, BadLocationException {

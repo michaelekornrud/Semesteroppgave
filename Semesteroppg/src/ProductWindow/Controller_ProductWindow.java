@@ -23,7 +23,7 @@ import java.util.*;
 
 public class Controller_ProductWindow {
 
-    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES
+    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
     , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
 
@@ -73,7 +73,7 @@ public class Controller_ProductWindow {
 
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
         newObjects.attachToTableView(tableView);
         tableView.setEditable(true);
         colName.setCellFactory(TextFieldTableCell.forTableColumn());

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.Objects;
 
 public class controller {
 
@@ -42,7 +43,7 @@ public class controller {
         checkPW = txtPassord.getText();
         if(checkUser.equals(adminUser) && checkPW.equals(adminPW)){
             try {
-                Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
+                Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info
@@ -57,7 +58,7 @@ public class controller {
         }
         else if (checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
             try {
-                Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Bruker/bruker.fxml"));
+                Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info

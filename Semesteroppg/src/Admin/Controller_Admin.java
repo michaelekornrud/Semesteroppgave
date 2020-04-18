@@ -58,6 +58,9 @@ public class Controller_Admin {
     private ChoiceBox<String> choEnergy;
 
     @FXML
+    private ChoiceBox<String> choHarddrive1;
+
+    @FXML
     private ChoiceBox<String> choHarddrive;
 
     @FXML
@@ -149,6 +152,7 @@ public class Controller_Admin {
         String memory = choMemory.getSelectionModel().getSelectedItem();
         String energy = choEnergy.getSelectionModel().getSelectedItem();
         String harddrive = choHarddrive.getSelectionModel().getSelectedItem();
+        String hdd = choHarddrive1.getSelectionModel().getSelectedItem();
         String fan = choFan.getSelectionModel().getSelectedItem();
         String screen = choScreen.getSelectionModel().getSelectedItem();
         String keyboard = choKeyboard.getSelectionModel().getSelectedItem();
@@ -171,6 +175,7 @@ public class Controller_Admin {
         observableList.add(getProductByName(keyboard));
         observableList.add(getProductByName(mouse));
         observableList.add(getProductByName(headsett));
+        observableList.add(getProductByName(hdd));
 
         tableView.setItems(observableList);
 
@@ -257,6 +262,7 @@ public class Controller_Admin {
         choCPU.setValue("");
         choProcessor.setValue("");
         choScreen.setValue("");
+        choHarddrive1.setValue("");
 
     }
 
@@ -301,6 +307,7 @@ public class Controller_Admin {
         ObservableList<String> kabinettNames = getCoponentNames(ComponentType.KABINETT, data);
         ObservableList<String> ProsessorNames = getCoponentNames(ComponentType.PROCESSOR, data);
         ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDISK, data);
+        ObservableList<String> hddNames = getCoponentNames(ComponentType.HDD, data);
         ObservableList<String> MainCardNames = getCoponentNames(ComponentType.MAINCARD, data);
         ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.SKJERMKORT, data);
         ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MINNE, data);
@@ -327,6 +334,7 @@ public class Controller_Admin {
         choMouse.setItems(MouseNames);
         choScreen.setItems(ScreenNames);
         choScreenCard.setItems(ScreenCardNames);
+        choHarddrive1.setItems(hddNames);
 
     }
 
