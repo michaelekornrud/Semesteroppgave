@@ -65,7 +65,7 @@
       <Button fx:id="btnOpenØnskeliste" layoutX="1120.0" layoutY="174.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
       <TableView fx:id="TVcart" layoutX="617.0" layoutY="104.0" prefHeight="232.0" prefWidth="489.0">
         <columns>
-          <TableColumn fx:id="colNumber" prefWidth="62.0" text="Nummer">
+          <TableColumn fx:id="colNumber" prefWidth="62.0" text="Number">
             <cellValueFactory>
                 <PropertyValueFactory property="txtNumber" />
             </cellValueFactory>

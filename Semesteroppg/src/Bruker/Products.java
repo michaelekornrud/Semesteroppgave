@@ -21,4 +21,27 @@ public class Products {
         }
 
     }
+
+
+    public String getTxtNumber() {return txtNumber.getValue();}
+    public void setTxtNumber(String txtNumber){this.txtNumber = new SimpleStringProperty(txtNumber);}
+
+    public String getTxtName(){return txtName.getValue();}
+    public void setTxtName(String txtName){this.txtName = new SimpleStringProperty(txtName);}
+
+    public String getTxtType(){return txtType.getValue();}
+    public void setTxtType(String txtType){this.txtType = new SimpleStringProperty(txtType);}
+
+    public int getTxtQuantity(){return txtQuantity.getValue();}
+    public void setTxtQuantity(int txtQuantity){this.txtQuantity = new SimpleIntegerProperty(txtQuantity);}
+
+    public int getTxtPrice(){return txtPrice.getValue();}
+    public void setTxtPrice(int txtPrice){this.txtPrice = new SimpleIntegerProperty(txtPrice);}
+
+    public double getTxtTotalPrice (){return txtTotalPrice.getValue();}
+    public void setTxtTotalPrice(double txtTotalPrice){this.txtTotalPrice = new SimpleDoubleProperty(txtTotalPrice);}
+
+    public String toString (){
+        return String.format("\n%s; %s; %s; %s; %s; %s;", getTxtNumber(),getTxtName(),getTxtType(), getTxtQuantity(),getTxtPrice(), getTxtTotalPrice());
+    }
 }

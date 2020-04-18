@@ -21,6 +21,7 @@ import javax.swing.text.BadLocationException;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,8 +31,8 @@ import java.util.Objects;
 
 public class controller extends Controller_ProductWindow {
 
-    Component_DataHandler cdh = new Component_DataHandler();
-    private Map<String, List<Product>> data;
+    ComponentDataHandler cdh = new ComponentDataHandler();
+    private Map<String, List<Products>> data;
 
     @FXML
     private ChoiceBox<String> choCabinet;
@@ -97,22 +98,28 @@ public class controller extends Controller_ProductWindow {
     private Button btnOpenØnskeliste;
 
     @FXML
-    private TableView<Product> TVcart;
+    private TableView<Products> TVcart;
 
     @FXML
-    private TableColumn<Product, String> colNumber;
+    private TableColumn<Products, String> colNumber;
 
     @FXML
-    private TableColumn<Product, String> colName;
+    private TableColumn<Products, String> colName;
 
     @FXML
-    private TableColumn<Product, String> colQuantity;
+    private TableColumn<Products, String> colType;
 
     @FXML
-    private TableColumn<Product, String> colPrice;
+    private TableColumn<Products, String> colQuantity;
 
     @FXML
-    private TableColumn<Product, String> colTotPrice;
+    private TableColumn<Products, String> colPrice;
+
+    @FXML
+    private TableColumn<Products, String> colTotPrice;
+
+    public controller() throws FileNotFoundException {
+    }
 
     @FXML
     void Handlekurv (ActionEvent event) throws IOException {
@@ -133,40 +140,57 @@ public class controller extends Controller_ProductWindow {
         String mouse = choMouse.getSelectionModel().getSelectedItem();
         String headphones = choHeadphones.getSelectionModel().getSelectedItem();
 
-        ObservableList<Product> observableList = FXCollections.observableArrayList();
+        ObservableList<Products> observableList = FXCollections.observableArrayList();
 
-        observableList.add(getProductByName(cabinett));
-        observableList.add(getProductByName(motherBoard));
-        observableList.add(getProductByName(processor));
-        observableList.add(getProductByName(graphicsCard));
-        observableList.add(getProductByName(memory));
-        observableList.add(getProductByName(powersupply));
-        observableList.add(getProductByName(memory));
-        observableList.add(getProductByName(hdd));
-        observableList.add(getProductByName(ssd));
-        observableList.add(getProductByName(cpuFan));
-        observableList.add(getProductByName(fans));
-        observableList.add(getProductByName(casemods));
-        observableList.add(getProductByName(monitor));
-        observableList.add(getProductByName(keyborad));
-        observableList.add(getProductByName(mouse));
-        observableList.add(getProductByName(headphones));
+        observableList.add(getProductNames(cabinett));
+        observableList.add(getProductNames(motherBoard));
+        observableList.add(getProductNames(processor));
+        observableList.add(getProductNames(graphicsCard));
+        observableList.add(getProductNames(memory));
+        observableList.add(getProductNames(powersupply));
+        observableList.add(getProductNames(memory));
+        observableList.add(getProductNames(hdd));
+        observableList.add(getProductNames(ssd));
+        observableList.add(getProductNames(cpuFan));
+        observableList.add(getProductNames(fans));
+        observableList.add(getProductNames(casemods));
+        observableList.add(getProductNames(monitor));
+        observableList.add(getProductNames(keyborad));
+        observableList.add(getProductNames(mouse));
+        observableList.add(getProductNames(headphones));
 
         TVcart.setItems(observableList);
 
 
     }
 
-    public Product getProductByName(String typeName) {
+    public Products getProductNames(String typeName) {
 
-        for (List<Product> productList : data.values()) {
-            for (Product product : productList) {
-                if (product.getTxtProductName().equals(typeName)) {
-                    return product;
+        for (List<Products> cartList : data.values()){
+            for (Products products : cartList){
+                if(products.getTxtName().equals(typeName)){
+                    return products;
                 }
             }
         }
         return null;
+    }
+
+    ObservableList<String> getComponentNames(String componentType, Map<String, List<Products>> newData) {
+
+        List<Products> kabinettComponents = newData.get(componentType);
+        ObservableList<String> kabinettNames = FXCollections.observableArrayList();
+        if (kabinettComponents != null) {
+
+
+            for (Products prod : kabinettComponents) {
+                kabinettNames.add(prod.getTxtName());
+            }
+        }
+
+
+        return kabinettNames;
+
     }
 
     @FXML
@@ -206,21 +230,21 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void updatedData() {
-        ObservableList<String> cabinetNames = getCoponentNames(ComponentType.KABINETT,data);
-        ObservableList<String> motherBoardNames = getCoponentNames(ComponentType.MAINCARD,data);
-        ObservableList<String> processorNames = getCoponentNames(ComponentType.PROCESSOR,data);
-        ObservableList<String> graphicsCardNames = getCoponentNames(ComponentType.SKJERMKORT,data);
-        ObservableList<String> memoryNames = getCoponentNames(ComponentType.MINNE,data);
-        ObservableList<String> powerSupplyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING,data);
-        ObservableList<String> hddNames = getCoponentNames(ComponentType.HDD,data);
-        ObservableList<String> ssdNames = getCoponentNames(ComponentType.HARDDISK,data);
-        ObservableList<String> cpuFanNames = getCoponentNames(ComponentType.PROSESSOR_FAN_NAMES,data);
-        ObservableList<String> fansNames = getCoponentNames(ComponentType.VIFTER,data);
-        ObservableList<String> casemodsNames = getCoponentNames(ComponentType.CASEMODS,data);
-        ObservableList<String> monitorNames = getCoponentNames(ComponentType.SKJERM,data);
-        ObservableList<String> keyBoardNames = getCoponentNames(ComponentType.TASTATUR,data);
-        ObservableList<String> mouseNames = getCoponentNames(ComponentType.MUS,data);
-        ObservableList<String> headphonesNames = getCoponentNames(ComponentType.HODETELEFONER,data);
+        ObservableList<String> cabinetNames = getComponentNames(ComponentType.KABINETT,data);
+        ObservableList<String> motherBoardNames = getComponentNames(ComponentType.MAINCARD,data);
+        ObservableList<String> processorNames = getComponentNames(ComponentType.PROCESSOR,data);
+        ObservableList<String> graphicsCardNames = getComponentNames(ComponentType.SKJERMKORT,data);
+        ObservableList<String> memoryNames = getComponentNames(ComponentType.MINNE,data);
+        ObservableList<String> powerSupplyNames = getComponentNames(ComponentType.STRØMFORSKYVNING,data);
+        ObservableList<String> hddNames = getComponentNames(ComponentType.HDD,data);
+        ObservableList<String> ssdNames = getComponentNames(ComponentType.HARDDISK,data);
+        ObservableList<String> cpuFanNames = getComponentNames(ComponentType.PROSESSOR_FAN_NAMES,data);
+        ObservableList<String> fansNames = getComponentNames(ComponentType.VIFTER,data);
+        ObservableList<String> casemodsNames = getComponentNames(ComponentType.CASEMODS,data);
+        ObservableList<String> monitorNames = getComponentNames(ComponentType.SKJERM,data);
+        ObservableList<String> keyBoardNames = getComponentNames(ComponentType.TASTATUR,data);
+        ObservableList<String> mouseNames = getComponentNames(ComponentType.MUS,data);
+        ObservableList<String> headphonesNames = getComponentNames(ComponentType.HODETELEFONER,data);
 
         choCabinet.setItems(cabinetNames);
         choMotherboard.setItems(motherBoardNames);
@@ -237,26 +261,8 @@ public class controller extends Controller_ProductWindow {
         choKeyboard.setItems(keyBoardNames);
         choMouse.setItems(mouseNames);
         choHeadphones.setItems(headphonesNames);
-
-
     }
 
-    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) {
-
-        List<Product> kabinettComponents = newData.get(componentType);
-        ObservableList<String> kabinettNames = FXCollections.observableArrayList();
-        if (kabinettComponents != null) {
-
-
-            for (Product prod : kabinettComponents) {
-                kabinettNames.add(prod.getTxtProductName());
-            }
-        }
-
-
-        return kabinettNames;
-
-    }
 
     @FXML
     void LagreOnskeliste (ActionEvent event)throws IOException, BadLocationException {
