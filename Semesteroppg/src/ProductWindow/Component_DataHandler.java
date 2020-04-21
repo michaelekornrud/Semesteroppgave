@@ -1,7 +1,12 @@
 package ProductWindow;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.*;
+
+
 
 public class Component_DataHandler {
     /*private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Powersupply",
@@ -14,6 +19,32 @@ public class Component_DataHandler {
         csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
         load();
     }
+
+
+    public void writeFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
+        //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
+
+        Writer writer = null;
+
+        try {
+            File file = new File(csvFile);
+            writer = new BufferedWriter(new FileWriter(file));
+            for (List<Product> productList : data.values()) {
+                for (Product product : productList) {
+                    String text = product.toString();
+                    writer.write(text + "\n");
+
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
 
 
     public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
@@ -31,10 +62,10 @@ public class Component_DataHandler {
 
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-                if (isFirstLine) {
+               /* if (isFirstLine) {
                     isFirstLine = false;
                     continue;
-                }
+                }*/ //Hopper over første linje i csv-filen
 
                 System.out.println(currentLine);
                 String[] component = currentLine.split(cvsSplitBy);

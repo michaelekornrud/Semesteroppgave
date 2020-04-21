@@ -4,7 +4,13 @@ import Exceptions.ProductValidator;
 import ProductWindow.ComponentType;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
+import ProductWindow.ProductRegister;
+import com.oracle.deploy.update.UpdateInfo;
+import com.sun.scenario.effect.impl.prism.PrReflectionPeer;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,16 +27,20 @@ import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
 public class Controller_Admin {
 
-  ;
     Component_DataHandler cdh = new Component_DataHandler();
 
     private Map<String, List<Product>> data;
+
+    ObservableList<Product> dataFromChoiceBoxes = FXCollections.observableArrayList();
+
+    ProductRegister newProduct = new ProductRegister();
+
 
 
     @FXML
@@ -105,45 +115,77 @@ public class Controller_Admin {
     @FXML
     private TableView<Product> tableView;
 
+    @FXML
+    private Button save;
 
+    List<ChoiceBox> choiceBoxes;
+
+
+
+   /* public Controller_Admin() {
+
+    }*/
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws Exception {
         LoadData();
         tableView.setEditable(true);
 
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colName.setOnEditCommit(event -> (event.getTableView().getItems().get(event.getTablePosition().getRow())).setTxtProductName(String.valueOf(event.getNewValue())));
+        //colName.setOnEditCommit(event -> (event.getTableView().getItems().get(event.getTablePosition().getRow())).setTxtProductName(String.valueOf(event.getNewValue())));
 
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        colBrand.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtBrand(String.valueOf(event.getNewValue())));
+        //colBrand.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtBrand(String.valueOf(event.getNewValue())));
 
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        colPrice.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Double.parseDouble(String.valueOf(event.getNewValue()))));
+        //colPrice.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Double.parseDouble(String.valueOf(event.getNewValue()))));
 
         colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        colNumberOfProducts.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Integer.parseInt(String.valueOf(event.getNewValue()))));
+        //colNumberOfProducts.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Integer.parseInt(String.valueOf(event.getNewValue()))));
 
+        choiceBoxes = new ArrayList<>();
+        choiceBoxes.add(choHarddrive);
+        choiceBoxes.add(choKabinett);
+        choiceBoxes.add(choMainCard);
+        choiceBoxes.add(choProcessor);
+        choiceBoxes.add(choScreenCard);
+        choiceBoxes.add(choMemory);
+        choiceBoxes.add(choEnergy);
+        choiceBoxes.add(choCPU);
+        choiceBoxes.add(choFan);
+        choiceBoxes.add(choCaseMods);
+        choiceBoxes.add(choScreen);
+        choiceBoxes.add(choKeyboard);
+        choiceBoxes.add(choHeadsett);
+        choiceBoxes.add(choMouse);
+        choiceBoxes.add(choHarddrive1);
 
-        resetchoiceBoxes();
 
     }
 
 
+   @FXML
+    void btnLagreEndringer(ActionEvent event) throws Exception {
+     cdh.writeFromTableviewToCsvAndSave(data);
+    }
+
+
+
     @FXML
-    void LeggTilDataITablevieW(ActionEvent event) {
+    void LeggTilDataITablevieW() {
 
-       /* ObservableList<Product> obsList = FXCollections.observableArrayList();
+     ObservableList<Product> obsList = FXCollections.observableArrayList();
 
-        for (ChoiceBox box : compList  ) {
+        for (ChoiceBox box : choiceBoxes) {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
-            obsList.add(getProductByName(selectedName));
+            if (selectedName != null) {
+                obsList.add(getProductByName(selectedName));
+            }
         }
 
-        tableView.setItems(obsList);*/
+        tableView.setItems(obsList);
 
-
-        String casemods = choCaseMods.getSelectionModel().getSelectedItem();
+      /*  String casemods = choCaseMods.getSelectionModel().getSelectedItem();
         String cpu = choCPU.getSelectionModel().getSelectedItem();
         String kabinett = choKabinett.getSelectionModel().getSelectedItem();
         String mc =choMainCard.getSelectionModel().getSelectedItem();
@@ -161,25 +203,29 @@ public class Controller_Admin {
 
         ObservableList<Product> observableList = FXCollections.observableArrayList();
 
-        observableList.add(getProductByName(casemods));
-        observableList.add(getProductByName(cpu));
-        observableList.add(getProductByName(kabinett));
-        observableList.add(getProductByName(mc));
-        observableList.add(getProductByName(prosessor));
-        observableList.add(getProductByName(screencard));
-        observableList.add(getProductByName(memory));
-        observableList.add(getProductByName(energy));
-        observableList.add(getProductByName(harddrive));
-        observableList.add(getProductByName(fan));
-        observableList.add(getProductByName(screen));
-        observableList.add(getProductByName(keyboard));
-        observableList.add(getProductByName(mouse));
-        observableList.add(getProductByName(headsett));
-        observableList.add(getProductByName(hdd));
 
-        tableView.setItems(observableList);
+    observableList.add(getProductByName(casemods));
+    observableList.add(getProductByName(cpu));
+    observableList.add(getProductByName(kabinett));
+    observableList.add(getProductByName(mc));
+    observableList.add(getProductByName(prosessor));
+    observableList.add(getProductByName(screencard));
+    observableList.add(getProductByName(memory));
+    observableList.add(getProductByName(energy));
+    observableList.add(getProductByName(harddrive));
+    observableList.add(getProductByName(fan));
+    observableList.add(getProductByName(screen));
+    observableList.add(getProductByName(keyboard));
+    observableList.add(getProductByName(mouse));
+    observableList.add(getProductByName(headsett));
+    observableList.add(getProductByName(hdd));
 
-    }
+    tableView.setItems(observableList);*/
+}
+
+
+
+
 
     public Product getProductByName(String typeName) {
 
@@ -192,6 +238,8 @@ public class Controller_Admin {
         }
         return null;
     }
+
+
 
 
     @FXML
@@ -223,31 +271,28 @@ public class Controller_Admin {
 
     }
 
-   @FXML //Må fikses på!! Fungerer ikke
-    public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){
+   @FXML
+    public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, Integer> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
-        String number = edit.getNewValue();
-        int intNumber = Integer.parseInt(number);
-        ProductValidator.testNumberOfProducts(intNumber);
-        prod.setTxtNumberOfProducts(intNumber);
+        int number = edit.getNewValue();
+        ProductValidator.testNumberOfProducts(number);
+        prod.setTxtNumberOfProducts(number);
         tableView.refresh();
     }
 
-    @FXML  //Må fikses på!! Fungerer ikke
-    public void editTableview_Price(TableColumn.CellEditEvent<Product, String> edit){
+    @FXML
+    public void editTableview_Price(TableColumn.CellEditEvent<Product, Double> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
-        String price = edit.getNewValue();
-        double doubPrice = Double.parseDouble(price);
-        ProductValidator.testPrice(doubPrice);
-        prod.setTxtPrice(doubPrice);
+        double price = edit.getNewValue();
+        ProductValidator.testPrice(price);
+        prod.setTxtPrice(price);
         tableView.refresh();
     }
-
 
 
 
     @FXML
-    private void resetchoiceBoxes() {
+    private void resetchoiceBoxes() { //funker ikke
         choCaseMods.setValue("");
         choHeadsett.setValue("");
         choKabinett.setValue("");
@@ -264,7 +309,9 @@ public class Controller_Admin {
         choScreen.setValue("");
         choHarddrive1.setValue("");
 
+
     }
+
 
 
 
@@ -362,6 +409,14 @@ public class Controller_Admin {
         return kabinettNames;
 
     }
+
+
+
+
+
+
+
+
 
 
 }

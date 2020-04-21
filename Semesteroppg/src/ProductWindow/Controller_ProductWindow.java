@@ -32,6 +32,7 @@ public class Controller_ProductWindow {
 
 
 
+
     @FXML
     private TextField txtProductName;
 
@@ -82,6 +83,9 @@ public class Controller_ProductWindow {
         colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         choType.setItems(componentType);
+
+
+
 
     }
 
