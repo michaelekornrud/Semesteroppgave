@@ -27,7 +27,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class controller extends Controller_ProductWindow {
 
@@ -230,21 +229,21 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void updatedData() {
-        ObservableList<String> cabinetNames = getComponentNames(ComponentType.KABINETT,data);
+        ObservableList<String> cabinetNames = getComponentNames(ComponentType.CABINET,data);
         ObservableList<String> motherBoardNames = getComponentNames(ComponentType.MAINCARD,data);
         ObservableList<String> processorNames = getComponentNames(ComponentType.PROCESSOR,data);
-        ObservableList<String> graphicsCardNames = getComponentNames(ComponentType.SKJERMKORT,data);
-        ObservableList<String> memoryNames = getComponentNames(ComponentType.MINNE,data);
-        ObservableList<String> powerSupplyNames = getComponentNames(ComponentType.STRØMFORSKYVNING,data);
+        ObservableList<String> graphicsCardNames = getComponentNames(ComponentType.VIDEOCARD,data);
+        ObservableList<String> memoryNames = getComponentNames(ComponentType.MEMORY,data);
+        ObservableList<String> powerSupplyNames = getComponentNames(ComponentType.POWERSUPPLY,data);
         ObservableList<String> hddNames = getComponentNames(ComponentType.HDD,data);
-        ObservableList<String> ssdNames = getComponentNames(ComponentType.HARDDISK,data);
+        ObservableList<String> ssdNames = getComponentNames(ComponentType.HARDDRIVE,data);
         ObservableList<String> cpuFanNames = getComponentNames(ComponentType.PROSESSOR_FAN_NAMES,data);
-        ObservableList<String> fansNames = getComponentNames(ComponentType.VIFTER,data);
+        ObservableList<String> fansNames = getComponentNames(ComponentType.FANS,data);
         ObservableList<String> casemodsNames = getComponentNames(ComponentType.CASEMODS,data);
-        ObservableList<String> monitorNames = getComponentNames(ComponentType.SKJERM,data);
-        ObservableList<String> keyBoardNames = getComponentNames(ComponentType.TASTATUR,data);
-        ObservableList<String> mouseNames = getComponentNames(ComponentType.MUS,data);
-        ObservableList<String> headphonesNames = getComponentNames(ComponentType.HODETELEFONER,data);
+        ObservableList<String> monitorNames = getComponentNames(ComponentType.SCREEN,data);
+        ObservableList<String> keyBoardNames = getComponentNames(ComponentType.KEYBOARD,data);
+        ObservableList<String> mouseNames = getComponentNames(ComponentType.MOUSE,data);
+        ObservableList<String> headphonesNames = getComponentNames(ComponentType.HEADSET,data);
 
         choCabinet.setItems(cabinetNames);
         choMotherboard.setItems(motherBoardNames);

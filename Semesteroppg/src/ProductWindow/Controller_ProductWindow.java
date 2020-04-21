@@ -23,14 +23,12 @@ import java.util.*;
 
 public class Controller_ProductWindow {
 
-    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
-    , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
-    , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
+    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.CABINET, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
+    , ComponentType.HARDDRIVE, ComponentType.HEADSET, ComponentType.MAINCARD, ComponentType.MEMORY, ComponentType.MOUSE, ComponentType.PROCESSOR, ComponentType.SCREEN
+    , ComponentType.POWERSUPPLY, ComponentType.KEYBOARD, ComponentType.FANS, ComponentType.VIDEOCARD);
 
 
     Component_DataHandler dataHandler = new Component_DataHandler();
-
-
 
 
     @FXML
@@ -41,7 +39,7 @@ public class Controller_ProductWindow {
     private TextField txtNumberOfProducts;
 
     @FXML
-    private ChoiceBox<String> choType;
+    private ChoiceBox<String> choiceType;
 
     @FXML
     private TextField txtBrand;
@@ -82,14 +80,9 @@ public class Controller_ProductWindow {
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
         colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        choType.setItems(componentType);
-
-
-
+        choiceType.setItems(componentType);
 
     }
-
-
 
     @FXML
     void btnAdd(ActionEvent event) throws IOException {
@@ -98,14 +91,6 @@ public class Controller_ProductWindow {
         ProductRegister.addElement(newProduct);
         resetTxtFields();
         dataHandler.write(newProduct);
-
-
-       /* String choiceb = choType.getSelectionModel().getSelectedItem();
-
-        if (choiceb == "Mus"){
-            tableView.getItems();
-        }*/
-
 
     }
 
@@ -121,12 +106,8 @@ public class Controller_ProductWindow {
     @FXML
     private Button btnTilbake;
 
-
-
-
-
     @FXML
-    void Tilbake (ActionEvent event) throws IOException {
+    void back(ActionEvent event) throws IOException {
         try {
         Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
         Scene PCByggingScene = new Scene(PCByggingParent);
@@ -152,7 +133,7 @@ public class Controller_ProductWindow {
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
-        String value = choType.getSelectionModel().getSelectedItem();
+        String value = choiceType.getSelectionModel().getSelectedItem();
         //String productNumber =txtProductNumber.getText();
 
 
@@ -174,14 +155,7 @@ public class Controller_ProductWindow {
             }
         }
 
-        System.out.println("Contains id: " + productNumber +": " + containsId);*
-
-            /* String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview
-        String[] prodNr = new String[]{productNumber};
-        List<String> list = Arrays.asList(prodNr);
-        if (list.contains(productNumber)){
-            throw new InvalidProductNumberException("The number already exists!");
-        }*/
+        System.out.println("Contains id: " + productNumber +": " + containsId);*/
     }
 
     @FXML
@@ -193,7 +167,6 @@ public class Controller_ProductWindow {
         tableView.refresh();
     }
 
-
     /*@FXML
     public void editTableview_prodNr(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
@@ -204,7 +177,7 @@ public class Controller_ProductWindow {
 
     }*/
 
-    @FXML //Må fikses på!! Fungerer ikke
+    @FXML
     public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String number = edit.getNewValue();

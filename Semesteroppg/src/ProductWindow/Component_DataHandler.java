@@ -9,8 +9,6 @@ import java.util.*;
 
 
 public class Component_DataHandler {
-    /*private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Powersupply",
-    "Harddrive", "CPU-Fan", "Fans", "Casemods","Screen", "Keyboard", "Headset","Mouse"};//Her er alle komponent-typene, legg til om det blir fler.*/
     private String csvFile;
 
     public Component_DataHandler()
@@ -21,7 +19,7 @@ public class Component_DataHandler {
     }
 
 
-    public void writeFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
+    public void changeDataFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
         //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
 
         Writer writer = null;
@@ -32,14 +30,12 @@ public class Component_DataHandler {
             for (List<Product> productList : data.values()) {
                 for (Product product : productList) {
                     String text = product.toString();
-                    writer.write(text + "\n");
-
+                    writer.write(text );
                 }
             }
         } catch (Exception e){
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             writer.flush();
             writer.close();
         }
@@ -48,9 +44,6 @@ public class Component_DataHandler {
 
 
     public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
-
-        /*String projectDirectory = System.getProperty("user.dir");
-        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";*/
 
         BufferedReader br = null;
         String currentLine = "";
@@ -104,7 +97,7 @@ public class Component_DataHandler {
 
 
         for (String[] component : componentData){
-            String id = component[0]; //Gjøre denne om til en int og få random unik number generator tilkoblet
+            String id = component[0];
             String name = component[1];
             int numberOfProducts = Integer.parseInt(component[2]);
             String brand = component[3];
@@ -114,8 +107,6 @@ public class Component_DataHandler {
 
             Product prod = new Product(id,name,numberOfProducts,brand,price,type);
 
-
-            //String mapId = type.toLowerCase();
             List<Product> compList = mappedComponents.get(type);
 
             if(compList == null){ //Kontrollerer om det er data i complist

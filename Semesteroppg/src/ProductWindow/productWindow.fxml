@@ -16,7 +16,7 @@
     <TextField fx:id="txtPrice" layoutX="23.0" layoutY="215.0" promptText="Pris" />
     <Button layoutX="31.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnAdd" text="Add" />
     <Button layoutX="82.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnDelete" text="Delete" />
-      <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake" />
+      <Button fx:id="btnTibake" layoutX="145.0" layoutY="335.0" mnemonicParsing="false" onAction="#back" text="Tilbake" />
     <TableView fx:id="tableView" layoutX="199.0" layoutY="68.0" prefHeight="222.0" prefWidth="394.0">
         <columns>
             <TableColumn fx:id="colProdNr"  prefWidth="64.0" text="Id">
@@ -58,6 +58,6 @@
             </TableColumn>
         </columns>
     </TableView>
-      <ChoiceBox fx:id="choType" layoutX="24.0" layoutY="68.0" prefHeight="27.0" prefWidth="155.0" />
+      <ChoiceBox fx:id="choiceType" layoutX="24.0" layoutY="68.0" prefHeight="27.0" prefWidth="155.0" />
 </children>
 </AnchorPane>

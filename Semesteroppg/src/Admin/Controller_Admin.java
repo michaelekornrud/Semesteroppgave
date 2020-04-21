@@ -5,16 +5,9 @@ import ProductWindow.ComponentType;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
 import ProductWindow.ProductRegister;
-import com.oracle.deploy.update.UpdateInfo;
-import com.sun.scenario.effect.impl.prism.PrReflectionPeer;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -37,62 +29,57 @@ public class Controller_Admin {
 
     private Map<String, List<Product>> data;
 
-    ObservableList<Product> dataFromChoiceBoxes = FXCollections.observableArrayList();
-
-    ProductRegister newProduct = new ProductRegister();
-
-
 
     @FXML
-    private Button btnLeggTil;
+    private Button btnAdd;
 
     @FXML
-    private Button btnHandlekurv;
+    private Button btnShoppingCart;
 
     @FXML
-    private ChoiceBox<String> choKabinett;
+    private ChoiceBox<String> choiceCabinet;
 
     @FXML
-    private ChoiceBox<String> choMainCard;
+    private ChoiceBox<String> choiceMainCard;
 
     @FXML
-    private ChoiceBox<String> choProcessor;
+    private ChoiceBox<String> choiceProcessor;
 
     @FXML
-    private ChoiceBox<String> choScreenCard;
+    private ChoiceBox<String> choiceScreenCard;
 
     @FXML
-    private ChoiceBox<String> choMemory;
+    private ChoiceBox<String> choiceMemory;
 
     @FXML
-    private ChoiceBox<String> choEnergy;
+    private ChoiceBox<String> choicePowerSupply;
 
     @FXML
-    private ChoiceBox<String> choHarddrive1;
+    private ChoiceBox<String> choiceHDD;
 
     @FXML
-    private ChoiceBox<String> choHarddrive;
+    private ChoiceBox<String> choiceHarddrive;
 
     @FXML
-    private ChoiceBox<String> choCPU;
+    private ChoiceBox<String> choiceCPU;
 
     @FXML
-    private ChoiceBox<String> choFan;
+    private ChoiceBox<String> choiceFan;
 
     @FXML
-    private ChoiceBox<String> choCaseMods;
+    private ChoiceBox<String> choiceCaseMods;
 
     @FXML
-    private ChoiceBox<String> choScreen;
+    private ChoiceBox<String> choiceScreen;
 
     @FXML
-    private ChoiceBox<String> choKeyboard;
+    private ChoiceBox<String> choiceKeyboard;
 
     @FXML
-    private ChoiceBox<String> choMouse;
+    private ChoiceBox<String> choiceMouse;
 
     @FXML
-    public ChoiceBox<String> choHeadsett;
+    public ChoiceBox<String> choiceHeadset;
 
     @FXML
     private TableColumn<Product, String> colID;
@@ -121,59 +108,43 @@ public class Controller_Admin {
     List<ChoiceBox> choiceBoxes;
 
 
-
-   /* public Controller_Admin() {
-
-    }*/
-
     @FXML
     public void initialize() throws Exception {
         LoadData();
         tableView.setEditable(true);
 
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        //colName.setOnEditCommit(event -> (event.getTableView().getItems().get(event.getTablePosition().getRow())).setTxtProductName(String.valueOf(event.getNewValue())));
-
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        //colBrand.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtBrand(String.valueOf(event.getNewValue())));
-
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        //colPrice.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Double.parseDouble(String.valueOf(event.getNewValue()))));
-
         colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        //colNumberOfProducts.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtPrice(Integer.parseInt(String.valueOf(event.getNewValue()))));
-
-        choiceBoxes = new ArrayList<>();
-        choiceBoxes.add(choHarddrive);
-        choiceBoxes.add(choKabinett);
-        choiceBoxes.add(choMainCard);
-        choiceBoxes.add(choProcessor);
-        choiceBoxes.add(choScreenCard);
-        choiceBoxes.add(choMemory);
-        choiceBoxes.add(choEnergy);
-        choiceBoxes.add(choCPU);
-        choiceBoxes.add(choFan);
-        choiceBoxes.add(choCaseMods);
-        choiceBoxes.add(choScreen);
-        choiceBoxes.add(choKeyboard);
-        choiceBoxes.add(choHeadsett);
-        choiceBoxes.add(choMouse);
-        choiceBoxes.add(choHarddrive1);
 
 
+        choiceBoxes = new ArrayList<>(); //Liste med alle choiceboksene
+        choiceBoxes.add(choiceHarddrive);
+        choiceBoxes.add(choiceCabinet);
+        choiceBoxes.add(choiceMainCard);
+        choiceBoxes.add(choiceProcessor);
+        choiceBoxes.add(choiceScreenCard);
+        choiceBoxes.add(choiceMemory);
+        choiceBoxes.add(choicePowerSupply);
+        choiceBoxes.add(choiceCPU);
+        choiceBoxes.add(choiceFan);
+        choiceBoxes.add(choiceCaseMods);
+        choiceBoxes.add(choiceScreen);
+        choiceBoxes.add(choiceKeyboard);
+        choiceBoxes.add(choiceHeadset);
+        choiceBoxes.add(choiceMouse);
+        choiceBoxes.add(choiceHDD);
     }
-
 
    @FXML
-    void btnLagreEndringer(ActionEvent event) throws Exception {
-     cdh.writeFromTableviewToCsvAndSave(data);
+    void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
+     cdh.changeDataFromTableviewToCsvAndSave(data);
     }
-
 
 
     @FXML
-    void LeggTilDataITablevieW() {
-
+    void addDataToTableview() {
      ObservableList<Product> obsList = FXCollections.observableArrayList();
 
         for (ChoiceBox box : choiceBoxes) {
@@ -223,11 +194,7 @@ public class Controller_Admin {
     tableView.setItems(observableList);*/
 }
 
-
-
-
-
-    public Product getProductByName(String typeName) {
+    public Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
 
         for (List<Product> productList : data.values()) {
             for (Product product : productList) {
@@ -243,7 +210,7 @@ public class Controller_Admin {
 
 
     @FXML
-    public void editTableview_Name(TableColumn.CellEditEvent<Product, String> edit){
+    public void editTableview_Name(TableColumn.CellEditEvent<Product, String> edit){ //Metode som gjør det mulig å endre på dataen i navn-kolonnen
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String name = edit.getNewValue();
         ProductValidator.testProductName(name);
@@ -252,7 +219,7 @@ public class Controller_Admin {
     }
 
     @FXML
-    public void editTableview_Brand(TableColumn.CellEditEvent<Product, String> edit){
+    public void editTableview_Brand(TableColumn.CellEditEvent<Product, String> edit){//Metode som gjør det mulig å endre på dataen i merke-kolonnen
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String brand = edit.getNewValue();
         ProductValidator.testProductBrand(brand);
@@ -262,7 +229,7 @@ public class Controller_Admin {
 
 
     @FXML
-    public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
+    public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){//Metode som gjør det mulig å endre på dataen i tyoe-kolonnen
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
         ProductValidator.testProductType(type);
@@ -272,7 +239,7 @@ public class Controller_Admin {
     }
 
    @FXML
-    public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, Integer> edit){
+    public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, Integer> edit){//Metode som gjør det mulig å endre på dataen i nummer-kolonnen
         Product prod = tableView.getSelectionModel().getSelectedItem();
         int number = edit.getNewValue();
         ProductValidator.testNumberOfProducts(number);
@@ -281,7 +248,7 @@ public class Controller_Admin {
     }
 
     @FXML
-    public void editTableview_Price(TableColumn.CellEditEvent<Product, Double> edit){
+    public void editTableview_Price(TableColumn.CellEditEvent<Product, Double> edit){//Metode som gjør det mulig å endre på dataen i pris-kolonnen
         Product prod = tableView.getSelectionModel().getSelectedItem();
         double price = edit.getNewValue();
         ProductValidator.testPrice(price);
@@ -292,27 +259,25 @@ public class Controller_Admin {
 
 
     @FXML
-    private void resetchoiceBoxes() { //funker ikke
-        choCaseMods.setValue("");
-        choHeadsett.setValue("");
-        choKabinett.setValue("");
-        choHarddrive.setValue("");
-        choMouse.setValue("");
-        choMemory.setValue("");
-        choScreenCard.setValue("");
-        choMainCard.setValue("");
-        choKeyboard.setValue("");
-        choFan.setValue("");
-        choEnergy.setValue("");
-        choCPU.setValue("");
-        choProcessor.setValue("");
-        choScreen.setValue("");
-        choHarddrive1.setValue("");
+    private void resetchoiceBoxes() { //funker ikke //Metode som skal resette valgt element i choiceboksen
+        choiceCaseMods.setValue("");
+        choiceHeadset.setValue("");
+        choiceCabinet.setValue("");
+        choiceHarddrive.setValue("");
+        choiceMouse.setValue("");
+        choiceMemory.setValue("");
+        choiceScreenCard.setValue("");
+        choiceMainCard.setValue("");
+        choiceKeyboard.setValue("");
+        choiceFan.setValue("");
+        choicePowerSupply.setValue("");
+        choiceCPU.setValue("");
+        choiceProcessor.setValue("");
+        choiceScreen.setValue("");
+        choiceHDD.setValue("");
 
 
     }
-
-
 
 
     @FXML
@@ -333,7 +298,7 @@ public class Controller_Admin {
     }
 
     @FXML
-    void Handlekurv(ActionEvent event) throws IOException {
+    void shoppingCart(ActionEvent event) throws IOException {
         try {
             Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Handlekurv/kurven.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
@@ -350,38 +315,37 @@ public class Controller_Admin {
 
     @FXML
     void updatedData() throws IOException { //Metode for å legge inn verdi i choicebox kabinett
-        //List<BaseComponent> kabinettComponents = newData.get(ComponentType.KABINETT);
-        ObservableList<String> kabinettNames = getCoponentNames(ComponentType.KABINETT, data);
+        ObservableList<String> kabinettNames = getCoponentNames(ComponentType.CABINET, data);
         ObservableList<String> ProsessorNames = getCoponentNames(ComponentType.PROCESSOR, data);
-        ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDISK, data);
+        ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDRIVE, data);
         ObservableList<String> hddNames = getCoponentNames(ComponentType.HDD, data);
         ObservableList<String> MainCardNames = getCoponentNames(ComponentType.MAINCARD, data);
-        ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.SKJERMKORT, data);
-        ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MINNE, data);
-        ObservableList<String> PowerSupplyNames = getCoponentNames(ComponentType.STRØMFORSKYVNING, data);
+        ObservableList<String> ScreenCardNames = getCoponentNames(ComponentType.VIDEOCARD, data);
+        ObservableList<String> MemoryNames = getCoponentNames(ComponentType.MEMORY, data);
+        ObservableList<String> PowerSupplyNames = getCoponentNames(ComponentType.POWERSUPPLY, data);
         ObservableList<String> ProsessorFanNames = getCoponentNames(ComponentType.PROSESSOR_FAN_NAMES, data);
-        ObservableList<String> FanNames = getCoponentNames(ComponentType.VIFTER, data);
+        ObservableList<String> FanNames = getCoponentNames(ComponentType.FANS, data);
         ObservableList<String> CaseModkNames = getCoponentNames(ComponentType.CASEMODS, data);
-        ObservableList<String> ScreenNames = getCoponentNames(ComponentType.SKJERM, data);
-        ObservableList<String> KeyboadNames = getCoponentNames(ComponentType.TASTATUR, data);
-        ObservableList<String> HeadSetNames = getCoponentNames(ComponentType.HODETELEFONER, data);
-        ObservableList<String> MouseNames = getCoponentNames(ComponentType.MUS, data);
+        ObservableList<String> ScreenNames = getCoponentNames(ComponentType.SCREEN, data);
+        ObservableList<String> KeyboadNames = getCoponentNames(ComponentType.KEYBOARD, data);
+        ObservableList<String> HeadSetNames = getCoponentNames(ComponentType.HEADSET, data);
+        ObservableList<String> MouseNames = getCoponentNames(ComponentType.MOUSE, data);
 
-        choKabinett.setItems(kabinettNames);
-        choHarddrive.setItems(HarddiskNames);
-        choProcessor.setItems(ProsessorNames);
-        choCaseMods.setItems(CaseModkNames);
-        choCPU.setItems(ProsessorFanNames);
-        choEnergy.setItems(PowerSupplyNames);
-        choFan.setItems(FanNames);
-        choHeadsett.setItems(HeadSetNames);
-        choKeyboard.setItems(KeyboadNames);
-        choMainCard.setItems(MainCardNames);
-        choMemory.setItems(MemoryNames);
-        choMouse.setItems(MouseNames);
-        choScreen.setItems(ScreenNames);
-        choScreenCard.setItems(ScreenCardNames);
-        choHarddrive1.setItems(hddNames);
+        choiceCabinet.setItems(kabinettNames);
+        choiceHarddrive.setItems(HarddiskNames);
+        choiceProcessor.setItems(ProsessorNames);
+        choiceCaseMods.setItems(CaseModkNames);
+        choiceCPU.setItems(ProsessorFanNames);
+        choicePowerSupply.setItems(PowerSupplyNames);
+        choiceFan.setItems(FanNames);
+        choiceHeadset.setItems(HeadSetNames);
+        choiceKeyboard.setItems(KeyboadNames);
+        choiceMainCard.setItems(MainCardNames);
+        choiceMemory.setItems(MemoryNames);
+        choiceMouse.setItems(MouseNames);
+        choiceScreen.setItems(ScreenNames);
+        choiceScreenCard.setItems(ScreenCardNames);
+        choiceHDD.setItems(hddNames);
 
     }
 
@@ -391,7 +355,6 @@ public class Controller_Admin {
         data = cdh.load();
         updatedData();
     }
-
 
     ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) {
 
