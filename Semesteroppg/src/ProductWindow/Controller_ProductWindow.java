@@ -23,12 +23,13 @@ import java.util.*;
 
 public class Controller_ProductWindow {
 
-    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.CABINET, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
+    public ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.CABINET, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
     , ComponentType.HARDDRIVE, ComponentType.HEADSET, ComponentType.MAINCARD, ComponentType.MEMORY, ComponentType.MOUSE, ComponentType.PROCESSOR, ComponentType.SCREEN
     , ComponentType.POWERSUPPLY, ComponentType.KEYBOARD, ComponentType.FANS, ComponentType.VIDEOCARD);
 
-
     Component_DataHandler dataHandler = new Component_DataHandler();
+
+    private Map<String, List<Product>> data;
 
 
     @FXML
@@ -70,6 +71,12 @@ public class Controller_ProductWindow {
 
     private ProductRegister newObjects = new ProductRegister();
 
+   /* public Controller_ProductWindow(Map<String, List<Product>> data) {
+        this.data = data;
+    }*/
+
+    public Controller_ProductWindow() {
+    }
 
     @FXML
     public void initialize() throws IOException {
@@ -191,9 +198,10 @@ public class Controller_ProductWindow {
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
+        ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
-        //ProductValidator.testProductType(type);
+
     }
 
 
@@ -223,5 +231,10 @@ public class Controller_ProductWindow {
         txtBrand.setText("");
         txtPrice.setText("");
     }
+
+    /*@FXML
+    void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
+        dataHandler.changeDataFromTableviewToCsvAndSave(data);
+    }*/
 }
 

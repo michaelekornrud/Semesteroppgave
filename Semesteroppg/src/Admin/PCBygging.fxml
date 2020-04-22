@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="693.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
    <children>
-      <Button fx:id="btnAdd" layoutX="25.0" layoutY="395.0" mnemonicParsing="false" onAction="#addComponent" text="Legg/fjern til komponent" />
+      <Button fx:id="btnAdd" layoutX="16.0" layoutY="652.0" mnemonicParsing="false" onAction="#addComponent" text="Legg/fjern til komponent" />
       <Label layoutX="45.0" layoutY="38.0" text="Bygg  din egen PC">
          <font>
             <Font size="24.0" />
@@ -50,7 +50,7 @@
       <ChoiceBox fx:id="choiceHeadset" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
       <Label layoutX="349.0" layoutY="400.0" text="Totalpris:" />
       <Label layoutX="408.0" layoutY="400.0" text="Pris" />
-      <Button fx:id="btnShoppingCart" layoutX="473.0" layoutY="395.0" mnemonicParsing="false" onAction="#shoppingCart" text="Vis handlekurv" />
+      <Button fx:id="btnShoppingCart" layoutX="506.0" layoutY="652.0" mnemonicParsing="false" onAction="#shoppingCart" text="Vis handlekurv" />
       <TableView fx:id="tableView" layoutX="102.0" layoutY="438.0" prefHeight="200.0" prefWidth="453.0">
         <columns>
 
@@ -96,7 +96,9 @@
            </TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="104.0" layoutY="646.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview" />
-      <Button fx:id="save" layoutX="322.0" layoutY="646.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer" />
+      <Button layoutX="19.0" layoutY="395.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview" />
+      <Button fx:id="save" layoutX="177.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer" />
+      <Button layoutX="289.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett" />
+      <Button layoutX="469.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Totel Sletting" />
    </children>
 </AnchorPane>

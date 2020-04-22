@@ -1,10 +1,7 @@
 package Admin;
 
 import Exceptions.ProductValidator;
-import ProductWindow.ComponentType;
-import ProductWindow.Component_DataHandler;
-import ProductWindow.Product;
-import ProductWindow.ProductRegister;
+import ProductWindow.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,16 +22,12 @@ import java.util.*;
 
 public class Controller_Admin {
 
+
+
     Component_DataHandler cdh = new Component_DataHandler();
 
     private Map<String, List<Product>> data;
 
-
-    @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnShoppingCart;
 
     @FXML
     private ChoiceBox<String> choiceCabinet;
@@ -99,11 +92,17 @@ public class Controller_Admin {
     @FXML
     private TableColumn<Product, String> colType;
 
-    @FXML
-    private TableView<Product> tableView;
+    private String csvFile;
+    public Controller_Admin()
+    {
+        String projectDirectory = System.getProperty("user.dir");
+        csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
+        cdh.load();
+    }
+
 
     @FXML
-    private Button save;
+    private TableView<Product> tableView;
 
     List<ChoiceBox> choiceBoxes;
 
@@ -117,6 +116,9 @@ public class Controller_Admin {
         colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colType.setCellFactory(TextFieldTableCell.forTableColumn());
+        //Legge til type med en metode som sjekker om type er skrevet likt som de ulike typene
+        //Legge til en knapp delete som sletter objektet fra tableview og fra choiceboksen
 
 
         choiceBoxes = new ArrayList<>(); //Liste med alle choiceboksene
@@ -151,47 +153,12 @@ public class Controller_Admin {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
             if (selectedName != null) {
                 obsList.add(getProductByName(selectedName));
+
+
             }
         }
 
         tableView.setItems(obsList);
-
-      /*  String casemods = choCaseMods.getSelectionModel().getSelectedItem();
-        String cpu = choCPU.getSelectionModel().getSelectedItem();
-        String kabinett = choKabinett.getSelectionModel().getSelectedItem();
-        String mc =choMainCard.getSelectionModel().getSelectedItem();
-        String prosessor = choProcessor.getSelectionModel().getSelectedItem();
-        String screencard = choScreenCard.getSelectionModel().getSelectedItem();
-        String memory = choMemory.getSelectionModel().getSelectedItem();
-        String energy = choEnergy.getSelectionModel().getSelectedItem();
-        String harddrive = choHarddrive.getSelectionModel().getSelectedItem();
-        String hdd = choHarddrive1.getSelectionModel().getSelectedItem();
-        String fan = choFan.getSelectionModel().getSelectedItem();
-        String screen = choScreen.getSelectionModel().getSelectedItem();
-        String keyboard = choKeyboard.getSelectionModel().getSelectedItem();
-        String mouse = choMouse.getSelectionModel().getSelectedItem();
-        String headsett = choHeadsett.getSelectionModel().getSelectedItem();
-
-        ObservableList<Product> observableList = FXCollections.observableArrayList();
-
-
-    observableList.add(getProductByName(casemods));
-    observableList.add(getProductByName(cpu));
-    observableList.add(getProductByName(kabinett));
-    observableList.add(getProductByName(mc));
-    observableList.add(getProductByName(prosessor));
-    observableList.add(getProductByName(screencard));
-    observableList.add(getProductByName(memory));
-    observableList.add(getProductByName(energy));
-    observableList.add(getProductByName(harddrive));
-    observableList.add(getProductByName(fan));
-    observableList.add(getProductByName(screen));
-    observableList.add(getProductByName(keyboard));
-    observableList.add(getProductByName(mouse));
-    observableList.add(getProductByName(headsett));
-    observableList.add(getProductByName(hdd));
-
-    tableView.setItems(observableList);*/
 }
 
     public Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
@@ -255,6 +222,34 @@ public class Controller_Admin {
         prod.setTxtPrice(price);
         tableView.refresh();
     }
+
+
+    @FXML
+    void btnDelete(ActionEvent event) {  //Metode for å slette ett objekt ved å trykke på "delete"-knappen
+
+        ObservableList<Product> productChosen, allProducts;
+        allProducts = tableView.getItems();
+        productChosen = tableView.getSelectionModel().getSelectedItems();
+        allProducts.removeAll(productChosen);
+
+    }
+
+
+
+
+    @FXML
+    void btnDeleteFromEveryWhere(ActionEvent event) throws Exception {
+        ObservableList<Product> observableList = FXCollections.observableArrayList();
+        for (ChoiceBox box : choiceBoxes) {
+            String selectedName = (String) box.getSelectionModel().getSelectedItem();
+            //observableList.removeAll(getProductByName(selectedName));
+            if (selectedName != null) {
+                observableList.removeAll(Collections.singleton(box.getItems().removeAll(selectedName)));
+                //new FileOutputStream(csvFile).close();
+            }
+        }
+    }
+
 
 
 
@@ -361,7 +356,6 @@ public class Controller_Admin {
         List<Product> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();
         if (kabinettComponents != null) {
-
 
             for (Product prod : kabinettComponents) {
                 kabinettNames.add(prod.getTxtProductName());

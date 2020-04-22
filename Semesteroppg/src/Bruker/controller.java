@@ -118,6 +118,7 @@ public class controller extends Controller_ProductWindow {
     private TableColumn<Products, String> colTotPrice;
 
     public controller() throws FileNotFoundException {
+        super();
     }
 
     @FXML

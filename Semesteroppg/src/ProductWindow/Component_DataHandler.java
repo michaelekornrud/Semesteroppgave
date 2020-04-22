@@ -30,7 +30,7 @@ public class Component_DataHandler {
             for (List<Product> productList : data.values()) {
                 for (Product product : productList) {
                     String text = product.toString();
-                    writer.write(text );
+                    writer.write(text);
                 }
             }
         } catch (Exception e){
@@ -39,6 +39,10 @@ public class Component_DataHandler {
             writer.flush();
             writer.close();
         }
+    }
+
+    public void removeObjectFromChoiceBoxAndCsvFile(Map<String, List<Product>> data) throws Exception{
+
     }
 
 

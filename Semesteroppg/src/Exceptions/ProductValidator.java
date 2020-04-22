@@ -1,28 +1,38 @@
 package Exceptions;
 
+import ProductWindow.ComponentType;
 import ProductWindow.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ProductValidator {
-    List<Product> newProduct;
+
 
     public static String testProductName(String name) throws InvalidProductNameException{
         if (!name.matches("[a-zæøåA-ZÆØÅ0-9- ]*")){
             throw new InvalidProductNameException("Productname is invalid!");
+
         }
         return name;
     }
 
+
     public static String testProductType(String type) throws InvalidTypeException{
-        if (!type.matches("[a-zæøåA-ZÆØÅ]*")){
-            throw new InvalidTypeException("Product-type is invalid");
+            if (type.contains("Memory") ||type.contains("Cabinet") ||type.contains("Maincard") ||type.contains("Processor")
+                    ||type.contains("Videocard") ||type.contains("Powersupply") ||type.contains("Harddrive") ||type.contains("HDD")
+                    ||type.contains("CPUfan") ||type.contains("Fans") ||type.contains("Casemods") ||type.contains("Screen")
+                    ||type.contains("Keyboard") ||type.contains("Headset") ||type.contains("Mouse")){
+                return type;
         }
-        return type;
+        throw new InvalidTypeException("Product-type is invalid");
     }
 
 
     public static String testProductBrand(String brand) throws InvalidBrandException{
+
         if (!brand.matches("[a-zA-Z]*")){
             throw new InvalidBrandException("Product-brand is invalid");
         }
