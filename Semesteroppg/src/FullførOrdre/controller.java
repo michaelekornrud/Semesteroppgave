@@ -58,7 +58,7 @@ public class controller {
     @FXML
     void Tilbake(ActionEvent event) {
         try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Handlekurv/kurven.fxml")));
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info

@@ -17,11 +17,12 @@ import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 
 
-public class Controller_ProductWindow {
+public abstract class Controller_ProductWindow {
 
     ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
     , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
@@ -71,6 +72,8 @@ public class Controller_ProductWindow {
 
     private ProductRegister newObjects = new ProductRegister();
 
+
+    public abstract void initialize(URL url, ResourceBundle resourceBundle);
 
     @FXML
     public void initialize() throws IOException {

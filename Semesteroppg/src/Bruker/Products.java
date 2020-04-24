@@ -7,17 +7,17 @@ import javafx.beans.property.SimpleStringProperty;
 public class Products {
 
     private SimpleStringProperty txtNumber, txtName, txtType;
-    private SimpleIntegerProperty txtQuantity, txtPrice;
-    private SimpleDoubleProperty txtTotalPrice;
+    public SimpleIntegerProperty txtQuantity;
+    private SimpleDoubleProperty txtPrice;
 
-    public Products(String number, String name, String type, int quantity, int price, double totalPrice){
-        if(!number.isEmpty() &&!name.isEmpty() && !type.isEmpty() && quantity > 0 && price > 0 && totalPrice > 0){
+    public Products(String number, String name, String type, int quantity, double price){
+        if(!number.isEmpty() &&!name.isEmpty() && !type.isEmpty() && quantity > 0 && price > 0 ){
             this.txtNumber = new SimpleStringProperty(number);
             this.txtName = new SimpleStringProperty(name);
             this.txtType = new SimpleStringProperty(type);
             this.txtQuantity = new SimpleIntegerProperty(quantity);
-            this.txtPrice = new SimpleIntegerProperty(price);
-            this.txtTotalPrice = new SimpleDoubleProperty(totalPrice);
+            this.txtPrice = new SimpleDoubleProperty(price);
+
         }
 
     }
@@ -32,16 +32,23 @@ public class Products {
     public String getTxtType(){return txtType.getValue();}
     public void setTxtType(String txtType){this.txtType = new SimpleStringProperty(txtType);}
 
-    public int getTxtQuantity(){return txtQuantity.getValue();}
-    public void setTxtQuantity(int txtQuantity){this.txtQuantity = new SimpleIntegerProperty(txtQuantity);}
+    public int getTxtQuantity(){
+        return txtQuantity.getValue();
+    }
+    public void setTxtQuantity(int txtQuantity){
+        if(txtQuantity < 1){
+            throw new IllegalArgumentException("Verdien kan ikke være negativ");
+        }
+        this.txtQuantity.set(txtQuantity);
+        System.out.print("Fra setTxtQuantity: " + txtQuantity);
+    }
 
-    public int getTxtPrice(){return txtPrice.getValue();}
-    public void setTxtPrice(int txtPrice){this.txtPrice = new SimpleIntegerProperty(txtPrice);}
+    public double getTxtPrice(){return txtPrice.getValue();}
 
-    public double getTxtTotalPrice (){return txtTotalPrice.getValue();}
-    public void setTxtTotalPrice(double txtTotalPrice){this.txtTotalPrice = new SimpleDoubleProperty(txtTotalPrice);}
+    public void setTxtPrice(double txtPrice){this.txtPrice = new SimpleDoubleProperty(txtPrice);}
+
 
     public String toString (){
-        return String.format("\n%s; %s; %s; %s; %s; %s;", getTxtNumber(),getTxtName(),getTxtType(), getTxtQuantity(),getTxtPrice(), getTxtTotalPrice());
+        return String.format("\n%s; %s; %s; %s; %s;", getTxtNumber(),getTxtName(),getTxtType(), getTxtQuantity(),getTxtPrice());
     }
 }

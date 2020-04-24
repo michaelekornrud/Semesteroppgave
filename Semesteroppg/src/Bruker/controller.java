@@ -1,10 +1,10 @@
 package Bruker;
 
-import Handlekurv.CartFormater;
-import Handlekurv.LagreHandlekurv;
-import Handlekurv.NewData;
-import Handlekurv.ÅpneHandlekurv;
+import Exceptions.ProductValidator;
+
 import ProductWindow.*;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +14,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import javax.swing.text.BadLocationException;
 
@@ -23,13 +25,22 @@ import javax.swing.text.BadLocationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class controller extends Controller_ProductWindow {
+
+
+    CartRegister addNewProduct = new CartRegister();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        addNewProduct.attachToTableView(TVcart);
+    }
 
     ComponentDataHandler cdh = new ComponentDataHandler();
     private Map<String, List<Products>> data;
@@ -89,10 +100,16 @@ public class controller extends Controller_ProductWindow {
     private Button btnBetaling;
 
     @FXML
-    private Button btnTilbake;
+    private Button btnRefresh;
+
+    @FXML
+    private Button btnReset;
 
     @FXML
     private Button btnLukkProgram;
+
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private Button btnOpenØnskeliste;
@@ -110,20 +127,122 @@ public class controller extends Controller_ProductWindow {
     private TableColumn<Products, String> colType;
 
     @FXML
-    private TableColumn<Products, String> colQuantity;
+    private TableColumn<Products, Integer> colQuantity;
 
     @FXML
     private TableColumn<Products, String> colPrice;
 
     @FXML
-    private TableColumn<Products, String> colTotPrice;
+    private Label lblPris;
+
+    @FXML
+    private Label lblMva;
+
+    @FXML
+    private Label lblTotPris;
+    int sum = 0;
+
+    public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
+        double totalPrice = 0;
+        double mva = 0;
+        double price = 0;
+        for(int i = 0; i <TVcart.getItems().size(); i++){
+            try{
+                totalPrice = totalPrice + Double.parseDouble(String.valueOf((TVcart.getColumns().get(4).getCellObservableValue(i).getValue())));
+            }
+            catch (NullPointerException e){
+                e.getMessage();
+            }
+        }
+
+        mva = (totalPrice * 25)/ 100;
+        price = totalPrice - mva;
+
+        lblTotPris.setText((totalPrice + "0"));
+        lblMva.setText((mva + "0"));
+        lblPris.setText((price + "0"));
+
+
+
+    }
+
+    /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
+
+
 
     public controller() throws FileNotFoundException {
     }
 
     @FXML
+    public void refreshPrice(ActionEvent event){ //Funker ikke helt som den skal..
+        sum = 0;
+
+        for(Products price : TVcart.getItems()){
+            Double priceUpdated = Double.parseDouble(String.valueOf(colPrice.getCellObservableValue(price).getValue()));
+            int quantity = Integer.parseInt(String.valueOf(colQuantity.getCellObservableValue(price).getValue()));
+            Double newPrice = quantity * priceUpdated;
+            sum += newPrice;
+            System.out.println("Quantity" + quantity);
+            System.out.println("PriceUpdated: " + priceUpdated);
+        }
+
+        int mva = (sum * 25)/ 100;
+        int pris = sum - mva;
+
+        //String newPrice = String.valueOf(sum);
+        System.out.println(sum);
+
+        lblPris.setText((pris + ".00"));
+        lblMva.setText(mva + ".00");
+        lblTotPris.setText(sum + ".00");
+    }
+
+    @FXML
+    public void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
+       Products products = TVcart.getSelectionModel().getSelectedItem();
+
+       int number = event.getNewValue();
+       ProductValidator.testNumberOfProducts(number);
+       products.setTxtQuantity(number);
+       System.out.println("Fra quantityEdited: " + number);
+
+
+       TVcart.refresh();
+
+    }
+
+    @FXML
+    void deleteRow(ActionEvent event) {
+        ObservableList<Products> productChosen, allProducts;
+        allProducts = TVcart.getItems();
+        productChosen = TVcart.getSelectionModel().getSelectedItems();
+        System.out.println(productChosen);
+        String  type = String.valueOf(productChosen.get(2));
+        System.out.println(type);
+       /* for(type : productChosen){
+
+        }*/
+        allProducts.removeAll(productChosen);
+        /*Mulig denne trengs for å resete choiceboks når et produkt blir fjernet
+        String str = TVcart.getColumns().get(2).getCellObservableValue().getValue();
+         */
+
+        btnRefresh.fire();
+
+
+
+    }
+
+
+
+
+
+
+
+    @FXML
     void Handlekurv (ActionEvent event) throws IOException {
 
+        //Henter valgt komponent fra choiceboxene
         String cabinett = choCabinet.getSelectionModel().getSelectedItem();
         String motherBoard = choMotherboard.getSelectionModel().getSelectedItem();
         String processor = choProcessor.getSelectionModel().getSelectedItem();
@@ -140,27 +259,74 @@ public class controller extends Controller_ProductWindow {
         String mouse = choMouse.getSelectionModel().getSelectedItem();
         String headphones = choHeadphones.getSelectionModel().getSelectedItem();
 
+        //Oppretter en liste hvor komponent-data blir lagret
         ObservableList<Products> observableList = FXCollections.observableArrayList();
 
-        observableList.add(getProductNames(cabinett));
-        observableList.add(getProductNames(motherBoard));
-        observableList.add(getProductNames(processor));
-        observableList.add(getProductNames(graphicsCard));
-        observableList.add(getProductNames(memory));
-        observableList.add(getProductNames(powersupply));
-        observableList.add(getProductNames(memory));
-        observableList.add(getProductNames(hdd));
-        observableList.add(getProductNames(ssd));
-        observableList.add(getProductNames(cpuFan));
-        observableList.add(getProductNames(fans));
-        observableList.add(getProductNames(casemods));
-        observableList.add(getProductNames(monitor));
-        observableList.add(getProductNames(keyborad));
-        observableList.add(getProductNames(mouse));
-        observableList.add(getProductNames(headphones));
 
+        //Sjekker om de forskjellige choiceBoxene har en verdi og henter produktnavn
+        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett)); }
+        else{ System.out.println("Ingen verdi valgt i Kabinett"); }
+        if(!choMotherboard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(motherBoard));}
+        else {System.out.println("Ingen verdi valgt i hovedkort");}
+        if(!choProcessor.getSelectionModel().isEmpty()){ observableList.add(getProductNames(processor));}
+        else{System.out.println("Ingen verdi er valgt i prosessor");}
+        if(!choGraphicscard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(graphicsCard));}
+        else{System.out.println("Ingen verdi valgt i grafikkort");}
+        if(!choMemory.getSelectionModel().isEmpty()){observableList.add(getProductNames(memory)); }
+        else{System.out.println("Ingen verdi valgt i minne");}
+        if(!choPowersupply.getSelectionModel().isEmpty()){observableList.add(getProductNames(powersupply)); }
+        else{System.out.println("Ingen verdi valgt i størmforskyning");}
+        if(!choHDD.getSelectionModel().isEmpty()){observableList.add(getProductNames(hdd)); }
+        else{System.out.println("Ingen verdi valgt i harddisk");}
+        if(!choSSD.getSelectionModel().isEmpty()){observableList.add(getProductNames(ssd)); }
+        else{System.out.println("Ingen verdi valgt i harddisk1");}
+        if(!choCPUfan.getSelectionModel().isEmpty()){observableList.add(getProductNames(cpuFan)); }
+        else{System.out.println("Ingen verdi valgt i CPU-Vifte");}
+        if(!choFans.getSelectionModel().isEmpty()){observableList.add(getProductNames(fans)); }
+        else{System.out.println("Ingen verdi valgt i Vifter");}
+        if(!choCasemods.getSelectionModel().isEmpty()){observableList.add(getProductNames(casemods)); }
+        else{System.out.println("Ingen verdi valgt i Casemods");}
+        if(!choMonitor.getSelectionModel().isEmpty()){observableList.add(getProductNames(monitor)); }
+        else{System.out.println("Ingen verdi valgt i Skjerm");}
+        if(!choKeyboard.getSelectionModel().isEmpty()){observableList.add(getProductNames(keyborad)); }
+        else{System.out.println("Ingen verdi valgt i tastatur");}
+        if(!choMouse.getSelectionModel().isEmpty()){observableList.add(getProductNames(mouse)); }
+        else{System.out.println("Ingen verdi valgt i mus");}
+        if(!choHeadphones.getSelectionModel().isEmpty()){observableList.add(getProductNames(headphones)); }
+        else{System.out.println("Ingen verdi valgt i hodetelefoner");}
+
+        //Sender komponentene til handlekurven
         TVcart.setItems(observableList);
+        totalPrice(TVcart,lblTotPris);
 
+        colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
+                return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");
+            }
+        });
+
+
+        for(int i = 0; i <=15; i++){
+            String number = colNumber.getCellObservableValue(i).getValue();
+            String name  = colName.getCellObservableValue(i).getValue();
+            String type = colType.getCellObservableValue(i).getValue();
+            int quantity = colQuantity.getCellObservableValue(i).getValue();
+            String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
+            Double price = Double.parseDouble(priceAsString);
+
+            Products newProducts = new Products(number,name,type,quantity,price);
+
+            CartRegister.addElement(newProducts);
+            System.out.println(newProducts);
+        }
+
+
+
+
+
+
+       colNumber.setSortable(false);
 
     }
 
@@ -202,29 +368,40 @@ public class controller extends Controller_ProductWindow {
     @FXML
     public void initialize() throws IOException {
         LoadData();
-        resetchoiceBoxes();
+        CartRegister.attachToTableView(TVcart);
+        TVcart.setEditable(true);
+        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
+        colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
+
+
 
 
 
     }
 
     @FXML
-    private void resetchoiceBoxes() {
-        choCabinet.setValue("");
-        choMotherboard.setValue("");
-        choProcessor.setValue("");
-        choGraphicscard.setValue("");
-        choMemory.setValue("");
-        choPowersupply.setValue("");
-        choHDD.setValue("");
-        choSSD.setValue("");
-        choCPUfan.setValue("");
-        choFans.setValue("");
-        choCasemods.setValue("");
-        choMonitor.setValue("");
-        choKeyboard.setValue("");
-        choMouse.setValue("");
-        choHeadphones.setValue("");
+    void resetChoiceBoxes(ActionEvent event) {
+        if(!choCabinet.getSelectionModel().isEmpty()){choCabinet.setValue(null);}
+        if(!choMotherboard.getSelectionModel().isEmpty()){choMotherboard.setValue(null);}
+        if(!choProcessor.getSelectionModel().isEmpty()){choProcessor.setValue(null);}
+        if(!choGraphicscard.getSelectionModel().isEmpty()){choGraphicscard.setValue(null);}
+        if(!choMemory.getSelectionModel().isEmpty()){choMemory.setValue(null);}
+        if(!choPowersupply.getSelectionModel().isEmpty()){choPowersupply.setValue(null);}
+        if(!choHDD.getSelectionModel().isEmpty()){choHDD.setValue(null);}
+        if(!choSSD.getSelectionModel().isEmpty()){choSSD.setValue(null);}
+        if(!choCPUfan.getSelectionModel().isEmpty()){choCPUfan.setValue(null);}
+        if(!choFans.getSelectionModel().isEmpty()){choFans.setValue(null);}
+        if(!choCasemods.getSelectionModel().isEmpty()){choCasemods.setValue(null);}
+        if(!choMonitor.getSelectionModel().isEmpty()){choMonitor.setValue(null);}
+        if(!choKeyboard.getSelectionModel().isEmpty()){choKeyboard.setValue(null);}
+        if(!choMouse.getSelectionModel().isEmpty()){choMouse.setValue(null);}
+        if(!choHeadphones.getSelectionModel().isEmpty()){choHeadphones.setValue(null);}
+
+        for (int i = 0; i <TVcart.getItems().size(); i++){
+            TVcart.getItems().clear();
+        }
+        btnRefresh.fire();
+
 
     }
 
@@ -268,19 +445,19 @@ public class controller extends Controller_ProductWindow {
     void LagreOnskeliste (ActionEvent event)throws IOException, BadLocationException {
         FileChooser saveAs = new FileChooser();
         File saveFile = saveAs.showSaveDialog(null);
-        String formated = CartFormater.cartFormat(NewData.liste);
+        String formated = ProductParsing.productsFormater(CartRegister.list);
 
-        if (saveFile != null){
+        if(saveFile != null){
             Path filePath = Paths.get(saveFile.getAbsolutePath());
-
-            try {
-                LagreHandlekurv.writeToFile(filePath,formated);
+            try{
+                FileWriter.writeToString(filePath,formated);
             }
-            catch (IOException e){
-                System.err.println("Noe gikk galt");
+            catch (IOException e) {
                 e.printStackTrace();
+                System.err.println("Noe gikk galt");
             }
         }
+
 
     }
 
@@ -288,9 +465,10 @@ public class controller extends Controller_ProductWindow {
     void OpenØnskeliste (ActionEvent event) throws IOException {
         FileChooser openFile = new FileChooser();
         File chosenFile = openFile.showOpenDialog(null);
-
         Path filePath = Paths.get(chosenFile.getAbsolutePath());
-        List<Handlekurv.Objects> list = ÅpneHandlekurv.openFile(filePath);
+        List<Products> list = FileReader.openFile(filePath);
+        refreshPrice(event);
+
     }
 
     @FXML

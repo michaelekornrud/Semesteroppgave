@@ -27,40 +27,54 @@ public class ComponentDataHandler {
         /*String projectDirectory = System.getProperty("user.dir");
         String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";*/
 
-
-
         BufferedReader br = null;
         String currentLine = "";
         String cvsSplitBy = ";";
         boolean isFirstLine = true;
-        Scanner inputStream;
-
 
         List<String[]> componentData = new ArrayList<>();
-        inputStream = new Scanner(csvFile);
-        while(inputStream.hasNext()){
-            String line = inputStream.next();
-            String [] values = line.split(cvsSplitBy);
-            componentData.add(values);
-        }
-        inputStream.close();
+        try {
 
-        int lineNo = 1;
-        for(String[] line : componentData){
-            int columnNo = 1;
-            for(String value : line){
-                System.out.println("Line " + lineNo + "Column " + columnNo + " : " + value);
-                columnNo++;
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((currentLine = br.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false;
+                    continue;
+                }
+
+                System.out.println(currentLine);
+                String[] component = currentLine.split(cvsSplitBy);
+                componentData.add(component);
+
             }
-            lineNo++;
 
+
+        } catch (FileNotFoundException e) {  //Endre til egne exceptons
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
+        if (componentData.isEmpty()) {
+            return null;
+        }
 
         return createChoiceBoxes(componentData);
 
 
     }
+
+
+
+
 
 
     public Map<String, List<Products>>  createChoiceBoxes(List<String[]> componentData) throws ArrayIndexOutOfBoundsException {  //Metode for å laste inn komponenter
@@ -69,27 +83,25 @@ public class ComponentDataHandler {
 
 
 
+
         for (String[] component : componentData){
-            try{
-                component[0] = String.valueOf(1);
-                component[3] = String.valueOf(1);
 
-            }
-            catch (ArrayIndexOutOfBoundsException e){
-                e.printStackTrace();
-            }
-            double total = (Integer.parseInt(component[4]) * Integer.parseInt(component[3]));
-            //String currPrice = component[4];
+            int[] numberList = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
-            String number = String.valueOf(1);
+            String number;
+            String numberToString = String.valueOf(1);
             String name = String.valueOf(component[1]);
             String type = component[5];
             int quantity = 1;
-            int price = Integer.parseInt(component[4]);
-            double totalPrice = total;
+
+            double price = Double.parseDouble(component[4]);
+            int quantityChanged = 0;
+
             //Legg til fler om det skal være flere typer
 
-            Products prod = new Products(number,name, type, quantity,price,totalPrice);
+            Products prod = new Products(numberToString,name, component[5], quantity,price);
+
+
 
 
             //String mapId = type.toLowerCase();
