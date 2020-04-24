@@ -24,13 +24,13 @@ import java.util.*;
 
 public abstract class Controller_ProductWindow {
 
-    ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.KABINETT, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
-    , ComponentType.HARDDISK, ComponentType.HODETELEFONER, ComponentType.MAINCARD, ComponentType.MINNE, ComponentType.MUS, ComponentType.PROCESSOR, ComponentType.SKJERM
-    , ComponentType.STRØMFORSKYVNING, ComponentType.TASTATUR, ComponentType.VIFTER, ComponentType.SKJERMKORT);
-
+    public ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.CABINET, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
+    , ComponentType.HARDDRIVE, ComponentType.HEADSET, ComponentType.MAINCARD, ComponentType.MEMORY, ComponentType.MOUSE, ComponentType.PROCESSOR, ComponentType.SCREEN
+    , ComponentType.POWERSUPPLY, ComponentType.KEYBOARD, ComponentType.FANS, ComponentType.VIDEOCARD);
 
     Component_DataHandler dataHandler = new Component_DataHandler();
 
+    private Map<String, List<Product>> data;
 
 
     @FXML
@@ -41,7 +41,7 @@ public abstract class Controller_ProductWindow {
     private TextField txtNumberOfProducts;
 
     @FXML
-    private ChoiceBox<String> choType;
+    private ChoiceBox<String> choiceType;
 
     @FXML
     private TextField txtBrand;
@@ -72,6 +72,12 @@ public abstract class Controller_ProductWindow {
 
     private ProductRegister newObjects = new ProductRegister();
 
+   /* public Controller_ProductWindow(Map<String, List<Product>> data) {
+        this.data = data;
+    }*/
+
+    public Controller_ProductWindow() {
+    }
 
     public abstract void initialize(URL url, ResourceBundle resourceBundle);
 
@@ -84,11 +90,9 @@ public abstract class Controller_ProductWindow {
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
         colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        choType.setItems(componentType);
+        choiceType.setItems(componentType);
 
     }
-
-
 
     @FXML
     void btnAdd(ActionEvent event) throws IOException {
@@ -97,14 +101,6 @@ public abstract class Controller_ProductWindow {
         ProductRegister.addElement(newProduct);
         resetTxtFields();
         dataHandler.write(newProduct);
-
-
-       /* String choiceb = choType.getSelectionModel().getSelectedItem();
-
-        if (choiceb == "Mus"){
-            tableView.getItems();
-        }*/
-
 
     }
 
@@ -120,12 +116,8 @@ public abstract class Controller_ProductWindow {
     @FXML
     private Button btnTilbake;
 
-
-
-
-
     @FXML
-    void Tilbake (ActionEvent event) throws IOException {
+    void back(ActionEvent event) throws IOException {
         try {
         Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
         Scene PCByggingScene = new Scene(PCByggingParent);
@@ -151,7 +143,7 @@ public abstract class Controller_ProductWindow {
         int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
         String stringPrice = txtPrice.getText();
         double price = Double.parseDouble(stringPrice);
-        String value = choType.getSelectionModel().getSelectedItem();
+        String value = choiceType.getSelectionModel().getSelectedItem();
         //String productNumber =txtProductNumber.getText();
 
 
@@ -173,14 +165,7 @@ public abstract class Controller_ProductWindow {
             }
         }
 
-        System.out.println("Contains id: " + productNumber +": " + containsId);*
-
-            /* String test = "HK12345678"; //En test for å sjekke om produktnr er unikt. Denne stringen må slettes og endres til tidligere innhold i tableview
-        String[] prodNr = new String[]{productNumber};
-        List<String> list = Arrays.asList(prodNr);
-        if (list.contains(productNumber)){
-            throw new InvalidProductNumberException("The number already exists!");
-        }*/
+        System.out.println("Contains id: " + productNumber +": " + containsId);*/
     }
 
     @FXML
@@ -192,7 +177,6 @@ public abstract class Controller_ProductWindow {
         tableView.refresh();
     }
 
-
     /*@FXML
     public void editTableview_prodNr(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
@@ -203,7 +187,7 @@ public abstract class Controller_ProductWindow {
 
     }*/
 
-    @FXML //Må fikses på!! Fungerer ikke
+    @FXML
     public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String number = edit.getNewValue();
@@ -217,9 +201,10 @@ public abstract class Controller_ProductWindow {
     public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){
         Product prod = tableView.getSelectionModel().getSelectedItem();
         String type = edit.getNewValue();
+        ProductValidator.testProductType(type);
         prod.setTxtType(type);
         tableView.refresh();
-        //ProductValidator.testProductType(type);
+
     }
 
 
@@ -249,5 +234,10 @@ public abstract class Controller_ProductWindow {
         txtBrand.setText("");
         txtPrice.setText("");
     }
+
+    /*@FXML
+    void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
+        dataHandler.changeDataFromTableviewToCsvAndSave(data);
+    }*/
 }
 

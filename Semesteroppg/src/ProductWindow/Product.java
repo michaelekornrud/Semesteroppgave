@@ -1,11 +1,8 @@
 package ProductWindow;
 
-import Admin.Controller_Admin;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
-import java.util.UUID;
 
 public class Product {
 
@@ -28,9 +25,6 @@ public class Product {
 
         }
 
-
-
-
     }
 
 
@@ -52,7 +46,7 @@ public class Product {
     public void setTxtType(String txtType){this.txtType.set(txtType);}
 
     public String toString(){
-        return String.format("\n%s;%s;%s;%s;%s;%s", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
+        return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
 
 }

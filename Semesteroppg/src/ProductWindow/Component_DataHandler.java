@@ -1,11 +1,14 @@
 package ProductWindow;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.*;
 
+
+
 public class Component_DataHandler {
-    /*private String[] componentNames = new String[]{"Kabinett", "Maincard" ,"Processor", "Screencard", "Memory","Powersupply",
-    "Harddrive", "CPU-Fan", "Fans", "Casemods","Screen", "Keyboard", "Headset","Mouse"};//Her er alle komponent-typene, legg til om det blir fler.*/
     private String csvFile;
 
     public Component_DataHandler()
@@ -16,10 +19,35 @@ public class Component_DataHandler {
     }
 
 
-    public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
+    public void changeDataFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
+        //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
 
-        /*String projectDirectory = System.getProperty("user.dir");
-        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";*/
+        Writer writer = null;
+
+        try {
+            File file = new File(csvFile);
+            writer = new BufferedWriter(new FileWriter(file));
+            for (List<Product> productList : data.values()) {
+                for (Product product : productList) {
+                    String text = product.toString();
+                    writer.write(text);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    public void removeObjectFromChoiceBoxAndCsvFile(Map<String, List<Product>> data) throws Exception{
+
+    }
+
+
+
+    public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
 
         BufferedReader br = null;
         String currentLine = "";
@@ -31,10 +59,10 @@ public class Component_DataHandler {
 
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-                if (isFirstLine) {
+               /* if (isFirstLine) {
                     isFirstLine = false;
                     continue;
-                }
+                }*/ //Hopper over første linje i csv-filen
 
                 System.out.println(currentLine);
                 String[] component = currentLine.split(cvsSplitBy);
@@ -73,7 +101,7 @@ public class Component_DataHandler {
 
 
         for (String[] component : componentData){
-            String id = component[0]; //Gjøre denne om til en int og få random unik number generator tilkoblet
+            String id = component[0];
             String name = component[1];
             int numberOfProducts = Integer.parseInt(component[2]);
             String brand = component[3];
@@ -83,8 +111,6 @@ public class Component_DataHandler {
 
             Product prod = new Product(id,name,numberOfProducts,brand,price,type);
 
-
-            //String mapId = type.toLowerCase();
             List<Product> compList = mappedComponents.get(type);
 
             if(compList == null){ //Kontrollerer om det er data i complist
