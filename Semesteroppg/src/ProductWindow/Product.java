@@ -35,7 +35,7 @@ public class Product {
     public void setTxtBrand(String txtBrand){this.txtBrand.set(txtBrand);}
 
     public int getTxtNumberOfProducts(){return txtNumberOfProducts.getValue();}
-    public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts.set(txtNumberOfProducts);}
+    public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts = new SimpleIntegerProperty(txtNumberOfProducts);}
 
     public String getTxtProductNumber(){return txtProductNumber.getValue();}
 
