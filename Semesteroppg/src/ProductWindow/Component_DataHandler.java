@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
-
+import java.util.stream.Collectors;
 
 
 public class Component_DataHandler {
@@ -41,9 +43,17 @@ public class Component_DataHandler {
         }
     }
 
-    public void removeObjectFromChoiceBoxAndCsvFile(Map<String, List<Product>> data) throws Exception{
+    public void removeObjectFromChoiceBoxAndCsvFile(String lineContent) throws Exception{
+        //hentet fra https://stackoverflow.com/questions/1377279/find-a-line-in-a-file-and-remove-it?fbclid=IwAR0SrqrG9wls0WEutLCpovSql8zX7nIOcw9ShgCWSOSZxfu5fh_yK9tm0eE
+        File file = new File(csvFile);
+        List<String> out = Files.lines(file.toPath())
+                .filter(line -> !line.contains(lineContent))
+                .collect(Collectors.toList());
+        Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
 
     }
+
+
 
 
 

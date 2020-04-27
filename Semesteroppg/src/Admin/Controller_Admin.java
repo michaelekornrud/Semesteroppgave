@@ -157,6 +157,7 @@ public class Controller_Admin {
         }
 
         tableView.setItems(obsList);
+        resetchoiceBoxes();
 }
 
     public Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
@@ -240,12 +241,24 @@ public class Controller_Admin {
         ObservableList<Product> observableList = FXCollections.observableArrayList();
         for (ChoiceBox box : choiceBoxes) {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
-            //observableList.removeAll(getProductByName(selectedName));
             if (selectedName != null) {
-                observableList.removeAll(Collections.singleton(box.getItems().removeAll(selectedName)));
-                //new FileOutputStream(csvFile).close();
+                observableList.removeAll(Collections.singleton(selectedName));
+                cdh.removeObjectFromChoiceBoxAndCsvFile(selectedName);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Product Deleted");
+                alert.setHeaderText("The product " +selectedName+ " is now completely deleted!");
+                alert.showAndWait();
             }
         }
+        ObservableList<Product> productChosen, allProducts;
+        allProducts = tableView.getItems();
+        productChosen = tableView.getSelectionModel().getSelectedItems();
+        allProducts.removeAll(productChosen);
+
+
+        resetchoiceBoxes();
+
     }
 
 
@@ -253,21 +266,21 @@ public class Controller_Admin {
 
     @FXML
     private void resetchoiceBoxes() { //funker ikke //Metode som skal resette valgt element i choiceboksen
-        choiceCaseMods.setValue("");
-        choiceHeadset.setValue("");
-        choiceCabinet.setValue("");
-        choiceHarddrive.setValue("");
-        choiceMouse.setValue("");
-        choiceMemory.setValue("");
-        choiceScreenCard.setValue("");
-        choiceMainCard.setValue("");
-        choiceKeyboard.setValue("");
-        choiceFan.setValue("");
-        choicePowerSupply.setValue("");
-        choiceCPU.setValue("");
-        choiceProcessor.setValue("");
-        choiceScreen.setValue("");
-        choiceHDD.setValue("");
+        choiceCaseMods.setValue(null);
+        choiceHeadset.setValue(null);
+        choiceCabinet.setValue(null);
+        choiceHarddrive.setValue(null);
+        choiceMouse.setValue(null);
+        choiceMemory.setValue(null);
+        choiceScreenCard.setValue(null);
+        choiceMainCard.setValue(null);
+        choiceKeyboard.setValue(null);
+        choiceFan.setValue(null);
+        choicePowerSupply.setValue(null);
+        choiceCPU.setValue(null);
+        choiceProcessor.setValue(null);
+        choiceScreen.setValue(null);
+        choiceHDD.setValue(null);
 
 
     }
