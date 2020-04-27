@@ -37,10 +37,10 @@ public class ComponentDataHandler {
 
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-                if (isFirstLine) {
+                /*if (isFirstLine) {
                     isFirstLine = false;
                     continue;
-                }
+                }*/
 
                 System.out.println(currentLine);
                 String[] component = currentLine.split(cvsSplitBy);
