@@ -32,6 +32,14 @@ public class Controller_ProductWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         ProductRegister.attachToTableView(tableView);
+        //newObjects.attachToTableView(tableView);
+        tableView.setEditable(true);
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
+        colType.setCellFactory(TextFieldTableCell.forTableColumn());
+        colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        choiceType.setItems(componentType);
     }
 
     Component_DataHandler dataHandler = new Component_DataHandler();
@@ -88,15 +96,6 @@ public class Controller_ProductWindow implements Initializable {
 
     @FXML
     public void initialize() throws IOException {
-        newObjects.attachToTableView(tableView);
-        tableView.setEditable(true);
-        colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        colType.setCellFactory(TextFieldTableCell.forTableColumn());
-        colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        choiceType.setItems(componentType);
-
     }
 
     @FXML

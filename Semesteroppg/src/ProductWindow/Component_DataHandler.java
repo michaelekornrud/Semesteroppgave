@@ -107,6 +107,7 @@ public class Component_DataHandler {
             String brand = component[3];
             double price = Double.parseDouble(component[4]);
             String type = component[5];
+
             //Legg til fler om det skal være flere typer
 
             Product prod = new Product(id,name,numberOfProducts,brand,price,type);

@@ -153,8 +153,6 @@ public class Controller_Admin {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
             if (selectedName != null) {
                 obsList.add(getProductByName(selectedName));
-
-
             }
         }
 
