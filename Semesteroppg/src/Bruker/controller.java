@@ -1,12 +1,15 @@
 package Bruker;
 
 import Exceptions.ProductValidator;
-
 import ProductWindow.*;
+import SleeperThread.SleeperThread;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +21,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import javax.swing.text.BadLocationException;
-
-
+import javafx.scene.input.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class controller extends Controller_ProductWindow {
 
     ComponentDataHandler cdh = new ComponentDataHandler();
     private Map<String, List<Products>> data;
+    private SleeperThread task;
 
     @FXML
     private ChoiceBox<String> choCabinet;
@@ -132,7 +134,14 @@ public class controller extends Controller_ProductWindow {
     private TableColumn<Products, Integer> colQuantity;
 
     @FXML
-    private TableColumn<Products, String> colPrice;
+    private TableColumn<Products, Double> colPrice;
+
+    @FXML
+    private TextField txtFiltered;
+
+    @FXML
+    private ChoiceBox choSortBy;
+
 
     @FXML
     private Label lblPris;
@@ -166,6 +175,16 @@ public class controller extends Controller_ProductWindow {
 
 
 
+    }
+
+    private void threadDone(WorkerStateEvent e){
+        Integer result = task.getValue();
+        btnHandlekurv.setDisable(false);
+    }
+
+    private void threadFailed(WorkerStateEvent event) {
+        Object e = event.getSource().getException();
+        btnHandlekurv.setDisable(false);
     }
 
     /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
@@ -240,10 +259,21 @@ public class controller extends Controller_ProductWindow {
 
 
 
-
+    //Oppretter en liste hvor komponent-data blir lagret
+    //Denne listen ligger som public utenfor Handlekurv-metoden for at jeg skal få tilgang til den til filtrening.
+    public ObservableList<Products> observableList = FXCollections.observableArrayList();
 
     @FXML
     void Handlekurv (ActionEvent event) throws IOException {
+
+        task = new SleeperThread(7);
+        task.setOnSucceeded(this::threadDone);
+        task.setOnFailed(this::threadFailed);
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        btnHandlekurv.setDisable(true);
+        thread.start();
 
         //Henter valgt komponent fra choiceboxene
         String cabinett = choCabinet.getSelectionModel().getSelectedItem();
@@ -262,12 +292,11 @@ public class controller extends Controller_ProductWindow {
         String mouse = choMouse.getSelectionModel().getSelectedItem();
         String headphones = choHeadphones.getSelectionModel().getSelectedItem();
 
-        //Oppretter en liste hvor komponent-data blir lagret
-        ObservableList<Products> observableList = FXCollections.observableArrayList();
+
 
 
         //Sjekker om de forskjellige choiceBoxene har en verdi og henter produktnavn
-        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett)); }
+        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett));  }
         else{ System.out.println("Ingen verdi valgt i Kabinett"); }
         if(!choMotherboard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(motherBoard));}
         else {System.out.println("Ingen verdi valgt i hovedkort");}
@@ -302,6 +331,7 @@ public class controller extends Controller_ProductWindow {
         TVcart.setItems(observableList);
         totalPrice(TVcart,lblTotPris);
 
+
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
@@ -322,14 +352,10 @@ public class controller extends Controller_ProductWindow {
 
             CartRegister.addElement(newProducts);
             System.out.println(newProducts);
+
         }
 
-
-
-
-
-
-       colNumber.setSortable(false);
+        colNumber.setSortable(false);
 
     }
 
@@ -376,8 +402,12 @@ public class controller extends Controller_ProductWindow {
         colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
         colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
 
-
-
+        //Initialliserer colonnene
+        colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
+        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
+        colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
+        colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
 
 
     }
@@ -406,6 +436,52 @@ public class controller extends Controller_ProductWindow {
         btnRefresh.fire();
 
 
+    }
+
+    @FXML
+    private void filterField(KeyEvent ke){
+
+        //Henter samme som observableList fra tidligere.
+        FilteredList<Products> filteredData = new FilteredList<>(observableList, p -> true);
+
+        //Setter filter Predicate for hver gang filteret endres
+        txtFiltered.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(products -> {
+                //Hvis filteret er tomt --> viser alle produkter
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                //Sammenligner kolonnene med filteret
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(products.getTxtNumber().toLowerCase().contains(lowerCaseFilter)){
+                    return true; //Filter matcher nummerKolonnen.
+                }
+                else if(products.getTxtName().toLowerCase().contains(lowerCaseFilter)){
+                    return true; //Filter matcher navnKolonnen.
+                }
+                else if(products.getTxtType().toLowerCase().contains(lowerCaseFilter)){
+                    return true; //Filter matcher typeKolonnen.
+                }
+                else if(String.valueOf(products.getTxtQuantity()).toLowerCase().contains(lowerCaseFilter)){
+                    return true; //Filter matcher antallKolonnen. //Trenger antageligvis ikke .toLowerCase() her..
+                }
+                else if(String.valueOf(products.getTxtPrice()).toLowerCase().contains(lowerCaseFilter)){
+                    return true; //Filter matcher prisKolonnen. //Trenger antageligvis ikke .toLowerCase() her..
+                }
+                return false; //Filter matcher ingen av kolonnene.
+            });
+        });
+
+        //Wrapper filteredList inn i en sortedList
+        SortedList<Products> sortedList = new SortedList<>(filteredData);
+
+        //Binder sortedList sammenligner til tableview
+        sortedList.comparatorProperty().bind(TVcart.comparatorProperty());
+
+        //Setter matchende produkter til tableViewet og viser dem.
+        TVcart.setItems(sortedList);
     }
 
     @FXML
@@ -516,6 +592,8 @@ public class controller extends Controller_ProductWindow {
         lukkProgram.close();
 
     }
+
+
 }
 
 

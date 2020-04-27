@@ -8,7 +8,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller_ProductWindow">
+<AnchorPane prefHeight="411.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProductWindow.Controller_ProductWindow">
 <children>
     <TextField fx:id="txtProductName" layoutX="23.0" layoutY="107.0" promptText="Navn" />
     <TextField fx:id="txtNumberOfProducts" layoutX="23.0" layoutY="144.0" promptText="Antall" />

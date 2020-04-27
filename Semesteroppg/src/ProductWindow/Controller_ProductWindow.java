@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,11 +23,16 @@ import java.util.*;
 
 
 
-public abstract class Controller_ProductWindow {
+public class Controller_ProductWindow implements Initializable {
 
     public ObservableList<String> componentType = FXCollections.observableArrayList(ComponentType.CABINET, ComponentType.CASEMODS, ComponentType.PROSESSOR_FAN_NAMES, ComponentType.HDD
     , ComponentType.HARDDRIVE, ComponentType.HEADSET, ComponentType.MAINCARD, ComponentType.MEMORY, ComponentType.MOUSE, ComponentType.PROCESSOR, ComponentType.SCREEN
     , ComponentType.POWERSUPPLY, ComponentType.KEYBOARD, ComponentType.FANS, ComponentType.VIDEOCARD);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        ProductRegister.attachToTableView(tableView);
+    }
 
     Component_DataHandler dataHandler = new Component_DataHandler();
 
@@ -79,7 +85,6 @@ public abstract class Controller_ProductWindow {
     public Controller_ProductWindow() {
     }
 
-    public abstract void initialize(URL url, ResourceBundle resourceBundle);
 
     @FXML
     public void initialize() throws IOException {

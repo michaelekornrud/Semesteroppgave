@@ -278,7 +278,7 @@ public class Controller_Admin {
     @FXML
     void addComponent(ActionEvent event) throws IOException {
         try {
-            Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("ProductWindow/productWindow.fxml"));
+            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("ProductWindow/productWindow.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info
