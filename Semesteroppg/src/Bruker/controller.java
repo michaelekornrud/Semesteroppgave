@@ -43,6 +43,22 @@ public class controller extends Controller_ProductWindow {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         addNewProduct.attachToTableView(TVcart);
+        try {
+            LoadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        TVcart.setEditable(true);
+        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
+        colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
+
+        //Initialliserer colonnene
+        colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
+        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
+        colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
+        colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+
     }
 
     ComponentDataHandler cdh = new ComponentDataHandler();
@@ -394,23 +410,7 @@ public class controller extends Controller_ProductWindow {
         updatedData();
     }
 
-    @FXML
-    public void initialize() throws IOException {
-        LoadData();
-        CartRegister.attachToTableView(TVcart);
-        TVcart.setEditable(true);
-        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
-        colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
 
-        //Initialliserer colonnene
-        colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
-        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
-        colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
-        colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-
-
-    }
 
     @FXML
     void resetChoiceBoxes(ActionEvent event) {

@@ -94,7 +94,7 @@ public class Component_DataHandler {
     }
 
 
-    public Map<String, List<Product>>  createChoiceBoxes(List<String[]> componentData) {  //Metode for å laste inn komponenter
+    public Map<String, List<Product>>  createChoiceBoxes(List<String[]> componentData) throws NumberFormatException {  //Metode for å laste inn komponenter
 
         Map<String, List<Product>> mappedComponents = new HashMap<>();
 
@@ -103,7 +103,8 @@ public class Component_DataHandler {
         for (String[] component : componentData){
             String id = component[0];
             String name = component[1];
-            int numberOfProducts = Integer.parseInt(component[2]);
+            String number = component[2];
+            int numberOfProducts = Integer.parseInt(number);
             String brand = component[3];
             double price = Double.parseDouble(component[4]);
             String type = component[5];
