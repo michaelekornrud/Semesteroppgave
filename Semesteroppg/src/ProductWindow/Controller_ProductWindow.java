@@ -239,9 +239,5 @@ public class Controller_ProductWindow implements Initializable {
         txtPrice.setText("");
     }
 
-    /*@FXML
-    void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
-        dataHandler.changeDataFromTableviewToCsvAndSave(data);
-    }*/
 }
 

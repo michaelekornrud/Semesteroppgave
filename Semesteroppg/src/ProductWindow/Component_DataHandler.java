@@ -62,7 +62,7 @@ public class Component_DataHandler {
         BufferedReader br = null;
         String currentLine = "";
         String cvsSplitBy = ";";
-        boolean isFirstLine = true;
+        //boolean isFirstLine = true;
 
         List<String[]> componentData = new ArrayList<>();
         try {

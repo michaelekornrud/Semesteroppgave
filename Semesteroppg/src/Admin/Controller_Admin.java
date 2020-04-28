@@ -306,7 +306,7 @@ public class Controller_Admin {
     @FXML
     void shoppingCart(ActionEvent event) throws IOException {
         try {
-            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Handlekurv/kurven.fxml")));
+            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info

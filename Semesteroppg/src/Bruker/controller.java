@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,26 +41,8 @@ public class controller extends Controller_ProductWindow {
 
     CartRegister addNewProduct = new CartRegister();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        addNewProduct.attachToTableView(TVcart);
-        try {
-            LoadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        TVcart.setEditable(true);
-        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
-        colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
 
-        //Initialliserer colonnene
-        colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
-        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
-        colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
-        colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
 
-    }
 
     ComponentDataHandler cdh = new ComponentDataHandler();
     private Map<String, List<Products>> data;
@@ -168,6 +151,31 @@ public class controller extends Controller_ProductWindow {
     @FXML
     private Label lblTotPris;
     int sum = 0;
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        addNewProduct.attachToTableView(TVcart);
+        try {
+            LoadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        TVcart.setEditable(true);
+        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
+        colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
+
+        //Initialliserer colonnene
+        colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
+        colName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
+        colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
+        colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+
+
+
+    }
 
     public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
         double totalPrice = 0;
