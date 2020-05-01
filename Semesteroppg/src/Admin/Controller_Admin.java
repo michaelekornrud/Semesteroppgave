@@ -266,21 +266,21 @@ public class Controller_Admin {
 
     @FXML
     private void resetchoiceBoxes() { //funker ikke //Metode som skal resette valgt element i choiceboksen
-        choiceCaseMods.setValue(null);
-        choiceHeadset.setValue(null);
-        choiceCabinet.setValue(null);
-        choiceHarddrive.setValue(null);
-        choiceMouse.setValue(null);
-        choiceMemory.setValue(null);
-        choiceScreenCard.setValue(null);
-        choiceMainCard.setValue(null);
-        choiceKeyboard.setValue(null);
-        choiceFan.setValue(null);
-        choicePowerSupply.setValue(null);
-        choiceCPU.setValue(null);
-        choiceProcessor.setValue(null);
-        choiceScreen.setValue(null);
-        choiceHDD.setValue(null);
+        if(!choiceCaseMods.getSelectionModel().isEmpty()){choiceCaseMods.setValue(null);}
+        if(!choiceHeadset.getSelectionModel().isEmpty()){choiceHeadset.setValue(null);}
+        if(!choiceCabinet.getSelectionModel().isEmpty()){choiceCabinet.setValue(null);}
+        if(!choiceHarddrive.getSelectionModel().isEmpty()){choiceHarddrive.setValue(null);}
+        if(!choiceMouse.getSelectionModel().isEmpty()){choiceMouse.setValue(null);}
+        if(!choiceMemory.getSelectionModel().isEmpty()){choiceMemory.setValue(null);}
+        if(!choiceScreenCard.getSelectionModel().isEmpty()){choiceScreenCard.setValue(null);}
+        if(!choiceMainCard.getSelectionModel().isEmpty()){choiceMainCard.setValue(null);}
+        if(!choiceKeyboard.getSelectionModel().isEmpty()){choiceKeyboard.setValue(null);}
+        if(!choiceFan.getSelectionModel().isEmpty()){choiceFan.setValue(null);}
+        if(!choicePowerSupply.getSelectionModel().isEmpty()){choicePowerSupply.setValue(null);}
+        if(!choiceCPU.getSelectionModel().isEmpty()){choiceCPU.setValue(null);}
+        if(!choiceProcessor.getSelectionModel().isEmpty()){choiceProcessor.setValue(null);}
+        if(!choiceScreen.getSelectionModel().isEmpty()){choiceScreen.setValue(null);}
+        if(!choiceHDD.getSelectionModel().isEmpty()){choiceHDD.setValue(null);}
 
 
     }
@@ -303,21 +303,6 @@ public class Controller_Admin {
 
     }
 
-    @FXML
-    void shoppingCart(ActionEvent event) throws IOException {
-        try {
-            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
-            Scene PCByggingScene = new Scene(PCByggingParent);
-
-            //Denne linjen henter stage info
-            Stage PCWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            PCWindow.setTitle("Handlekurv");
-            PCWindow.setScene(PCByggingScene);
-            PCWindow.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     void updatedData() throws IOException { //Metode for å legge inn verdi i choicebox kabinett

@@ -48,7 +48,7 @@
         <ChoiceBox fx:id="choMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
         <ChoiceBox fx:id="choHeadphones" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-        <Button fx:id="btnHandlekurv" layoutX="451.0" layoutY="382.0" mnemonicParsing="false" onAction="#Handlekurv" text="Legg til i handlekurv" />
+        <Button fx:id="btnHandlekurv" layoutX="450.0" layoutY="382.0" mnemonicParsing="false" onAction="#Handlekurv" text="Legg til i handlekurv" />
       <Label layoutX="612.0" layoutY="28.0" prefHeight="17.0" prefWidth="140.0" text="Handlekurv">
          <font>
             <Font size="24.0" />
@@ -100,7 +100,7 @@
       </TableView>
       <Button fx:id="btnDelete" layoutX="906.0" layoutY="347.0" mnemonicParsing="false" onAction="#deleteRow" text="Fjern produkt" />
       <Button fx:id="btnReset" layoutX="45.0" layoutY="382.0" mnemonicParsing="false" onAction="#resetChoiceBoxes" text="Start på nytt" />
-      <ChoiceBox fx:id="choSortBy" layoutX="617.0" layoutY="75.0" prefHeight="25.0" prefWidth="88.0" />
-      <TextField fx:id="txtFiltered" layoutX="718.0" layoutY="75.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
+      <TextField fx:id="txtFiltered" layoutX="957.0" layoutY="75.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
+      <Label layoutX="917.0" layoutY="79.0" text="Filtrer:" />
     </children>
 </AnchorPane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="418.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
+<AnchorPane prefHeight="428.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
    <children>
       <Button fx:id="btnAdd" layoutX="44.0" layoutY="373.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til/Fjern kompoent" />
       <Label layoutX="45.0" layoutY="38.0" text="Bygg  din egen PC">
@@ -48,8 +48,7 @@
       <ChoiceBox fx:id="choiceMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
       <ChoiceBox fx:id="choiceHeadset" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-      <Button fx:id="btnShoppingCart" layoutX="620.0" layoutY="374.0" mnemonicParsing="false" onAction="#shoppingCart" text="Vis handlekurv" />
-      <TableView fx:id="tableView" layoutX="744.0" layoutY="149.0" prefHeight="200.0" prefWidth="453.0">
+      <TableView fx:id="tableView" layoutX="631.0" layoutY="101.0" prefHeight="245.0" prefWidth="461.0">
         <columns>
 
            <TableColumn fx:id="colProdNr" prefWidth="64.0" text="Id">
@@ -94,9 +93,14 @@
            </TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="593.0" layoutY="224.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview" />
-      <Button fx:id="save" layoutX="613.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer" />
-      <Button layoutX="865.0" layoutY="375.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview" />
-      <Button layoutX="623.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Totel Sletting" />
+      <Button layoutX="431.0" layoutY="373.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview" />
+      <Button fx:id="save" layoutX="822.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer" />
+      <Button layoutX="936.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview" />
+      <Button layoutX="723.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting" />
+      <Label layoutX="631.0" layoutY="38.0" text="Produktliste">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
