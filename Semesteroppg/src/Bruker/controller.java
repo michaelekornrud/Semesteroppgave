@@ -357,6 +357,7 @@ public class controller extends Controller_ProductWindow {
 
 
 
+
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
@@ -366,18 +367,28 @@ public class controller extends Controller_ProductWindow {
 
 
         for(int i = 0; i <=15; i++){
-            String number = colNumber.getCellObservableValue(i).getValue();
-            String name  = colName.getCellObservableValue(i).getValue();
-            String type = colType.getCellObservableValue(i).getValue();
-            int quantity = colQuantity.getCellObservableValue(i).getValue();
-            String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
-            Double price = Double.parseDouble(priceAsString);
+            if(!choCabinet.getItems().isEmpty() && !choMotherboard.getItems().isEmpty() && !choProcessor.getItems().isEmpty()
+            && !choGraphicscard.getItems().isEmpty() && !choMemory.getItems().isEmpty() && !choPowersupply.getItems().isEmpty()
+            && !choHDD.getItems().isEmpty() && !choSSD.getItems().isEmpty() && !choCPUfan.getItems().isEmpty() && !choFans.getItems().isEmpty()
+            && !choCasemods.getItems().isEmpty() && !choMonitor.getItems().isEmpty() && !choKeyboard.getItems().isEmpty() && !choMouse.getItems().isEmpty()
+            && !choHeadphones.getItems().isEmpty()){
+                String number = colNumber.getCellObservableValue(i).getValue();
+                String name  = colName.getCellObservableValue(i).getValue();
+                String type = colType.getCellObservableValue(i).getValue();
+                int quantity = colQuantity.getCellObservableValue(i).getValue();
+                String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
+                Double price = Double.parseDouble(priceAsString);
 
-            Products newProducts = new Products(number,name,type,quantity,price);
+                Products newProducts = new Products(number,name,type,quantity,price);
+                CartRegister.addElement(newProducts);
+                System.out.println(newProducts);
+            }
 
-            CartRegister.addElement(newProducts);
-            System.out.println(newProducts);
 
+
+
+
+            //resetChoiceBoxes(event);
         }
 
         colNumber.setSortable(false);
