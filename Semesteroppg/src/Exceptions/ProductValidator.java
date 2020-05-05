@@ -53,6 +53,17 @@ public class ProductValidator {
         return price;
     }
 
+
+    public static int checkIfProductsIsEmty(int number) throws InvalidNumberOfProductsException{
+        int numberOfProducts = 0;
+        if (number >= numberOfProducts){
+            return number;
+        } else {
+            throw new InvalidNumberOfProductsException("Det er ikke nok varer av gitt produkt på lager");
+        }
+
+    }
+
    /* public static String testProductNumber(String number /*String test) throws InvalidProductNumberException{
 
         if (!number.matches("([a-zæøåA-ZÆØÅ]{2})+([0-9]{8})")){

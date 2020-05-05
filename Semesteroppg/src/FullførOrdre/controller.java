@@ -1,5 +1,7 @@
 package FullførOrdre;
 
+import ProductWindow.Component_DataHandler;
+import ProductWindow.Product;
 import javafx.event.ActionEvent;
 import static javax.swing.JOptionPane.*;
 import javafx.fxml.FXML;
@@ -12,12 +14,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
+import java.util.Map;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class controller {
+
+    Component_DataHandler cdh = new Component_DataHandler();
 
     @FXML
     private TextField txtFornavn;
@@ -51,8 +57,40 @@ public class controller {
 
         AlertBox.display("Fullført", ut);
 
+    }
 
 
+    public void changeDataFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
+        //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
+
+        Writer writer = null;
+
+        try {
+            File file = new File(csvFile);
+            writer = new BufferedWriter(new FileWriter(file));
+            for (List<Product> productList : data.values()) {
+                for (Product product : productList) {
+                   // product.decreaseNumberOfProducts();
+                    String text = product.toString();
+                    writer.write(text);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    private String csvFile;
+
+
+    public controller()
+    {
+        String projectDirectory = System.getProperty("user.dir");
+        csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
+        cdh.load();
     }
 
     @FXML

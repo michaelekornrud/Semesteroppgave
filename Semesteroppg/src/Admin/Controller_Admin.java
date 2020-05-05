@@ -2,6 +2,7 @@ package Admin;
 
 import Exceptions.ProductValidator;
 import ProductWindow.*;
+import com.sun.tools.hat.internal.util.ArraySorter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -137,16 +138,19 @@ public class Controller_Admin {
         choiceBoxes.add(choiceHeadset);
         choiceBoxes.add(choiceMouse);
         choiceBoxes.add(choiceHDD);
+
+        tableView.refresh();
     }
 
    @FXML
     void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
      cdh.changeDataFromTableviewToCsvAndSave(data);
+
     }
 
 
     @FXML
-    void addDataToTableview() {
+    void addDataToTableview(){
      ObservableList<Product> obsList = FXCollections.observableArrayList();
 
         for (ChoiceBox box : choiceBoxes) {
@@ -159,6 +163,10 @@ public class Controller_Admin {
         tableView.setItems(obsList);
         resetchoiceBoxes();
 }
+
+
+
+
 
     public Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
 

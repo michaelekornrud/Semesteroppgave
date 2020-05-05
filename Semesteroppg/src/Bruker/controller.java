@@ -356,6 +356,7 @@ public class controller extends Controller_ProductWindow {
         totalPrice(TVcart,lblTotPris);
 
 
+
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {

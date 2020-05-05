@@ -45,8 +45,17 @@ public class Product {
     public String getTxtType(){return txtType.getValue();}
     public void setTxtType(String txtType){this.txtType.set(txtType);}
 
+    public void decreaseNumberOfProducts(int amount){ //subtraherer amount of products
+        this.txtNumberOfProducts.subtract(amount);
+
+    }
+
     public String toString(){
         return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
+    }
+
+    public String toStringToRemoveValueFromNumberOFProducts(){
+        return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,(getTxtNumberOfProducts()-1) ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
 
 }
