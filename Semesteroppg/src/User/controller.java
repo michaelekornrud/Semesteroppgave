@@ -1,4 +1,4 @@
-package Bruker;
+package User;
 
 import Exceptions.ProductValidator;
 import ProductWindow.*;
@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -163,7 +162,7 @@ public class controller extends Controller_ProductWindow {
             e.printStackTrace();
         }
         TVcart.setEditable(true);
-        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToString()));
+        colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToStringParse()));
         colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
 
         //Initialliserer colonnene
@@ -247,8 +246,10 @@ public class controller extends Controller_ProductWindow {
     public void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
        Products products = TVcart.getSelectionModel().getSelectedItem();
 
+
        int number = event.getNewValue();
        ProductValidator.testNumberOfProducts(number);
+       //ProductValidator.testIfProductsIsEmty(number); //For å sjekke om det er nok antall av produktet.
        products.setTxtQuantity(number);
        System.out.println("Fra quantityEdited: " + number);
 
@@ -549,7 +550,7 @@ public class controller extends Controller_ProductWindow {
         if(saveFile != null){
             Path filePath = Paths.get(saveFile.getAbsolutePath());
             try{
-                FileWriter.writeToString(filePath,formated);
+                WriteFromFile.writeToString(filePath,formated);
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -565,7 +566,7 @@ public class controller extends Controller_ProductWindow {
         FileChooser openFile = new FileChooser();
         File chosenFile = openFile.showOpenDialog(null);
         Path filePath = Paths.get(chosenFile.getAbsolutePath());
-        List<Products> list = FileReader.openFile(filePath);
+        List<Products> list = ReadFromFile.openFile(filePath);
         refreshPrice(event);
 
     }
@@ -591,7 +592,7 @@ public class controller extends Controller_ProductWindow {
     @FXML
     void Tilbake (ActionEvent event){
         try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info

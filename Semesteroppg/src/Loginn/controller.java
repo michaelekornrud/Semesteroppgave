@@ -32,7 +32,7 @@ public class controller {
     private Button btnRegistrer;
 
     @FXML
-    void LogInn (ActionEvent event) throws IOException {
+    void LogIn(ActionEvent event) throws IOException {
         String adminUser = "admin";
         String adminPW = "admin";
         String brukerUser = "user";
@@ -58,7 +58,7 @@ public class controller {
         }
         else if (checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
             try {
-                Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
+                Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info

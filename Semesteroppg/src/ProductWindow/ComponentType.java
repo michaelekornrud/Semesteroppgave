@@ -1,9 +1,9 @@
 package ProductWindow;
 
-public class ComponentType { //Hvilke ulike komponent-typer vi har
+public class ComponentType { //Hvilke ulike komponent-typer vi har. Kan legge til flere om nødvendig
     public static final String CABINET = "Kabinett";
     public static final String MAINCARD = "Hovedkort";
-    public static final String PROCESSOR  = "Prosessorr";
+    public static final String PROCESSOR  = "Prosessor";
     public static final String VIDEOCARD = "Videokort";
     public static final String MEMORY = "Minne";
     public static final String POWERSUPPLY = "Energitilførsel";

@@ -1,6 +1,4 @@
-package Bruker;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+package User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileReader {
+public class ReadFromFile {
     public static List<Products> openFile (Path filePath) throws IOException{
         ArrayList<Products> list = new ArrayList<>();
 
@@ -18,7 +16,7 @@ public class FileReader {
             String line;
 
             while((line = reader.readLine()) != null){
-                CartRegister.addElement(FileParsing.parseProducts(line));
+                CartRegister.addElement(ParseFromFile.parseProducts(line));
             }
         }
         catch (IOException e){

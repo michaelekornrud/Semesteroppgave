@@ -21,8 +21,6 @@ public class Product {
             this.txtBrand = new SimpleStringProperty(brand);
             this.txtPrice = new SimpleDoubleProperty(price);
             this.txtType = new SimpleStringProperty(type);
-
-
         }
 
     }
@@ -47,15 +45,10 @@ public class Product {
 
     public void decreaseNumberOfProducts(int amount){ //subtraherer amount of products
         this.txtNumberOfProducts.subtract(amount);
-
     }
 
     public String toString(){
         return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
-    }
-
-    public String toStringToRemoveValueFromNumberOFProducts(){
-        return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,(getTxtNumberOfProducts()-1) ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
 
 }

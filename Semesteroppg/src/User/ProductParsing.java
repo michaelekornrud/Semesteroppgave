@@ -1,4 +1,4 @@
-package Bruker;
+package User;
 
 import java.util.List;
 

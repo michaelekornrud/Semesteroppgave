@@ -1,6 +1,5 @@
-package Bruker;
+package User;
 
-import ProductWindow.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

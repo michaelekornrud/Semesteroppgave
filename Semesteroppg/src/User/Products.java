@@ -1,4 +1,4 @@
-package Bruker;
+package User;
 
 import javafx.beans.property.*;
 

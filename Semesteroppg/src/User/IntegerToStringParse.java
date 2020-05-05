@@ -1,8 +1,8 @@
-package Bruker;
+package User;
 
 import javafx.scene.control.Alert;
 
-public class IntegerToString extends javafx.util.converter.IntegerStringConverter {
+public class IntegerToStringParse extends javafx.util.converter.IntegerStringConverter {
     public static boolean conversionSuccessful = true;
 
     @Override

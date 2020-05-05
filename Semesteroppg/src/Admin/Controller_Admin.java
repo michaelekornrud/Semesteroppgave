@@ -139,6 +139,7 @@ public class Controller_Admin {
         choiceBoxes.add(choiceMouse);
         choiceBoxes.add(choiceHDD);
 
+
         tableView.refresh();
     }
 
@@ -150,7 +151,7 @@ public class Controller_Admin {
 
 
     @FXML
-    void addDataToTableview(){
+    void addDataToTableview(){ //Knapp som legger til data i tableview
      ObservableList<Product> obsList = FXCollections.observableArrayList();
 
         for (ChoiceBox box : choiceBoxes) {
@@ -245,7 +246,7 @@ public class Controller_Admin {
 
 
     @FXML
-    void btnDeleteFromEveryWhere(ActionEvent event) throws Exception {
+    void btnDeleteFromEveryWhere(ActionEvent event) throws Exception { //Knapp som sletter gitt produkt fra csv-fil (fra lageret)
         ObservableList<Product> observableList = FXCollections.observableArrayList();
         for (ChoiceBox box : choiceBoxes) {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
@@ -273,7 +274,7 @@ public class Controller_Admin {
 
 
     @FXML
-    private void resetchoiceBoxes() { //funker ikke //Metode som skal resette valgt element i choiceboksen
+    private void resetchoiceBoxes() { //Metode som skal resette valgt element i choiceboksen
         if(!choiceCaseMods.getSelectionModel().isEmpty()){choiceCaseMods.setValue(null);}
         if(!choiceHeadset.getSelectionModel().isEmpty()){choiceHeadset.setValue(null);}
         if(!choiceCabinet.getSelectionModel().isEmpty()){choiceCabinet.setValue(null);}
@@ -355,7 +356,7 @@ public class Controller_Admin {
         updatedData();
     }
 
-    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) {
+    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) { //Henter komponentnavnene
 
         List<Product> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();

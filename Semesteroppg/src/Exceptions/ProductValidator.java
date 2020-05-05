@@ -1,17 +1,13 @@
 package Exceptions;
 
-import ProductWindow.ComponentType;
 import ProductWindow.Product;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import User.ComponentDataHandler;
 
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class ProductValidator {
 
 
-    public static String testProductName(String name) throws InvalidProductNameException{
+    public static String testProductName(String name) throws InvalidProductNameException{ //navn-test
         if (!name.matches("[a-zæøåA-ZÆØÅ0-9- ]*")){
             throw new InvalidProductNameException("Productname is invalid!");
 
@@ -21,17 +17,17 @@ public class ProductValidator {
 
 
     public static String testProductType(String type) throws InvalidTypeException{
-            if (type.contains("Memory") ||type.contains("Cabinet") ||type.contains("Maincard") ||type.contains("Processor")
-                    ||type.contains("Videocard") ||type.contains("Powersupply") ||type.contains("Harddrive") ||type.contains("HDD")
-                    ||type.contains("CPUfan") ||type.contains("Fans") ||type.contains("Casemods") ||type.contains("Screen")
-                    ||type.contains("Keyboard") ||type.contains("Headset") ||type.contains("Mouse")){
+            if (type.contains("Minne") ||type.contains("Kabinett") ||type.contains("Minnekort") ||type.contains("Prosessor")
+                    ||type.contains("Videokort") ||type.contains("Energitilførsel") ||type.contains("Harddisk") ||type.contains("HDD")
+                    ||type.contains("CPU-vifte") ||type.contains("Vifter") ||type.contains("Casemods") ||type.contains("Skjerm")
+                    ||type.contains("Tastatur") ||type.contains("Hodetelefoner") ||type.contains("Mus") || type.contains("Hovedkort")) {
                 return type;
         }
-        throw new InvalidTypeException("Product-type is invalid");
+        throw new InvalidTypeException("Product-type: " +type+ " is invalid");
     }
 
 
-    public static String testProductBrand(String brand) throws InvalidBrandException{
+    public static String testProductBrand(String brand) throws InvalidBrandException{ //merke-sjekk
 
         if (!brand.matches("[a-zA-Z]*")){
             throw new InvalidBrandException("Product-brand is invalid");
@@ -39,14 +35,14 @@ public class ProductValidator {
         return brand;
     }
 
-    public static int testNumberOfProducts(int number) throws InvalidNumberOfProductsException{
+    public static int testNumberOfProducts(int number) throws InvalidNumberOfProductsException{ //antall produkter-sjekk
         if (number < 0 && number >100_000_0){
             throw new InvalidNumberOfProductsException("Invalid input in number-field!");
         }
         return number;
     }
 
-    public static double testPrice(double price) throws InvalidPriceException{
+    public static double testPrice(double price) throws InvalidPriceException{ //pris-sjekk
         if (price <= 0){
             throw new InvalidPriceException("Invalid input in price-field");
         }
@@ -54,31 +50,15 @@ public class ProductValidator {
     }
 
 
-    public static int checkIfProductsIsEmty(int number) throws InvalidNumberOfProductsException{
-        int numberOfProducts = 0;
-        if (number >= numberOfProducts){
+    public static int testIfProductsIsEmty(int number) throws InvalidNumberOfProductsException{
+        int quant = Integer.parseInt(ComponentDataHandler.componentQuantity);
+
+        if (number <= quant){
             return number;
         } else {
-            throw new InvalidNumberOfProductsException("Det er ikke nok varer av gitt produkt på lager");
+            throw new InvalidNumberOfProductsException("There is not enough amount of the product in out store");
         }
 
     }
-
-   /* public static String testProductNumber(String number /*String test) throws InvalidProductNumberException{
-
-        if (!number.matches("([a-zæøåA-ZÆØÅ]{2})+([0-9]{8})")){
-            throw new InvalidProductNumberException("Invalid input in productnumber-field.\nYou must follow this layout: xx12345678 (2 letters first, then 8 numbers)");
-        }
-        return number;
-    }
-
-    public boolean testID(String id){
-        for (Product p : newProduct){
-            if (id.equals(p.getTxtProductNumber())){
-                return true;
-            }
-        }
-        return false;
-    }*/
 
 }

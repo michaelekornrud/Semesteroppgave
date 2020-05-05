@@ -1,9 +1,4 @@
-package Bruker;
-
-import ProductWindow.Product;
-import com.sun.prism.impl.Disposer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+package User;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,6 +9,7 @@ import java.util.*;
 public class ComponentDataHandler {
 
     private String csvFile;
+    public static String componentQuantity;
 
     public ComponentDataHandler() throws FileNotFoundException {
         String projectDirectory = System.getProperty("user.dir");
@@ -100,6 +96,9 @@ public class ComponentDataHandler {
             //Legg til fler om det skal være flere typer
 
             Products prod = new Products(numberToString,name, component[5], quantity,price);
+            componentQuantity = component[2];
+
+
 
 
 
@@ -134,5 +133,7 @@ public class ComponentDataHandler {
         System.out.println("Contains id: " + idToLookFor +": " + containsId);*/
 
     }
+
+
 }
 

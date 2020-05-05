@@ -1,10 +1,8 @@
-package Bruker;
+package User;
 
 import Exceptions.InvalidFormatExeption;
 
-import java.util.IllegalFormatException;
-
-public class FileParsing {
+public class ParseFromFile {
     public static Products parseProducts (String str) throws InvalidFormatExeption {
         String [] strings = str.split(ProductParsing.DELIMITER);
         if(strings.length != 5){

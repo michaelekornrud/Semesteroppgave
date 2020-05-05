@@ -1,5 +1,7 @@
 package ProductWindow;
 
+import Exceptions.InvalidNumberOfProductsException;
+import User.ComponentDataHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -45,6 +47,7 @@ public class Component_DataHandler {
 
     public void removeObjectFromChoiceBoxAndCsvFile(String lineContent) throws Exception{
         //hentet fra https://stackoverflow.com/questions/1377279/find-a-line-in-a-file-and-remove-it?fbclid=IwAR0SrqrG9wls0WEutLCpovSql8zX7nIOcw9ShgCWSOSZxfu5fh_yK9tm0eE
+        //Metode for å slette objekter fra csv-filen
         File file = new File(csvFile);
         List<String> out = Files.lines(file.toPath())
                 .filter(line -> !line.contains(lineContent))
@@ -53,13 +56,28 @@ public class Component_DataHandler {
 
     }
 
-    public void downgradeNumberOfProductsWhenAddedToChart(){
-        int n = 0;
-        int k = n-1;
+    public void removeAmount(Map<String, List<Product>> data) throws Exception{ //nå sletter den all innhold i csv-filen, må fikses!!
+        //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
+        Writer writer = null;
+        int quant = Integer.parseInt(ComponentDataHandler.componentQuantity);
+
+        try {
+            File file = new File(csvFile);
+            writer = new BufferedWriter(new FileWriter(file));
+            for (List<Product> productList : data.values()) {
+                for (Product product : productList) {
+                    product.decreaseNumberOfProducts(quant);
+                    String text = product.toString();
+                    writer.write(text);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            writer.flush();
+            writer.close();
+        }
     }
-
-
-
 
 
 
@@ -68,17 +86,17 @@ public class Component_DataHandler {
         BufferedReader br = null;
         String currentLine = "";
         String cvsSplitBy = ";";
-        //boolean isFirstLine = true;
+       // boolean isFirstLine = true;
 
         List<String[]> componentData = new ArrayList<>();
         try {
 
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-               /* if (isFirstLine) {
+                /*if (isFirstLine) {
                     isFirstLine = false;
                     continue;
-                }*/ //Hopper over første linje i csv-filen
+                }*/
 
                 System.out.println(currentLine);
                 String[] component = currentLine.split(cvsSplitBy);
@@ -110,7 +128,8 @@ public class Component_DataHandler {
     }
 
 
-    public Map<String, List<Product>>  createChoiceBoxes(List<String[]> componentData) throws NumberFormatException {  //Metode for å laste inn komponenter
+     Map<String, List<Product>>  createChoiceBoxes(List<String[]> componentData) throws NumberFormatException { //Metode for å laste inn komponenter
+
 
         Map<String, List<Product>> mappedComponents = new HashMap<>();
 
@@ -124,7 +143,6 @@ public class Component_DataHandler {
             String brand = component[3];
             double price = Double.parseDouble(component[4]);
             String type = component[5];
-
             //Legg til fler om det skal være flere typer
 
             Product prod = new Product(id,name,numberOfProducts,brand,price,type);
@@ -142,24 +160,9 @@ public class Component_DataHandler {
         }
         return mappedComponents;
 
-
-
-       /* String idToLookFor = "";    //Legg dnne i add metoden. Den sjekker om id eksisterer.
-        boolean containsId = false;
-
-        for (String key : mappedComponents.keySet()){  //Metode for å sjekke om en id eksistere fra før av
-            List<Product> Proditems = mappedComponents.get(key);
-            containsId = Proditems.stream().anyMatch(prodItems -> prodItems.getTxtProductNumber().equals(idToLookFor));
-            if(containsId){
-                break;
-            }
-        }
-
-        System.out.println("Contains id: " + idToLookFor +": " + containsId);*/
-
     }
 
-    public void write(Product product) throws IOException {  //Her blir det lagt til Product produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
+    void write(Product product) throws IOException {  //Her blir det lagt til Product produkt, så jeg må endre csv-filen til å ha like mange attributter som produkt-metoden
         FileWriter pw = new FileWriter(csvFile, true);
         String products = product.toString();
         try {

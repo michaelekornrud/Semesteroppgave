@@ -3,13 +3,11 @@ package FullførOrdre;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
 import javafx.event.ActionEvent;
-import static javax.swing.JOptionPane.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,6 +22,8 @@ import java.util.Map;
 public class controller {
 
     Component_DataHandler cdh = new Component_DataHandler();
+    private Map<String, List<Product>> data;
+    private String csvFile;
 
     @FXML
     private TextField txtFornavn;
@@ -47,7 +47,7 @@ public class controller {
     private Button btnTilbake;
 
     @FXML
-    void Fullfør(ActionEvent event) {
+    void Fullfør(ActionEvent event) throws Exception {
 
         String navn = txtFornavn.getText() + " " + txtEtternavn.getText();
         String adresse = txtAdresse.getText();
@@ -57,33 +57,11 @@ public class controller {
 
         AlertBox.display("Fullført", ut);
 
+        cdh.removeAmount(data);
+
+
     }
 
-
-    public void changeDataFromTableviewToCsvAndSave(Map<String, List<Product>> data) throws Exception{
-        //Metode som sletter gammel data fra csv-fil og lagrer den nye dataen.
-
-        Writer writer = null;
-
-        try {
-            File file = new File(csvFile);
-            writer = new BufferedWriter(new FileWriter(file));
-            for (List<Product> productList : data.values()) {
-                for (Product product : productList) {
-                   // product.decreaseNumberOfProducts();
-                    String text = product.toString();
-                    writer.write(text);
-                }
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            writer.flush();
-            writer.close();
-        }
-    }
-
-    private String csvFile;
 
 
     public controller()
@@ -96,7 +74,7 @@ public class controller {
     @FXML
     void Tilbake(ActionEvent event) {
         try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Bruker/bruker.fxml")));
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info
