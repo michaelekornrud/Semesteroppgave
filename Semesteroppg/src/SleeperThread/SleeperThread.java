@@ -1,19 +1,28 @@
 package SleeperThread;
 
+
 import javafx.concurrent.Task;
 import javafx.fxml.Initializable;
+import FullførOrdre.AlertBox;
 
 public class SleeperThread extends Task<Integer> {
     private final int value;
+    //private final String msg;
+    //private final String title;
 
-    public SleeperThread(int value){
+    public SleeperThread(int value, String msg, String title){
         this.value = value;
+        //this.msg = msg;
+        //this.title = title;
     }
 
     @Override
     protected Integer call() {
         try{
-            Thread.sleep(1500);
+            //AlertBox.display(title,msg);
+            Thread.sleep(value);
+            //AlertBox.display(title,msg);
+            //Thread.sleep(value);
         }
         catch (InterruptedException e){
 

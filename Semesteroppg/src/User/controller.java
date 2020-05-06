@@ -1,6 +1,7 @@
 package User;
 
 import Exceptions.ProductValidator;
+import FullførOrdre.AlertBox;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -18,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -291,14 +293,19 @@ public class controller extends Controller_ProductWindow {
     @FXML
     void Handlekurv (ActionEvent event) throws IOException {
 
-        task = new SleeperThread(7);
+
+
+        task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
         task.setOnSucceeded(this::threadDone);
         task.setOnFailed(this::threadFailed);
+
 
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         btnHandlekurv.setDisable(true);
         thread.start();
+        //AlertBox.display("Laster..." , "Vent mens produktene lastes til handlekurven");
+
 
         //Henter valgt komponent fra choiceboxene
         String cabinett = choCabinet.getSelectionModel().getSelectedItem();
@@ -321,12 +328,12 @@ public class controller extends Controller_ProductWindow {
 
 
         //Sjekker om de forskjellige choiceBoxene har en verdi og henter produktnavn
-        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett));  }
-        else{ System.out.println("Ingen verdi valgt i Kabinett"); }
+        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett));}
+        else{ System.out.println("Ingen verdi valgt i Kabinett");  }
         if(!choMotherboard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(motherBoard));}
         else {System.out.println("Ingen verdi valgt i hovedkort");}
         if(!choProcessor.getSelectionModel().isEmpty()){ observableList.add(getProductNames(processor));}
-        else{System.out.println("Ingen verdi er valgt i prosessor");}
+        else {System.out.println("Ingen verdi valgt i prosessor");}
         if(!choGraphicscard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(graphicsCard));}
         else{System.out.println("Ingen verdi valgt i grafikkort");}
         if(!choMemory.getSelectionModel().isEmpty()){observableList.add(getProductNames(memory)); }
@@ -359,6 +366,8 @@ public class controller extends Controller_ProductWindow {
 
 
 
+
+
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
@@ -373,6 +382,9 @@ public class controller extends Controller_ProductWindow {
             && !choHDD.getItems().isEmpty() && !choSSD.getItems().isEmpty() && !choCPUfan.getItems().isEmpty() && !choFans.getItems().isEmpty()
             && !choCasemods.getItems().isEmpty() && !choMonitor.getItems().isEmpty() && !choKeyboard.getItems().isEmpty() && !choMouse.getItems().isEmpty()
             && !choHeadphones.getItems().isEmpty()){
+
+
+                
                 String number = colNumber.getCellObservableValue(i).getValue();
                 String name  = colName.getCellObservableValue(i).getValue();
                 String type = colType.getCellObservableValue(i).getValue();
@@ -383,8 +395,9 @@ public class controller extends Controller_ProductWindow {
                 Products newProducts = new Products(number,name,type,quantity,price);
                 CartRegister.addElement(newProducts);
                 System.out.println(newProducts);
-            }
 
+
+            }
 
 
 

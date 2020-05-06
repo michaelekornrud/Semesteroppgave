@@ -1,5 +1,6 @@
 package Loginn;
 
+import SleeperThread.SleeperThread;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +17,8 @@ import java.util.Objects;
 
 public class controller {
 
+    private SleeperThread task;
+
     @FXML
     private TextField txtBrukernavn;
 
@@ -28,11 +31,10 @@ public class controller {
     @FXML
     private Button btnLukk;
 
-    @FXML
-    private Button btnRegistrer;
+
 
     @FXML
-    void LogIn(ActionEvent event) throws IOException {
+    void LogInn (ActionEvent event) {
         String adminUser = "admin";
         String adminPW = "admin";
         String brukerUser = "user";
@@ -42,6 +44,7 @@ public class controller {
         checkUser = txtBrukernavn.getText();
         checkPW = txtPassord.getText();
         if(checkUser.equals(adminUser) && checkPW.equals(adminPW)){
+
             try {
                 Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
@@ -82,9 +85,6 @@ public class controller {
         lukkProgram.close();
     }
 
-    @FXML
-    void Registrer (ActionEvent event){
 
-    }
 
 }
