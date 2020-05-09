@@ -38,7 +38,7 @@ public class ComponentDataHandler {
                     continue;
                 }*/
 
-                System.out.println(currentLine);
+
                 String[] component = currentLine.split(cvsSplitBy);
                 componentData.add(component);
 

@@ -57,7 +57,7 @@ public class controller {
 
         AlertBox.display("Fullført", ut);
 
-        //cdh.removeAmount(data);
+        cdh.removeAmount(data);
 
 
     }

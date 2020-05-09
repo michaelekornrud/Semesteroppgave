@@ -41,9 +41,16 @@ public class Products {
             throw new IllegalArgumentException("Verdien kan ikke være negativ");
         }
         this.txtQuantity.set(txtQuantity);
-        System.out.print("Fra setTxtQuantity: " + txtQuantity);
     }
     public IntegerProperty quantityProperty(){return this.txtQuantity;}
+    public void setNewQuantity (int txtQuantity){
+        if (txtQuantity < 1){
+            throw  new IllegalArgumentException("Verdien kan ikke være 0 eller negativ");
+        }
+        this.txtQuantity.set(getTxtQuantity() + txtQuantity);
+        txtQuantity = 1;
+
+    }
 
     public double getTxtPrice(){return txtPrice.getValue();}
 

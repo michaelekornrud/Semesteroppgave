@@ -1,4 +1,4 @@
-package FullførOrdre;
+package CompleteOrder;
 
 public class CompleteOrder {
     public String fornavn;
