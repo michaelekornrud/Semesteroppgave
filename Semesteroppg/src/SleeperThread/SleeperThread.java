@@ -2,8 +2,6 @@ package SleeperThread;
 
 
 import javafx.concurrent.Task;
-import javafx.fxml.Initializable;
-import FullførOrdre.AlertBox;
 
 public class SleeperThread extends Task<Integer> {
     private final int value;

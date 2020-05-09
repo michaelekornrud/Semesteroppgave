@@ -1,7 +1,12 @@
-package FullførOrdre;
+package User;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,9 +15,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AlertBox {
+import java.io.IOException;
 
-    public static void display(String title, String message){
+public class Alert {
+    public static void show(String title, String message){
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -25,15 +31,12 @@ public class AlertBox {
         label.setPadding(new Insets(10));
         label.setFont(new Font("Times New Roman", 16));
 
-
         Button lukkBox = new Button("Lukk");
         lukkBox.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label,lukkBox);
         layout.setAlignment(Pos.CENTER);
-
-
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
@@ -43,3 +46,5 @@ public class AlertBox {
 
     }
 }
+
+

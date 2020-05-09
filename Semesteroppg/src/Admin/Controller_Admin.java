@@ -1,8 +1,9 @@
 package Admin;
 
 import Exceptions.ProductValidator;
-import ProductWindow.*;
-import com.sun.tools.hat.internal.util.ArraySorter;
+import ProductWindow.ComponentType;
+import ProductWindow.Component_DataHandler;
+import ProductWindow.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.*;
 
 

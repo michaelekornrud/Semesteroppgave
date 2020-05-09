@@ -1,10 +1,13 @@
-package FullførOrdre;
+package CompleteOrder;
+
 
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
+import User.ComponentDataHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,9 +22,9 @@ import java.util.Map;
 //import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class controller {
+public class controller  {
 
-    Component_DataHandler cdh = new Component_DataHandler();
+    ComponentDataHandler cdh = new ComponentDataHandler();
     private Map<String, List<Product>> data;
     private String csvFile;
 
@@ -49,23 +52,49 @@ public class controller {
     @FXML
     void Fullfør(ActionEvent event) throws Exception {
 
-        String navn = txtFornavn.getText() + " " + txtEtternavn.getText();
-        String adresse = txtAdresse.getText();
-        String post  = txtPostnummer.getText() + " " + txtPoststed.getText();
+        String firstName = txtFornavn.getText();
+        String lastName = txtEtternavn.getText();
+        String adress = txtAdresse.getText();
+        int postNumber = Integer.parseInt(txtPostnummer.getText());
+        String city = txtPoststed.getText();
 
-        String ut = "Ordren blir sendt til:" + "\n" + navn + "\n" + adresse + "\n" + post;
+        if (!txtFornavn.getText().isEmpty() && !txtEtternavn.getText().isEmpty() && !txtAdresse.getText().isEmpty()
+        && !txtPostnummer.getText().isEmpty() && !txtPoststed.getText().isEmpty()){
+
+            String navn = Deviations.checkName(firstName) + " " + Deviations.checkName(lastName);
+            String adresse = Deviations.checkAdress(adress);
+            int post = Deviations.checkPostNumber(postNumber);
+            String by = Deviations.checkCity(city);
+
+        String ut = "Ordren blir sendt til:" + "\n" + navn + "\n" + adresse + "\n" + post + " " + by;
 
         AlertBox.display("Fullført", ut);
 
-        cdh.removeAmount(data);
+            try {
+                Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
+                Scene PCByggingScene = new Scene(PCByggingParent);
 
+                //Denne linjen henter stage info
+                Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+                PCWindow.setTitle("Bygg din egen PC");
+                PCWindow.setScene(PCByggingScene);
+                PCWindow.show();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+
+        //cdh.removeAmount(data);
 
     }
 
 
 
-    public controller()
-    {
+
+
+    public controller() throws FileNotFoundException {
         String projectDirectory = System.getProperty("user.dir");
         csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
         cdh.load();

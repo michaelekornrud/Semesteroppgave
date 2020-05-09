@@ -1,7 +1,6 @@
 package User;
 
 import Exceptions.ProductValidator;
-import FullførOrdre.AlertBox;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -12,6 +11,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,7 +19,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -163,6 +162,7 @@ public class controller extends Controller_ProductWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        TVcart.setItems(observableList);
         TVcart.setEditable(true);
         colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToStringParse()));
         colQuantity.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTxtQuantity(Integer.parseInt(String.valueOf(event.getNewValue()))));
@@ -173,6 +173,8 @@ public class controller extends Controller_ProductWindow {
         colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+
+
 
 
 
@@ -253,8 +255,6 @@ public class controller extends Controller_ProductWindow {
        ProductValidator.testNumberOfProducts(number);
        //ProductValidator.testIfProductsIsEmty(number); //For å sjekke om det er nok antall av produktet.
        products.setTxtQuantity(number);
-       System.out.println("Fra quantityEdited: " + number);
-
 
        TVcart.refresh();
 
@@ -288,11 +288,17 @@ public class controller extends Controller_ProductWindow {
 
     //Oppretter en liste hvor komponent-data blir lagret
     //Denne listen ligger som public utenfor Handlekurv-metoden for at jeg skal få tilgang til den til filtrening.
-    public ObservableList<Products> observableList = FXCollections.observableArrayList();
+    public static ObservableList<Products> observableList = FXCollections.observableArrayList();
+
+   /* private int counter = 0;
+    public int counter (int counter){
+        this.counter = counter++;
+        System.out.println(counter);
+        return counter;
+    }*/
 
     @FXML
     void Handlekurv (ActionEvent event) throws IOException {
-
 
 
         task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
@@ -304,7 +310,7 @@ public class controller extends Controller_ProductWindow {
         thread.setDaemon(true);
         btnHandlekurv.setDisable(true);
         thread.start();
-        //AlertBox.display("Laster..." , "Vent mens produktene lastes til handlekurven");
+        Alert.show("Laster..." , "Vent mens produktene lastes til handlekurven");
 
 
         //Henter valgt komponent fra choiceboxene
@@ -327,46 +333,152 @@ public class controller extends Controller_ProductWindow {
 
 
 
+
+
+
+
+        int counter = 1;
+
         //Sjekker om de forskjellige choiceBoxene har en verdi og henter produktnavn
-        if(!choCabinet.getSelectionModel().isEmpty()) { observableList.add(getProductNames(cabinett));}
-        else{ System.out.println("Ingen verdi valgt i Kabinett");  }
-        if(!choMotherboard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(motherBoard));}
-        else {System.out.println("Ingen verdi valgt i hovedkort");}
-        if(!choProcessor.getSelectionModel().isEmpty()){ observableList.add(getProductNames(processor));}
-        else {System.out.println("Ingen verdi valgt i prosessor");}
-        if(!choGraphicscard.getSelectionModel().isEmpty()){ observableList.add(getProductNames(graphicsCard));}
-        else{System.out.println("Ingen verdi valgt i grafikkort");}
-        if(!choMemory.getSelectionModel().isEmpty()){observableList.add(getProductNames(memory)); }
-        else{System.out.println("Ingen verdi valgt i minne");}
-        if(!choPowersupply.getSelectionModel().isEmpty()){observableList.add(getProductNames(powersupply)); }
-        else{System.out.println("Ingen verdi valgt i størmforskyning");}
-        if(!choHDD.getSelectionModel().isEmpty()){observableList.add(getProductNames(hdd)); }
-        else{System.out.println("Ingen verdi valgt i harddisk");}
-        if(!choSSD.getSelectionModel().isEmpty()){observableList.add(getProductNames(ssd)); }
-        else{System.out.println("Ingen verdi valgt i harddisk1");}
-        if(!choCPUfan.getSelectionModel().isEmpty()){observableList.add(getProductNames(cpuFan)); }
-        else{System.out.println("Ingen verdi valgt i CPU-Vifte");}
-        if(!choFans.getSelectionModel().isEmpty()){observableList.add(getProductNames(fans)); }
-        else{System.out.println("Ingen verdi valgt i Vifter");}
-        if(!choCasemods.getSelectionModel().isEmpty()){observableList.add(getProductNames(casemods)); }
-        else{System.out.println("Ingen verdi valgt i Casemods");}
-        if(!choMonitor.getSelectionModel().isEmpty()){observableList.add(getProductNames(monitor)); }
-        else{System.out.println("Ingen verdi valgt i Skjerm");}
-        if(!choKeyboard.getSelectionModel().isEmpty()){observableList.add(getProductNames(keyborad)); }
-        else{System.out.println("Ingen verdi valgt i tastatur");}
-        if(!choMouse.getSelectionModel().isEmpty()){observableList.add(getProductNames(mouse)); }
-        else{System.out.println("Ingen verdi valgt i mus");}
-        if(!choHeadphones.getSelectionModel().isEmpty()){observableList.add(getProductNames(headphones)); }
-        else{System.out.println("Ingen verdi valgt i hodetelefoner");}
+        if(!choCabinet.getSelectionModel().isEmpty()) {
+            if(observableList.contains(getProductNames(cabinett))){
+                getProductNames(cabinett).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(cabinett));
+            }
+        }
+
+        if(!choMotherboard.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(motherBoard))){
+                getProductNames(motherBoard).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(motherBoard));
+            }
+        }
+
+        if(!choProcessor.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(processor))){
+                getProductNames(processor).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(processor));
+            }
+        }
+
+
+        if(!choGraphicscard.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(graphicsCard))){
+                getProductNames(graphicsCard).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(graphicsCard));
+            }
+        }
+
+        if(!choMemory.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(memory))){
+                getProductNames(memory).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(memory));
+            }
+        }
+
+        if(!choPowersupply.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(powersupply))){
+                getProductNames(powersupply).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(powersupply));
+            }
+        }
+
+        if(!choHDD.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(hdd))){
+                getProductNames(hdd).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(hdd));
+            }
+        }
+
+        if(!choSSD.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(ssd))){
+                getProductNames(ssd).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(ssd));
+            }
+        }
+
+        if(!choCPUfan.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(cpuFan))){
+                getProductNames(cpuFan).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(cpuFan));
+            }
+        }
+
+        if(!choFans.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(fans))){
+                getProductNames(fans).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(fans));
+            }
+        }
+
+        if(!choCasemods.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(casemods))){
+                getProductNames(casemods).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(casemods));
+            }
+        }
+
+        if(!choMonitor.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(monitor))){
+                getProductNames(monitor).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(monitor));
+            }
+        }
+
+        if(!choKeyboard.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(keyborad))){
+                getProductNames(keyborad).setNewQuantity(counter);
+            }
+            else{
+                observableList.add(getProductNames(keyborad));
+            }
+        }
+
+        if(!choMouse.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(mouse))){
+                getProductNames(mouse).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(mouse));
+            }
+        }
+
+        if(!choHeadphones.getSelectionModel().isEmpty()){
+            if(observableList.contains(getProductNames(headphones))){
+                getProductNames(headphones).setNewQuantity(counter);
+            }
+            else {
+                observableList.add(getProductNames(headphones));
+            }
+        }
 
         //Sender komponentene til handlekurven
         TVcart.setItems(observableList);
         totalPrice(TVcart,lblTotPris);
-
-
-
-
-
 
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
@@ -383,8 +495,6 @@ public class controller extends Controller_ProductWindow {
             && !choCasemods.getItems().isEmpty() && !choMonitor.getItems().isEmpty() && !choKeyboard.getItems().isEmpty() && !choMouse.getItems().isEmpty()
             && !choHeadphones.getItems().isEmpty()){
 
-
-                
                 String number = colNumber.getCellObservableValue(i).getValue();
                 String name  = colName.getCellObservableValue(i).getValue();
                 String type = colType.getCellObservableValue(i).getValue();
@@ -394,17 +504,10 @@ public class controller extends Controller_ProductWindow {
 
                 Products newProducts = new Products(number,name,type,quantity,price);
                 CartRegister.addElement(newProducts);
-                System.out.println(newProducts);
-
-
             }
-
-
-
-
             //resetChoiceBoxes(event);
         }
-
+        btnRefresh.fire();
         colNumber.setSortable(false);
 
     }
@@ -422,20 +525,14 @@ public class controller extends Controller_ProductWindow {
     }
 
     ObservableList<String> getComponentNames(String componentType, Map<String, List<Products>> newData) {
-
         List<Products> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();
         if (kabinettComponents != null) {
-
-
             for (Products prod : kabinettComponents) {
                 kabinettNames.add(prod.getTxtName());
             }
         }
-
-
         return kabinettNames;
-
     }
 
     @FXML
@@ -445,29 +542,53 @@ public class controller extends Controller_ProductWindow {
     }
 
 
+    int value = 1;
+    private int resetQuantity (int value){
+        this.value = value;
+        return value;
+    }
+
 
     @FXML
     void resetChoiceBoxes(ActionEvent event) {
-        if(!choCabinet.getSelectionModel().isEmpty()){choCabinet.setValue(null);}
-        if(!choMotherboard.getSelectionModel().isEmpty()){choMotherboard.setValue(null);}
-        if(!choProcessor.getSelectionModel().isEmpty()){choProcessor.setValue(null);}
-        if(!choGraphicscard.getSelectionModel().isEmpty()){choGraphicscard.setValue(null);}
-        if(!choMemory.getSelectionModel().isEmpty()){choMemory.setValue(null);}
-        if(!choPowersupply.getSelectionModel().isEmpty()){choPowersupply.setValue(null);}
-        if(!choHDD.getSelectionModel().isEmpty()){choHDD.setValue(null);}
-        if(!choSSD.getSelectionModel().isEmpty()){choSSD.setValue(null);}
-        if(!choCPUfan.getSelectionModel().isEmpty()){choCPUfan.setValue(null);}
-        if(!choFans.getSelectionModel().isEmpty()){choFans.setValue(null);}
-        if(!choCasemods.getSelectionModel().isEmpty()){choCasemods.setValue(null);}
-        if(!choMonitor.getSelectionModel().isEmpty()){choMonitor.setValue(null);}
-        if(!choKeyboard.getSelectionModel().isEmpty()){choKeyboard.setValue(null);}
-        if(!choMouse.getSelectionModel().isEmpty()){choMouse.setValue(null);}
-        if(!choHeadphones.getSelectionModel().isEmpty()){choHeadphones.setValue(null);}
+        int counter = 1;
+        String cabinetCount = choCabinet.getSelectionModel().getSelectedItem();
+        String motherboardCount = choMotherboard.getSelectionModel().getSelectedItem();
+        String proessorCount = choProcessor.getSelectionModel().getSelectedItem();
+        String graphicsCount = choGraphicscard.getSelectionModel().getSelectedItem();
+        String memoryCount = choMemory.getSelectionModel().getSelectedItem();
+        String powerCount = choPowersupply.getSelectionModel().getSelectedItem();
+        String hddCount = choHDD.getSelectionModel().getSelectedItem();
+        String ssdCount = choSSD.getSelectionModel().getSelectedItem();
+        String cpuFanCount = choCPUfan.getSelectionModel().getSelectedItem();
+        String fansCount = choFans.getSelectionModel().getSelectedItem();
+        String casemodsCount = choCasemods.getSelectionModel().getSelectedItem();
+        String monitorCount = choMonitor.getSelectionModel().getSelectedItem();
+        String keyboardCount = choKeyboard.getSelectionModel().getSelectedItem();
+        String mouseCount = choMouse.getSelectionModel().getSelectedItem();
+        String headphonesCount = choHeadphones.getSelectionModel().getSelectedItem();
+
+        if(!choCabinet.getSelectionModel().isEmpty()){getProductNames(cabinetCount).setTxtQuantity(counter); choCabinet.setValue(null);}
+        if(!choMotherboard.getSelectionModel().isEmpty()){getProductNames(motherboardCount).setTxtQuantity(counter); choMotherboard.setValue(null);}
+        if(!choProcessor.getSelectionModel().isEmpty()){getProductNames(proessorCount).setTxtQuantity(counter); choProcessor.setValue(null);}
+        if(!choGraphicscard.getSelectionModel().isEmpty()){getProductNames(graphicsCount).setTxtQuantity(counter); choGraphicscard.setValue(null);}
+        if(!choMemory.getSelectionModel().isEmpty()){getProductNames(memoryCount).setTxtQuantity(counter); choMemory.setValue(null);}
+        if(!choPowersupply.getSelectionModel().isEmpty()){getProductNames(powerCount).setTxtQuantity(counter); choPowersupply.setValue(null);}
+        if(!choHDD.getSelectionModel().isEmpty()){getProductNames(hddCount).setTxtQuantity(counter); choHDD.setValue(null);}
+        if(!choSSD.getSelectionModel().isEmpty()){getProductNames(ssdCount).setTxtQuantity(counter); choSSD.setValue(null);}
+        if(!choCPUfan.getSelectionModel().isEmpty()){getProductNames(cpuFanCount).setTxtQuantity(counter); choCPUfan.setValue(null);}
+        if(!choFans.getSelectionModel().isEmpty()){getProductNames(fansCount).setTxtQuantity(counter); choFans.setValue(null);}
+        if(!choCasemods.getSelectionModel().isEmpty()){getProductNames(casemodsCount).setTxtQuantity(counter); choCasemods.setValue(null);}
+        if(!choMonitor.getSelectionModel().isEmpty()){getProductNames(monitorCount).setTxtQuantity(counter); choMonitor.setValue(null);}
+        if(!choKeyboard.getSelectionModel().isEmpty()){getProductNames(keyboardCount).setTxtQuantity(counter); choKeyboard.setValue(null);}
+        if(!choMouse.getSelectionModel().isEmpty()){getProductNames(mouseCount).setTxtQuantity(counter); choMouse.setValue(null);}
+        if(!choHeadphones.getSelectionModel().isEmpty()){getProductNames(headphonesCount).setTxtQuantity(counter); choHeadphones.setValue(null);}
 
         for (int i = 0; i <TVcart.getItems().size(); i++){
             TVcart.getItems().clear();
         }
         btnRefresh.fire();
+
 
 
     }
@@ -558,12 +679,12 @@ public class controller extends Controller_ProductWindow {
     void LagreOnskeliste (ActionEvent event)throws IOException, BadLocationException {
         FileChooser saveAs = new FileChooser();
         File saveFile = saveAs.showSaveDialog(null);
-        String formated = ProductParsing.productsFormater(CartRegister.list);
+        String formated = ProductParsing.productsFormater(observableList);
 
         if(saveFile != null){
             Path filePath = Paths.get(saveFile.getAbsolutePath());
             try{
-                WriteFromFile.writeToString(filePath,formated);
+                WriteToFile.writeToString(filePath,formated);
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -587,7 +708,7 @@ public class controller extends Controller_ProductWindow {
     @FXML
     void FullførOrdre (ActionEvent event){
         try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("FullførOrdre/Fulfør.fxml")));
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("CompleteOrder/OrderDone.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import User.controller;
 
 public class ReadFromFile {
     public static List<Products> openFile (Path filePath) throws IOException{
@@ -16,7 +17,7 @@ public class ReadFromFile {
             String line;
 
             while((line = reader.readLine()) != null){
-                CartRegister.addElement(ParseFromFile.parseProducts(line));
+                controller.observableList.add(ParseFromFile.parseProducts(line));
             }
         }
         catch (IOException e){
