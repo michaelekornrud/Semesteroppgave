@@ -49,7 +49,6 @@ public class Products {
         }
         this.txtQuantity.set(getTxtQuantity() + txtQuantity);
         txtQuantity = 1;
-
     }
 
     public double getTxtPrice(){return txtPrice.getValue();}

@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 
-public class controller extends Controller_ProductWindow {
+public class controller_user extends Controller_ProductWindow {
 
 
     CartRegister addNewProduct = new CartRegister();
@@ -175,9 +175,6 @@ public class controller extends Controller_ProductWindow {
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
 
 
-
-
-
     }
 
     public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
@@ -199,9 +196,6 @@ public class controller extends Controller_ProductWindow {
         lblTotPris.setText((totalPrice + "0"));
         lblMva.setText((mva + "0"));
         lblPris.setText((price + "0"));
-
-
-
     }
 
     private void threadDone(WorkerStateEvent e){
@@ -218,7 +212,7 @@ public class controller extends Controller_ProductWindow {
 
 
 
-    public controller() throws FileNotFoundException {
+    public controller_user() throws FileNotFoundException {
         super();
     }
 
@@ -502,6 +496,7 @@ public class controller extends Controller_ProductWindow {
                 String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
                 Double price = Double.parseDouble(priceAsString);
 
+
                 Products newProducts = new Products(number,name,type,quantity,price);
                 CartRegister.addElement(newProducts);
             }
@@ -637,6 +632,7 @@ public class controller extends Controller_ProductWindow {
 
         //Setter matchende produkter til tableViewet og viser dem.
         TVcart.setItems(sortedList);
+
     }
 
     @FXML

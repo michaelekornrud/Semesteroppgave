@@ -1,5 +1,6 @@
 package ProductWindow;
 
+import User.ComponentDataHandler;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,7 +34,9 @@ public class Product {
     public void setTxtBrand(String txtBrand){this.txtBrand.set(txtBrand);}
 
     public int getTxtNumberOfProducts(){return txtNumberOfProducts.getValue();}
-    public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts = new SimpleIntegerProperty(txtNumberOfProducts);}
+    public void setTxtNumberOfProducts(int txtNumberOfProducts){this.txtNumberOfProducts = new SimpleIntegerProperty(txtNumberOfProducts);
+
+    }
 
     public String getTxtProductNumber(){return txtProductNumber.getValue();}
 
@@ -50,5 +53,16 @@ public class Product {
     public String toString(){
         return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
+    /*int quant = Integer.parseInt(ComponentDataHandler.componentQuantity);
+    Product product;
+    int number = product.getTxtNumberOfProducts();
+    int removeAmount = product.decreaseNumberOfProducts(quant);
+    int nettoNumber = product.setTxtNumberOfProducts(number-removeAmount);
+
+    public String toStringTwo(){
+        return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,nettoNumber ,getTxtBrand() ,getTxtPrice(), getTxtType());
+    }*/
+
+
 
 }

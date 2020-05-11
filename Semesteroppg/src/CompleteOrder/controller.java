@@ -1,7 +1,9 @@
-package FullførOrdre;
+package CompleteOrder;
 
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
+import User.Products;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +17,13 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import User.controller_user;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class controller {
+
 
     Component_DataHandler cdh = new Component_DataHandler();
     private Map<String, List<Product>> data;
@@ -46,6 +50,8 @@ public class controller {
     @FXML
     private Button btnTilbake;
 
+
+
     @FXML
     void Fullfør(ActionEvent event) throws Exception {
 
@@ -58,6 +64,13 @@ public class controller {
         AlertBox.display("Fullført", ut);
 
         cdh.removeAmount(data);
+
+
+        ObservableList<Products>  temp = controller_user.observableList;
+
+
+
+
 
 
     }
