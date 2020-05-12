@@ -70,8 +70,9 @@ public class Component_DataHandler {
                 for (Product product : productList) {
                     product.decreaseNumberOfProducts(quant);
                     String text = product.toString();
-                    writer.write(text);
-                }
+                        writer.write(text);
+
+                    }
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -79,6 +80,8 @@ public class Component_DataHandler {
             writer.flush();
             writer.close();
         }
+
+
     }
 
 

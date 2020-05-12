@@ -1,13 +1,12 @@
 package CompleteOrder;
 
-
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
-import User.ComponentDataHandler;
+import User.Products;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,13 +17,15 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import User.controller_user;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class controller  {
+public class controller {
 
-    ComponentDataHandler cdh = new ComponentDataHandler();
+
+    Component_DataHandler cdh = new Component_DataHandler();
     private Map<String, List<Product>> data;
     private String csvFile;
 
@@ -49,52 +50,35 @@ public class controller  {
     @FXML
     private Button btnTilbake;
 
+
+
     @FXML
     void Fullfør(ActionEvent event) throws Exception {
 
-        String firstName = txtFornavn.getText();
-        String lastName = txtEtternavn.getText();
-        String adress = txtAdresse.getText();
-        int postNumber = Integer.parseInt(txtPostnummer.getText());
-        String city = txtPoststed.getText();
+        String navn = txtFornavn.getText() + " " + txtEtternavn.getText();
+        String adresse = txtAdresse.getText();
+        String post  = txtPostnummer.getText() + " " + txtPoststed.getText();
 
-        if (!txtFornavn.getText().isEmpty() && !txtEtternavn.getText().isEmpty() && !txtAdresse.getText().isEmpty()
-        && !txtPostnummer.getText().isEmpty() && !txtPoststed.getText().isEmpty()){
-
-            String navn = Deviations.checkName(firstName) + " " + Deviations.checkName(lastName);
-            String adresse = Deviations.checkAdress(adress);
-            int post = Deviations.checkPostNumber(postNumber);
-            String by = Deviations.checkCity(city);
-
-        String ut = "Ordren blir sendt til:" + "\n" + navn + "\n" + adresse + "\n" + post + " " + by;
+        String ut = "Ordren blir sendt til:" + "\n" + navn + "\n" + adresse + "\n" + post;
 
         AlertBox.display("Fullført", ut);
 
-            try {
-                Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
-                Scene PCByggingScene = new Scene(PCByggingParent);
-
-                //Denne linjen henter stage info
-                Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-                PCWindow.setTitle("Bygg din egen PC");
-                PCWindow.setScene(PCByggingScene);
-                PCWindow.show();
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        }
+        cdh.removeAmount(data);
 
 
-        //cdh.removeAmount(data);
+        ObservableList<Products>  temp = controller_user.observableList;
+
+
+
+
+
 
     }
 
 
 
-
-
-    public controller() throws FileNotFoundException {
+    public controller()
+    {
         String projectDirectory = System.getProperty("user.dir");
         csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
         cdh.load();
