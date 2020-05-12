@@ -1,5 +1,7 @@
 package User;
 
+import javafx.beans.property.IntegerProperty;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -70,39 +72,26 @@ public class ComponentDataHandler {
 
 
 
-
-
-
     public Map<String, List<Products>>  createChoiceBoxes(List<String[]> componentData) throws ArrayIndexOutOfBoundsException {  //Metode for å laste inn komponenter
 
         Map<String, List<Products>> mappedComponents = new HashMap<>();
 
-
-
-
         for (String[] component : componentData){
-
-            int[] numberList = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-
             String number;
             String numberToString = String.valueOf(1);
             String name = String.valueOf(component[1]);
             String type = component[5];
             int quantity = 1;
-
             double price = Double.parseDouble(component[4]);
             int quantityChanged = 0;
 
-            //Legg til fler om det skal være flere typer
-
-            Products prod = new Products(numberToString,name, component[5], quantity,price);
             componentQuantity = component[2];
+            int storage = Integer.parseInt(componentQuantity);
 
 
 
-
-
-
+            //Legg til fler om det skal være flere typer
+            Products prod = new Products(numberToString,name, type, quantity,price,storage);
             //String mapId = type.toLowerCase();
             List<Products> compList = mappedComponents.get(type);
 
@@ -112,7 +101,9 @@ public class ComponentDataHandler {
 
             compList.add(prod);
 
+
             mappedComponents.put(type, compList);
+
 
         }
         return mappedComponents;

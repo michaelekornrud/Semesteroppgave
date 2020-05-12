@@ -7,14 +7,17 @@ public class Products {
     private SimpleStringProperty txtNumber, txtName, txtType;
     private SimpleIntegerProperty txtQuantity;
     private SimpleDoubleProperty txtPrice;
+    private SimpleIntegerProperty txtStorage;
 
-    public Products(String number, String name, String type, int quantity, double price){
+    public Products(String number, String name, String type, int quantity, double price, int storage){
         if(!number.isEmpty() &&!name.isEmpty() && !type.isEmpty() && quantity > 0 && price > 0 ){
             this.txtNumber = new SimpleStringProperty(number);
             this.txtName = new SimpleStringProperty(name);
             this.txtType = new SimpleStringProperty(type);
             this.txtQuantity = new SimpleIntegerProperty(quantity);
             this.txtPrice = new SimpleDoubleProperty(price);
+            this.txtStorage = new SimpleIntegerProperty(storage);
+
 
         }
 
@@ -37,7 +40,7 @@ public class Products {
         return txtQuantity.getValue();
     }
     public void setTxtQuantity(int txtQuantity){
-        if(txtQuantity < 1){
+        if(txtQuantity < 1 || txtQuantity > Integer.parseInt(ComponentDataHandler.componentQuantity)){
             throw new IllegalArgumentException("Verdien kan ikke være negativ");
         }
         this.txtQuantity.set(txtQuantity);
@@ -57,8 +60,13 @@ public class Products {
     public void setTxtPrice(double txtPrice){this.txtPrice = new SimpleDoubleProperty(txtPrice);}
     public DoubleProperty priceProperty(){return this.txtPrice;}
 
+    public Integer getTxtStorage(){return txtStorage.getValue();}
+    public IntegerProperty storageProperty(){return this.txtStorage;}
+
 
     public String toString (){
-        return String.format("\n%s; %s; %s; %s; %s;", getTxtNumber(),getTxtName(),getTxtType(), getTxtQuantity(),getTxtPrice());
+        return String.format("\n%s; %s; %s; %s; %s; %s", getTxtNumber(),getTxtName(),getTxtType(), getTxtQuantity(),getTxtPrice(), getTxtStorage());
     }
+
+
 }

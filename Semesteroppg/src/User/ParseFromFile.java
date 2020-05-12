@@ -17,6 +17,6 @@ public class ParseFromFile {
         int quantity = Integer.parseInt(quantityToString);
         Double price = Double.parseDouble(priceToString);
 
-        return new Products(number,name,type,quantity,price);
+        return new Products(number,name,type,quantity,price, 0);
     }
 }
