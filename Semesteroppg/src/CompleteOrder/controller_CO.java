@@ -17,12 +17,12 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
-import User.controller_user;
+import User.controller;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class controller {
+public class controller_CO {
 
 
     Component_DataHandler cdh = new Component_DataHandler();
@@ -66,7 +66,7 @@ public class controller {
         cdh.removeAmount(data);
 
 
-        ObservableList<Products>  temp = controller_user.observableList;
+        ObservableList<Products>  temp = controller.observableList;
 
 
 
@@ -77,7 +77,7 @@ public class controller {
 
 
 
-    public controller()
+    public controller_CO()
     {
         String projectDirectory = System.getProperty("user.dir");
         csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";

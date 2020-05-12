@@ -153,6 +153,7 @@ public class controller extends Controller_ProductWindow {
 
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         addNewProduct.attachToTableView(TVcart);
@@ -186,7 +187,7 @@ public class controller extends Controller_ProductWindow {
                         for( int storage : storeList){
                             storage = store;
 
-                        if( number > storage){
+                        if(number > storage){
                             AlertBox.display("Oops!... ", "Antallet du har oppgitt er større enn vår lagerbeholdning" + "\nVår lagerbeholdning er: " + store);
                             event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(1);
 
