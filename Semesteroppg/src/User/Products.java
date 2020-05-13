@@ -18,7 +18,6 @@ public class Products {
             this.txtPrice = new SimpleDoubleProperty(price);
             this.txtStorage = new SimpleIntegerProperty(storage);
 
-
         }
 
     }

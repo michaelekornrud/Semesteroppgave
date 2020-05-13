@@ -31,6 +31,8 @@ public class Controller_Admin {
 
     private Map<String, List<Product>> data;
 
+    @FXML
+    private Button btnClose;
 
     @FXML
     private AnchorPane anchorPane;
@@ -281,6 +283,13 @@ public class Controller_Admin {
             }
         }
 
+
+    }
+
+    @FXML
+    void closeProgram(){
+        Stage closeP = (Stage) btnClose.getScene().getWindow();
+       closeP.close();
 
     }
 
