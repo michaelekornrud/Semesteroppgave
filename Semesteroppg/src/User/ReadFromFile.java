@@ -16,7 +16,7 @@ public class ReadFromFile {
             String line;
 
             while((line = reader.readLine()) != null){
-                controller.observableList.add(ParseFromFile.parseProducts(line));
+                controller_User.observableList.add(ParseFromFile.parseProducts(line));
             }
         }
         catch (IOException e){

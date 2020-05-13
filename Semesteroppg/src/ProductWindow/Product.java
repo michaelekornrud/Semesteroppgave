@@ -53,16 +53,5 @@ public class Product {
     public String toString(){
         return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());
     }
-    /*int quant = Integer.parseInt(ComponentDataHandler.componentQuantity);
-    Product product;
-    int number = product.getTxtNumberOfProducts();
-    int removeAmount = product.decreaseNumberOfProducts(quant);
-    int nettoNumber = product.setTxtNumberOfProducts(number-removeAmount);
-
-    public String toStringTwo(){
-        return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,nettoNumber ,getTxtBrand() ,getTxtPrice(), getTxtType());
-    }*/
-
-
 
 }

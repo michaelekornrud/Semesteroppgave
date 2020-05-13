@@ -33,11 +33,12 @@ public class Component_DataHandler {
         try {
             File file = new File(csvFile);
             writer = new BufferedWriter(new FileWriter(file));
+
             for (List<Product> productList : data.values()) {
-                for (Product product : productList) {
-                    String text = product.toString();
-                    writer.write(text);
-                }
+                    for (Product product : productList) {
+                        String text = product.toString();
+                        writer.write(text);
+                    }
             }
         } catch (Exception e){
             e.printStackTrace();

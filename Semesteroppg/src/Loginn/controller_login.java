@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
-public class controller {
+public class controller_login {
 
     private SleeperThread task;
 

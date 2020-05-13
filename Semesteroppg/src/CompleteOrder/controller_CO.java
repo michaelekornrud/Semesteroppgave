@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
-import User.controller;
+import User.controller_User;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -63,10 +63,10 @@ public class controller_CO {
 
         AlertBox.display("Fullført", ut);
 
-        cdh.removeAmount(data);
+        //cdh.removeAmount(data);
 
 
-        ObservableList<Products>  temp = controller.observableList;
+        ObservableList<Products>  temp = controller_User.observableList;
 
 
 

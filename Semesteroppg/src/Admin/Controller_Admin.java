@@ -12,11 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -29,10 +27,13 @@ public class Controller_Admin {
 
 
 
-    Component_DataHandler cdh = new Component_DataHandler();
+   private Component_DataHandler cdh = new Component_DataHandler();
 
     private Map<String, List<Product>> data;
 
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ChoiceBox<String> choiceCabinet;
@@ -79,8 +80,8 @@ public class Controller_Admin {
     @FXML
     public ChoiceBox<String> choiceHeadset;
 
-    @FXML
-    private TableColumn<Product, String> colID;
+   /* @FXML
+    private TableColumn<Product, String> colID;*/
 
     @FXML
     private TableColumn<Product, String> colName;
@@ -97,23 +98,22 @@ public class Controller_Admin {
     @FXML
     private TableColumn<Product, String> colType;
 
-    private String csvFile;
-    public Controller_Admin()
+    /*public Controller_Admin()
     {
         String projectDirectory = System.getProperty("user.dir");
-        csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
+        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
         cdh.load();
-    }
+    }*/
 
 
     @FXML
     private TableView<Product> tableView;
 
-    List<ChoiceBox> choiceBoxes;
+    private List<ChoiceBox> choiceBoxes;
 
 
     @FXML
-    public void initialize() throws Exception {
+    public void initialize(){
         LoadData();
         tableView.setEditable(true);
 
@@ -122,7 +122,6 @@ public class Controller_Admin {
         colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colNumberOfProducts.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colType.setCellFactory(TextFieldTableCell.forTableColumn());
-        //Legge til type med en metode som sjekker om type er skrevet likt som de ulike typene
         //Legge til en knapp delete som sletter objektet fra tableview og fra choiceboksen
 
 
@@ -148,7 +147,7 @@ public class Controller_Admin {
     }
 
    @FXML
-    void btnSaveChanges(ActionEvent event) throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
+    void btnSaveChanges() throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
      cdh.changeDataFromTableviewToCsvAndSave(data);
 
     }
@@ -173,7 +172,7 @@ public class Controller_Admin {
 
 
 
-    public Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
+   private Product getProductByName(String typeName) {  //Metode som henter produktet fra choiceboksene med navn
 
         for (List<Product> productList : data.values()) {
             for (Product product : productList) {
@@ -237,8 +236,7 @@ public class Controller_Admin {
 
 
     @FXML
-    void btnDelete(ActionEvent event) {  //Metode for å slette ett objekt ved å trykke på "delete"-knappen
-
+    void btnDelete() {  //Metode for å slette ett objekt ved å trykke på "delete"-knappen
         ObservableList<Product> productChosen, allProducts;
         allProducts = tableView.getItems();
         productChosen = tableView.getSelectionModel().getSelectedItems();
@@ -250,17 +248,15 @@ public class Controller_Admin {
 
 
     @FXML
-    void btnDeleteFromEveryWhere(ActionEvent event) throws Exception { //Knapp som sletter gitt produkt fra csv-fil (fra lageret)
-        ObservableList<Product> observableList = FXCollections.observableArrayList();
+    void btnDeleteFromEveryWhere() throws Exception { //Knapp som sletter gitt produkt fra csv-fil (fra lageret)
         for (ChoiceBox box : choiceBoxes) {
             String selectedName = (String) box.getSelectionModel().getSelectedItem();
             if (selectedName != null) {
-                observableList.removeAll(Collections.singleton(selectedName));
                 cdh.removeObjectFromChoiceBoxAndCsvFile(selectedName);
 
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Product Deleted");
-                alert.setHeaderText("The product " +selectedName+ " is now completely deleted!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Produkt slettet!");
+                alert.setHeaderText("Produktet " +selectedName+ " er nå slette fra lageret.");
                 alert.showAndWait();
             }
         }
@@ -271,7 +267,6 @@ public class Controller_Admin {
 
 
         resetchoiceBoxes();
-
     }
 
 
@@ -279,28 +274,19 @@ public class Controller_Admin {
 
     @FXML
     private void resetchoiceBoxes() { //Metode som skal resette valgt element i choiceboksen
-        if(!choiceCaseMods.getSelectionModel().isEmpty()){choiceCaseMods.setValue(null);}
-        if(!choiceHeadset.getSelectionModel().isEmpty()){choiceHeadset.setValue(null);}
-        if(!choiceCabinet.getSelectionModel().isEmpty()){choiceCabinet.setValue(null);}
-        if(!choiceHarddrive.getSelectionModel().isEmpty()){choiceHarddrive.setValue(null);}
-        if(!choiceMouse.getSelectionModel().isEmpty()){choiceMouse.setValue(null);}
-        if(!choiceMemory.getSelectionModel().isEmpty()){choiceMemory.setValue(null);}
-        if(!choiceScreenCard.getSelectionModel().isEmpty()){choiceScreenCard.setValue(null);}
-        if(!choiceMainCard.getSelectionModel().isEmpty()){choiceMainCard.setValue(null);}
-        if(!choiceKeyboard.getSelectionModel().isEmpty()){choiceKeyboard.setValue(null);}
-        if(!choiceFan.getSelectionModel().isEmpty()){choiceFan.setValue(null);}
-        if(!choicePowerSupply.getSelectionModel().isEmpty()){choicePowerSupply.setValue(null);}
-        if(!choiceCPU.getSelectionModel().isEmpty()){choiceCPU.setValue(null);}
-        if(!choiceProcessor.getSelectionModel().isEmpty()){choiceProcessor.setValue(null);}
-        if(!choiceScreen.getSelectionModel().isEmpty()){choiceScreen.setValue(null);}
-        if(!choiceHDD.getSelectionModel().isEmpty()){choiceHDD.setValue(null);}
+        for (ChoiceBox box : choiceBoxes) {
+            SingleSelectionModel selectedName =  box.getSelectionModel();
+            if (!selectedName.isEmpty()){
+            box.setValue(null);
+            }
+        }
 
 
     }
 
 
     @FXML
-    void addComponent(ActionEvent event) throws IOException {
+    void addComponent(ActionEvent event) {
         try {
             Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("ProductWindow/productWindow.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
@@ -318,7 +304,7 @@ public class Controller_Admin {
 
 
     @FXML
-    void updatedData() throws IOException { //Metode for å legge inn verdi i choicebox kabinett
+    private void updatedData() { //Metode for å legge inn verdi i choicebox kabinett
         ObservableList<String> kabinettNames = getCoponentNames(ComponentType.CABINET, data);
         ObservableList<String> ProsessorNames = getCoponentNames(ComponentType.PROCESSOR, data);
         ObservableList<String> HarddiskNames = getCoponentNames(ComponentType.HARDDRIVE, data);
@@ -355,12 +341,12 @@ public class Controller_Admin {
 
 
     @FXML
-    void LoadData() throws IOException {
+    private void LoadData(){
         data = cdh.load();
         updatedData();
     }
 
-    ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) { //Henter komponentnavnene
+   private ObservableList<String> getCoponentNames(String componentType, Map<String, List<Product>> newData) { //Henter komponentnavnene
 
         List<Product> kabinettComponents = newData.get(componentType);
         ObservableList<String> kabinettNames = FXCollections.observableArrayList();

@@ -32,21 +32,10 @@ public class Controller_ProductWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        ProductRegister.attachToTableView(tableView);
-        tableView.setEditable(true);
-        colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colBrand.setCellFactory(TextFieldTableCell.forTableColumn());
-        colType.setCellFactory(TextFieldTableCell.forTableColumn());
-        colNumberOfProduct.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        colPrice.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         choiceType.setItems(componentType);
     }
 
-    Component_DataHandler dataHandler = new Component_DataHandler();
-
-    private Map<String, List<Product>> data;
-    private ProductRegister newObjects = new ProductRegister();
-
+    Component_DataHandler cdh = new Component_DataHandler();
 
     @FXML
     private TextField txtProductName;
@@ -64,39 +53,31 @@ public class Controller_ProductWindow implements Initializable {
     @FXML
     private TextField txtPrice;
 
-    @FXML
-    private TableColumn<Product, String> colName;
 
-    @FXML
-    private TableColumn<Product, Integer> colNumberOfProduct;
-
-    @FXML
-    private TableColumn<Product, String> colBrand;
-
-    @FXML
-    private TableColumn<Product, Double> colPrice;
-
-    @FXML
-    private TableColumn<Product, String> colType;
-
-    @FXML
-    private TableView<Product> tableView;
 
     @FXML
     void btnAdd(ActionEvent event) throws IOException { //Knapp for å legge til nytt produkt i både tableview og choiceboksene
+        String name = txtProductName.getText();
+        String brand = txtBrand.getText();
+        String stringNumberOfProducts = txtNumberOfProducts.getText();
+        int numberOfProducts = Integer.parseInt(stringNumberOfProducts);
+        String stringPrice = txtPrice.getText();
+        double price = Double.parseDouble(stringPrice);
+        String value = choiceType.getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Nytt produkt!");
+        alert.setHeaderText("Produktet " +name+", med verdiene:\nMerke: "+brand+"\nAntall: "+numberOfProducts+"\nPris: "+price +" KR\ner å lagt til i boksen med" +
+                " typenavn: "+value);
+        alert.showAndWait();
+
+
         Product newProduct = createProductObjectFromGUI();
         ProductRegister.addElement(newProduct);
+        cdh.write(newProduct);
         resetTxtFields();
-        dataHandler.write(newProduct);
 
-    }
 
-    @FXML
-    void btnDelete(ActionEvent event) {  //Knapp for å slette ett objekt ved å trykke på "delete"-knappen
-        ObservableList<Product> productChosen, allProducts;
-        allProducts = tableView.getItems();
-        productChosen = tableView.getSelectionModel().getSelectedItems();
-        allProducts.removeAll(productChosen);
 
     }
 
@@ -137,55 +118,6 @@ public class Controller_ProductWindow implements Initializable {
                                 ,ProductValidator.testPrice(price)
                                 ,ProductValidator.testProductType(value));
 
-    }
-
-    @FXML
-    public void editTableview_Name(TableColumn.CellEditEvent<Product, String> edit){ //Metode for å redigere navnet på produktet i tableview
-        Product prod = tableView.getSelectionModel().getSelectedItem();
-        String name = edit.getNewValue();
-        ProductValidator.testProductName(name);
-        prod.setTxtProductName(name);
-        tableView.refresh();
-    }
-
-    @FXML
-    public void editTableview_NumberOfProducts(TableColumn.CellEditEvent<Product, String> edit){  //Metode for å redigere antallet av gitt produkt i tableview
-        Product prod = tableView.getSelectionModel().getSelectedItem();
-        String number = edit.getNewValue();
-        int intNumber = Integer.parseInt(number);
-        ProductValidator.testNumberOfProducts(intNumber);
-        prod.setTxtNumberOfProducts(intNumber);
-        tableView.refresh();
-    }
-
-    @FXML
-    public void editTableview_Type(TableColumn.CellEditEvent<Product, String> edit){  //Metode for å redigere typen på produktet i tableview
-        Product prod = tableView.getSelectionModel().getSelectedItem();
-        String type = edit.getNewValue();
-        ProductValidator.testProductType(type);
-        prod.setTxtType(type);
-        tableView.refresh();
-
-    }
-
-
-    @FXML
-    public void editTableview_Brand(TableColumn.CellEditEvent<Product, String> edit){  //Metode for å redigere merket til produktet i tableview
-        Product prod = tableView.getSelectionModel().getSelectedItem();
-        String brand = edit.getNewValue();
-        ProductValidator.testProductBrand(brand);
-        prod.setTxtBrand(brand);
-        tableView.refresh();
-    }
-
-    @FXML  //Må fikses på!! Fungerer ikke
-    public void editTableview_Price(TableColumn.CellEditEvent<Product, String> edit){  //Metode for å redigere prisen på produktet i tableview
-        Product prod = tableView.getSelectionModel().getSelectedItem();
-        String price = edit.getNewValue();
-        double doubPrice = Double.parseDouble(price);
-        ProductValidator.testPrice(doubPrice);
-        prod.setTxtPrice(doubPrice);
-        tableView.refresh();
     }
 
     @FXML
