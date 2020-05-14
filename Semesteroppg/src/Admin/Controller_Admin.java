@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -34,9 +33,6 @@ public class Controller_Admin {
 
     @FXML
     private Button btnClose;
-
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private ChoiceBox<String> choiceCabinet;
@@ -83,9 +79,6 @@ public class Controller_Admin {
     @FXML
     public ChoiceBox<String> choiceHeadset;
 
-   /* @FXML
-    private TableColumn<Product, String> colID;*/
-
     @FXML
     private TableColumn<Product, String> colName;
 
@@ -100,14 +93,6 @@ public class Controller_Admin {
 
     @FXML
     private TableColumn<Product, String> colType;
-
-    /*public Controller_Admin()
-    {
-        String projectDirectory = System.getProperty("user.dir");
-        String csvFile = projectDirectory + "/Semesteroppg/src/Data/comptypes.csv";
-        cdh.load();
-    }*/
-
 
     @FXML
     private TableView<Product> tableView;
@@ -155,6 +140,7 @@ public class Controller_Admin {
    @FXML
     void btnSaveChanges() throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
      cdh.changeDataFromTableviewToCsvAndSave(data);
+     AlertBox.display("Hør her!", "Din data har blitt lagret :) ");
 
 
     }
@@ -289,21 +275,6 @@ public class Controller_Admin {
     private MenuBar menuBar;
 
     @FXML
-    private Menu menuFile;
-
-    @FXML
-    private Menu  menuHelp;
-
-    @FXML
-    private MenuItem menuClose;
-
-    @FXML
-    private MenuItem menuSwitch;
-
-    @FXML
-    private MenuItem menuGetHelp;
-
-    @FXML
     void closeFromMenu (ActionEvent event){
         btnClose.fire();
 
@@ -311,11 +282,6 @@ public class Controller_Admin {
 
     @FXML
     void switchUser (ActionEvent event){
-
-
-
-
-
         try {
             Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Loginn/Loginn.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
@@ -370,14 +336,8 @@ public class Controller_Admin {
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
-
-
-
-
         AlertBox.display("Hurtighjelp" ,  ut );
     }
-
-
 
     @FXML
     private void resetchoiceBoxes() { //Metode som skal resette valgt element i choiceboksen
@@ -450,9 +410,7 @@ public class Controller_Admin {
         choiceScreen.setItems(ScreenNames);
         choiceScreenCard.setItems(ScreenCardNames);
         choiceHDD.setItems(hddNames);
-
     }
-
 
     @FXML
     private void LoadData(){
@@ -471,18 +429,7 @@ public class Controller_Admin {
             }
         }
 
-
         return kabinettNames;
 
     }
-
-
-
-
-
-
-
-
-
-
 }

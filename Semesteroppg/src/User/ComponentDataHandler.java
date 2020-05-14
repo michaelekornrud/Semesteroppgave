@@ -17,9 +17,7 @@ public class ComponentDataHandler {
         load();
     }
 
-
     public Map<String, List<Products>> load(){  //Metode for å laste inn csv-data, og "mappe" dataen.
-
 
         BufferedReader br = null;
         String currentLine = "";
@@ -27,15 +25,11 @@ public class ComponentDataHandler {
 
         List<String[]> componentData = new ArrayList<>();
         try {
-
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-
                 String[] component = currentLine.split(cvsSplitBy);
                 componentData.add(component);
-
             }
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -50,40 +44,27 @@ public class ComponentDataHandler {
                 }
             }
         }
-
         if (componentData.isEmpty()) {
             return null;
         }
-
         return createChoiceBoxes(componentData);
-
-
     }
 
-
-
     public Map<String, List<Products>>  createChoiceBoxes(List<String[]> componentData) throws ArrayIndexOutOfBoundsException {  //Metode for å laste inn komponenter
-
         Map<String, List<Products>> mappedComponents = new HashMap<>();
 
-
-
         for (String[] component : componentData){
-
-
-            int number = 0;
+            int number = 1;
             String numberToString = String.valueOf(number);
             String name = String.valueOf(component[1]);
             String type = component[5];
             int quantity = 1;
             double price = Double.parseDouble(component[4]);
+            String storageAsString = component[2];
             //Legg til fler om det skal være flere typer
 
             componentQuantity = component[2];
-            int storage = Integer.parseInt(componentQuantity);
-
-
-
+            int storage = Integer.parseInt(storageAsString);
 
             Products prod = new Products(numberToString,name, type, quantity,price,storage);
 
@@ -94,17 +75,10 @@ public class ComponentDataHandler {
             }
 
             compList.add(prod);
-
-
             mappedComponents.put(type, compList);
-
 
         }
         return mappedComponents;
-
-
     }
-
-
 }
 

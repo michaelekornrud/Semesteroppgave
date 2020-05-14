@@ -59,7 +59,4 @@ public class Deviations extends AlertBox {
         }
 
     }
-
-
-
 }

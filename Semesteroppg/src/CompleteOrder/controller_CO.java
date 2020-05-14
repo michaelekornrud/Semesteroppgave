@@ -2,8 +2,6 @@ package CompleteOrder;
 
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
-import User.Products;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import User.controller;
-
-//import static javax.swing.JOptionPane.showMessageDialog;
-
 
 public class controller_CO {
 
@@ -45,13 +37,6 @@ public class controller_CO {
 
     @FXML
     private TextField txtPoststed;
-
-    @FXML
-    private Button btnFullfør;
-
-    @FXML
-    private Button btnTilbake;
-
 
 
     @FXML
@@ -81,8 +66,8 @@ public class controller_CO {
 
             //Denne linjen henter stage info
             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-            PCWindow.setX(500);
-            PCWindow.setY(500);
+            PCWindow.setX(100);
+            PCWindow.setY(100);
             PCWindow.setScene(PCByggingScene);
             PCWindow.setTitle("Build your own PC");
             PCWindow.show();
@@ -93,14 +78,7 @@ public class controller_CO {
             e.printStackTrace();
         }
 
-
-
-
-
-
     }
-
-
 
     public controller_CO()
     {

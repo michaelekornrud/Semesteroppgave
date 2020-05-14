@@ -1,6 +1,6 @@
 package Loginn;
 
-import SleeperThread.SleeperThread;
+import CompleteOrder.AlertBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
@@ -72,6 +71,9 @@ public class controller_login {
                 e.printStackTrace();
             }
         }
+        else {
+            AlertBox.display("Oops!..." , "Feil i brukernavn / passord");
+        }
 
     }
 
@@ -80,7 +82,4 @@ public class controller_login {
         Stage lukkProgram = (Stage) btnLukk.getScene().getWindow();
         lukkProgram.close();
     }
-
-
-
 }

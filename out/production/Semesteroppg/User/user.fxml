@@ -12,11 +12,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="431.0" prefWidth="1268.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.controller">
+<AnchorPane prefHeight="431.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.controller">
     <children>
         <Label layoutX="45.0" layoutY="41.0" text="Bygg  din egen PC">
             <font>
@@ -53,7 +54,10 @@
         <ChoiceBox fx:id="choMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
         <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
         <ChoiceBox fx:id="choHeadphones" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-        <Button fx:id="btnHandlekurv" layoutX="450.0" layoutY="382.0" mnemonicParsing="false" onAction="#Handlekurv" text="Legg til i handlekurv" />
+        <Button fx:id="btnHandlekurv" layoutX="450.0" layoutY="382.0" mnemonicParsing="false" onAction="#Handlekurv" text="Legg til i handlekurv">
+         <tooltip>
+            <Tooltip text="Legger produktene til i handlekurven" />
+         </tooltip></Button>
       <Label layoutX="612.0" layoutY="41.0" prefHeight="17.0" prefWidth="140.0" text="Handlekurv">
          <font>
             <Font size="24.0" />
@@ -65,12 +69,27 @@
       <Label fx:id="lblMva" layoutX="682.0" layoutY="368.0" text="mva  pris" />
       <Label layoutX="617.0" layoutY="342.0" text="Pris: " />
       <Label fx:id="lblPris" layoutX="682.0" layoutY="342.0" text="pris eksl mva." />
-      <Button fx:id="btnLagre" layoutX="1127.0" layoutY="130.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
-      <Button fx:id="btnBetalinig" layoutX="1127.0" layoutY="207.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre" />
-      <Button fx:id="btnRefresh" layoutX="1006.0" layoutY="347.0" mnemonicParsing="false" onAction="#refreshPrice" text="Oppdater priser" />
-      <Button fx:id="btnLukkProgram" layoutX="1127.0" layoutY="244.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt" />
-      <Button fx:id="btnOpenØnskeliste" layoutX="1127.0" layoutY="169.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
-      <TableView fx:id="TVcart" layoutX="617.0" layoutY="104.0" prefHeight="232.0" prefWidth="499.0">
+      <Button fx:id="btnLagre" layoutX="1124.0" layoutY="130.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste">
+         <tooltip>
+            <Tooltip text="Lagrer handlekurven som øsnkeliste" />
+         </tooltip></Button>
+      <Button fx:id="btnBetalinig" layoutX="1124.0" layoutY="207.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre">
+         <tooltip>
+            <Tooltip text="Ferdig?" />
+         </tooltip></Button>
+      <Button fx:id="btnRefresh" layoutX="1009.0" layoutY="346.0" mnemonicParsing="false" onAction="#refreshPrice" text="Oppdater priser">
+         <tooltip>
+            <Tooltip text="Dersom prisen ikke gir mening, trykk her! " />
+         </tooltip></Button>
+      <Button fx:id="btnLukkProgram" layoutX="1124.0" layoutY="244.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt">
+         <tooltip>
+            <Tooltip text="Ferdig da" />
+         </tooltip></Button>
+      <Button fx:id="btnOpenØnskeliste" layoutX="1124.0" layoutY="169.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste">
+         <tooltip>
+            <Tooltip text="Åpne en ønskeliste" />
+         </tooltip></Button>
+      <TableView fx:id="TVcart" layoutX="617.0" layoutY="104.0" prefHeight="232.0" prefWidth="496.0">
         <columns>
           <TableColumn fx:id="colNumber" prefWidth="62.0" text="Number">
             <cellValueFactory>
@@ -78,21 +97,27 @@
             </cellValueFactory>
           </TableColumn>
 
-          <TableColumn fx:id="colName" prefWidth="146.0" text="Navn ">
+          <TableColumn fx:id="colName" prefWidth="179.0" text="Navn ">
               <cellValueFactory>
                   <PropertyValueFactory property="txtName" />
               </cellValueFactory>
           </TableColumn>
 
-            <TableColumn fx:id="colType" prefWidth="138.0" text="Type">
+            <TableColumn fx:id="colType" prefWidth="104.0" text="Type">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtType" />
                 </cellValueFactory>
             </TableColumn>
 
-            <TableColumn fx:id="colQuantity" onEditCommit="#quantityEdited" prefWidth="48.0" text="Antall">
+            <TableColumn fx:id="colQuantity" onEditCommit="#quantityEdited" prefWidth="64.0" text="Antall">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtQuantity" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn fx:id="colPrice" prefWidth="77.0" text="Pris pr. stykk">
+                <cellValueFactory>
+                    <PropertyValueFactory property="txtPrice" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn fx:id="colStorage" prefWidth="75.0" text="Storage" visible="false">
@@ -100,18 +125,18 @@
                     <PropertyValueFactory property="txtStorage" />
                 </cellValueFactory>
             </TableColumn>
-
-            <TableColumn fx:id="colPrice" prefWidth="92.0" text="Pris pr. stykk">
-                <cellValueFactory>
-                    <PropertyValueFactory property="txtPrice" />
-                </cellValueFactory>
-            </TableColumn>
         </columns>
       </TableView>
-      <Button fx:id="btnDelete" layoutX="906.0" layoutY="347.0" mnemonicParsing="false" onAction="#deleteRow" text="Fjern produkt" />
-      <Button fx:id="btnReset" layoutX="45.0" layoutY="382.0" mnemonicParsing="false" onAction="#resetChoiceBoxes" text="Start på nytt" />
-      <TextField fx:id="txtFiltered" layoutX="957.0" layoutY="75.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
-      <Label layoutX="917.0" layoutY="79.0" text="Filtrer:" />
+      <Button fx:id="btnDelete" layoutX="907.0" layoutY="346.0" mnemonicParsing="false" onAction="#deleteRow" text="Fjern produkt">
+         <tooltip>
+            <Tooltip text="Fjerner markert produkt fra handlekurven" />
+         </tooltip></Button>
+      <Button fx:id="btnReset" layoutX="45.0" layoutY="382.0" mnemonicParsing="false" onAction="#resetChoiceBoxes" text="Start på nytt">
+         <tooltip>
+            <Tooltip text="Tilbakestiller alt!" />
+         </tooltip></Button>
+      <TextField fx:id="txtFiltered" layoutX="952.0" layoutY="74.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
+      <Label layoutX="907.0" layoutY="78.0" text="Filtrer:" />
       <MenuBar fx:id="menuBar" layoutX="3.0" opacity="0.98">
         <menus>
           <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
@@ -130,6 +155,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <tooltip>
+            <Tooltip text="Elementære funksjoner" />
+         </tooltip>
       </MenuBar>
     </children>
    <opaqueInsets>

@@ -1,13 +1,9 @@
 package User;
 
 import CompleteOrder.AlertBox;
-import CompleteOrder.Deviations;
 import Exceptions.InvalidQuantityException;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -97,11 +93,6 @@ public class controller extends Controller_ProductWindow {
     @FXML
     private Button btnHandlekurv;
 
-    @FXML
-    private Button btnLagre;
-
-    @FXML
-    private Button btnBetaling;
 
     @FXML
     private Button btnRefresh;
@@ -111,12 +102,6 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     private Button btnLukkProgram;
-
-    @FXML
-    private Button btnDelete;
-
-    @FXML
-    private Button btnOpenØnskeliste;
 
     @FXML
     private TableView<Products> TVcart;
@@ -152,11 +137,6 @@ public class controller extends Controller_ProductWindow {
     private Label lblTotPris;
     int sum = 0;
 
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         addNewProduct.attachToTableView(TVcart);
@@ -171,9 +151,6 @@ public class controller extends Controller_ProductWindow {
         btnRefresh.fire();
 
         colQuantity.setOnEditCommit(event1 -> {
-
-        ///////////////Spar på denne!! //////////////
-
         int index = TVcart.getSelectionModel().getSelectedIndex();
         int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
 
@@ -201,21 +178,6 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     private MenuBar menuBar;
-    
-    @FXML
-    private Menu menuFile;
-
-    @FXML
-    private Menu  menuHelp;
-
-    @FXML
-    private MenuItem menuClose;
-
-    @FXML
-    private MenuItem menuSwitch;
-
-    @FXML
-    private MenuItem menuGetHelp;
 
     @FXML
     void closeFromMenu (ActionEvent event){
@@ -225,11 +187,6 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void switchUser (ActionEvent event){
-
-
-
-
-
          try {
             Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Loginn/Loginn.fxml")));
              Scene PCByggingScene = new Scene(PCByggingParent);
@@ -284,28 +241,16 @@ public class controller extends Controller_ProductWindow {
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
-
-
-
-
         AlertBox.display("Hurtighjelp" ,  ut );
     }
 
     public int checkStorage (int inValue) throws InvalidQuantityException {
-        int check = 0;
+
         int index = TVcart.getSelectionModel().getSelectedIndex();
         int number = colStorage.getCellObservableValue(index).getValue();
         for (int i = 0; i < TVcart.getItems().size(); i++){
-            try {
-                check = Integer.parseInt(String.valueOf(TVcart.getColumns().get(5).getCellObservableValue(i++).getValue()));
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
 
-            System.out.println("checkStorage int check: " + check);
             System.out.println("CheckStorage. number: " + number);
-
 
             if(inValue > number){
                 AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + number + " av denne varen på lager.");
@@ -358,11 +303,6 @@ public class controller extends Controller_ProductWindow {
         btnHandlekurv.setDisable(false);
     }
 
-
-    /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
-
-
-
     public controller() throws FileNotFoundException {
         super();
     }
@@ -383,7 +323,6 @@ public class controller extends Controller_ProductWindow {
         int mva = (sum * 25)/ 100;
         int pris = sum - mva;
 
-        //String newPrice = String.valueOf(sum);
         System.out.println(sum);
 
         lblPris.setText((pris + ".00"));
@@ -393,17 +332,7 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
-
-
-
-
-
-
-
-       //ProductValidator.testIfProductsIsEmty(number); //For å sjekke om det er nok antall av produktet.
-
-
-       TVcart.refresh();
+        TVcart.refresh();
 
     }
 
@@ -415,37 +344,17 @@ public class controller extends Controller_ProductWindow {
         System.out.println(productChosen);
         String  type = String.valueOf(productChosen.get(2));
         System.out.println(type);
-       /* for(type : productChosen){
 
-        }*/
         allProducts.removeAll(productChosen);
-        /*Mulig denne trengs for å resete choiceboks når et produkt blir fjernet
-        String str = TVcart.getColumns().get(2).getCellObservableValue().getValue();
-         */
-
         btnRefresh.fire();
-
-
-
     }
-
-
-
-
 
     //Oppretter en liste hvor komponent-data blir lagret
     //Denne listen ligger som public utenfor Handlekurv-metoden for at jeg skal få tilgang til den til filtrening.
     public static ObservableList<Products> observableList = FXCollections.observableArrayList();
 
-   /* private int counter = 0;
-    public int counter (int counter){
-        this.counter = counter++;
-        System.out.println(counter);
-        return counter;
-    }*/
-
     @FXML
-    void Handlekurv (ActionEvent event) throws IOException {
+    void Handlekurv (ActionEvent event) throws IOException, NullPointerException {
 
 
         task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
@@ -476,13 +385,6 @@ public class controller extends Controller_ProductWindow {
         String keyborad = choKeyboard.getSelectionModel().getSelectedItem();
         String mouse = choMouse.getSelectionModel().getSelectedItem();
         String headphones = choHeadphones.getSelectionModel().getSelectedItem();
-
-
-
-
-
-
-
 
         int counter = 1;
 
@@ -631,32 +533,37 @@ public class controller extends Controller_ProductWindow {
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
-                //param.getValue();
-                //return param.getValue().numberProperty();
                 return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");
 
             }
         });    
 
-        for(int i = 0; i <=15; i++){
+        for(int i = 0; i <=14; i++){
             if(!choCabinet.getItems().isEmpty() && !choMotherboard.getItems().isEmpty() && !choProcessor.getItems().isEmpty()
             && !choGraphicscard.getItems().isEmpty() && !choMemory.getItems().isEmpty() && !choPowersupply.getItems().isEmpty()
             && !choHDD.getItems().isEmpty() && !choSSD.getItems().isEmpty() && !choCPUfan.getItems().isEmpty() && !choFans.getItems().isEmpty()
             && !choCasemods.getItems().isEmpty() && !choMonitor.getItems().isEmpty() && !choKeyboard.getItems().isEmpty() && !choMouse.getItems().isEmpty()
             && !choHeadphones.getItems().isEmpty()){
 
-                String number = colNumber.getCellObservableValue(i).getValue();
+                try{
+                String number = String.valueOf(colNumber.getCellObservableValue(i).getValue());
                 String name  = colName.getCellObservableValue(i).getValue();
                 String type = colType.getCellObservableValue(i).getValue();
                 int quantity = colQuantity.getCellObservableValue(i).getValue();
                 int sotrage = colStorage.getCellObservableValue(i).getValue();
                 String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
+
+
                 Double price = Double.parseDouble(priceAsString);
 
                 Products newProducts = new Products(number,name,type,quantity,price, sotrage);
                 CartRegister.addElement(newProducts);
             }
-            //resetChoiceBoxes(event);
+                catch (NullPointerException e){
+                    e.getSuppressed();
+                }
+
+                }
         }
         btnRefresh.fire();
         colNumber.setSortable(false);
@@ -664,7 +571,6 @@ public class controller extends Controller_ProductWindow {
     }
 
     public Products getProductNames(String typeName) {
-
         for (List<Products> cartList : data.values()){
             for (Products products : cartList){
                 if(products.getTxtName().equals(typeName)){
@@ -739,9 +645,6 @@ public class controller extends Controller_ProductWindow {
             TVcart.getItems().clear();
         }
         btnRefresh.fire();
-
-
-
     }
 
     @FXML
@@ -854,6 +757,14 @@ public class controller extends Controller_ProductWindow {
         List<Products> list = ReadFromFile.openFile(filePath);
         refreshPrice(event);
 
+
+        colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() { 
+            @Override                                                                                                           
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
+                return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");                        
+                                                                                                                                
+            }                                                                                                                   
+        });                                                                                                                     
     }
 
     @FXML

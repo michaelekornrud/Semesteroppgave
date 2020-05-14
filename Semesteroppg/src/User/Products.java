@@ -41,9 +41,6 @@ public class Products {
         return txtQuantity.getValue();
     }
     public void setTxtQuantity(int txtQuantity){
-        /*if(txtQuantity < 1 || txtQuantity > Integer.parseInt(ComponentDataHandler.componentQuantity)){
-            throw new IllegalArgumentException("Verdien kan ikke være negativ");
-        }*/
         this.txtQuantity.set(txtQuantity);
     }
     public IntegerProperty quantityProperty(){return this.txtQuantity;}
