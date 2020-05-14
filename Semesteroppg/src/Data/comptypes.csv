@@ -1,24 +1,50 @@
-8e3484aa-5e0e-45a9-a9e2-91d1d4f65f13;CaseTest;5;CaseMerke;600.0;Casemods
-9c2e7d25-1a1c-488f-9490-2d5aa5c9cf59;Kabtest;5;Merke;500.0;Kabinett
-b56d98f0-5681-40ad-adc1-cdc128a087d5;Casetest;5;Merke;600.0;Casemods
-b63acab9-241d-4bc1-be7e-b87477639f52;CPUtest;500;Merke;500.0;CPU-vifte
-b83a1261-aa75-4577-bf10-d9abcf97d83a;HDDtest;5;Merke;500.0;HDD
-8d2ff97e-a421-438a-9542-375f77865682;Harddisktest;5;Merke;500.0;Harddisk
-0249b1bb-48fa-46b5-81dd-ce8197e17852;Hodetelefonertest;5;merke;500.0;Hodetelefoner
-ef794264-5f30-4dff-b769-d23d2dc48763;Minnetest;5;merke;500.0;Minne
-9604917e-e368-46f3-898c-970d1f16a069;Mustest;5;Merke;500.0;Mus
-1fb831a9-b26d-4d55-8acd-b1f5bad7b1b4;Viftetest;5;merke;500.0;Vifter
-46f6f21e-fe8f-4808-8145-2ce0055241bf;Videokort;500;Merke;500.0;Videokort
-b721f041-1430-4474-acd4-35b861aa480d;CPUJesus;50;Merke;750.0;CPU-vifte
-6d578699-ebe0-41ca-b639-c58bddae346a;ProsessorNavn;50;Merke;750.0;Prosessor
-21d79231-d9c3-4960-aae1-269712f3bea9;Kabinett;50;Merke;30.0;Kabinett
-1441a957-d4f1-420e-a500-01da5f6ba944;Bose;60;Merke;733.0;Hodetelefoner
-7b90c76d-9c73-469b-94e4-8a9d685bbc8e;Memory;789;Merke;890.0;Minne
-4ab107bb-5f7d-40d1-b6b8-f36df477eaa3;JesusVifter;70;Merke;300.0;Vifter
-806be2d3-2700-4654-8bf9-8a9a5cd02eef;MasterYoda;50;Merke;750.0;Tastatur
-9eaedb46-389e-425c-9b18-a1d073824e94;PussyMaster;69;Ferrari;800.0;Mus
-a4e97223-6374-4b27-81de-5f6ba78ca2b4;Jesus;60;Merke;900.0;Prosessor
-bba5bde5-227b-45b0-872b-7942c367312d;JesusKristus;80;Merke;900.0;Hovedkort
-637a2ea4-c511-4594-905b-9ecde0e4b36f;Merke;9;merke;899.0;Harddisk
-a362ec1c-ecb4-43d0-ace2-ad35f4555024;HK;70;Merke;900.0;Hovedkort
-8584aedd-d013-4566-96d1-65efd707e1b8;Jesus;9;Merke;900.0;HDD
+9381e7ae-9225-4fbe-a16f-f236edfba7f5;Samsung 970EVO;10;Samsung;5909.0;Harddisk
+e05581b8-613c-4e55-ae9d-6bda25181308;Noctua NHD15;49;Noctua;999.0;Harddisk
+da0b506a-f425-461b-a5af-cea0c1bba527;Noctua NHD9L;20;Noctua;649.0;Harddisk
+ff911e53-d0e0-4bae-9019-12a4cc1dc066;C7 CPU;34;CRYORIG;413.0;CPU-vifte
+6278d019-f1e6-410b-b1f1-8aab3d35183f;Predator 16GB;100;Hyperx;1257.0;Minne
+f9ae303c-e0be-46f5-87db-b0b9509769e8;Trident 32GB;100;GSkill;2749.0;Minne
+f3312737-f363-4dae-89d0-888bd5eb8f70;Impact 32GB;100;Hyperx;2000.0;Minne
+2bfe107b-f885-49d6-a8a8-cd4e946029c4;Fury 16GB;500;Hyperx;995.0;Minne
+edb23f47-82a3-4140-9889-51ed2a2d9f1c;Rysen 3700X;90;AMD;14999.0;HDD
+eeefc6a0-095c-48ac-97ab-165d2d487a0e;GTX 1660 Super;80;ProGamer;12999.0;HDD
+adaa555b-bbd8-4fb5-9dc1-abcc1b630dee;Ryzen 5;10;EntryGames;8999.0;HDD
+edbe7aa1-7ee3-4086-8c68-999a414a39a2;Be quiet;10;PureWings;139.0;Casemods
+75f186ec-66db-4882-8d1a-1be9305cf1e7;MF200R;10;CoolerMaster;207.0;Casemods
+61c550f1-3da5-48fd-b355-f50828afa426;AF120;10;Corsair;399.0;Casemods
+f8dbc743-3f03-4c61-848e-ff482a7224d4;iiglo M610;100;iiglo;299.0;Mus
+c875f568-4392-4267-be55-892122d608b7;CadMouse Wireless;100;CadMouse;1499.0;Mus
+5f99e7e8-2969-4026-a044-91f93821c27e;Log M545;50;Logitech;489.0;Mus
+8063b50e-fee1-4843-b1d8-9858b43a1ef3;Micro Arc;500;Microsoft;800.0;Mus
+2965f0b5-4da0-44a9-a064-b38bddaa2b15;Corsair Force;10;Corsair;1315.0;CPU-vifte
+d916f76d-88f4-4b76-bddf-6a7311f6e58d;Corsair MP600;25;Corsair;3162.0;CPU-vifte
+0c35063c-ca1e-4269-93bb-460d651177ae;ASUS Radeon RX;25;ASUS;4099.0;Videokort
+ffa18f64-9d32-4b36-80ee-7240a7406e6e;Sapphire Readon;60;Sapphire;3299.0;Videokort
+899d8faf-50f9-4af3-915e-3ffcfb2fd3f1;ASUS GeForce;70;ASUS;3839.0;Videokort
+dd70473c-029e-42d6-b377-b2feb0478f2d;GeForce ;45;ZOTAC;10359.0;Videokort
+39117d13-eac4-4f10-9f75-8099fc29bea6;MX Keys adv;50;Logitech;1299.0;Tastatur
+276a9b29-6c4c-4c1b-899c-8068117910e2;Craft adv WL;10;Logitech;1990.0;Tastatur
+9dffac2b-5c0e-48c4-bba1-bcba9f3a128f;Apple Magic;10;Apple;1819.0;Tastatur
+4190438b-ffb2-4c9d-827b-14d529fd5c16;Focus GX 750W;10;Seasonic;1500.0;Energitilførsel
+ff60a48c-ff8a-47d6-a477-7ceb8a510cbb;RM650X;5;Corsair;1399.0;Energitilførsel
+dca26098-3f9c-40fe-97cd-a51ae2e8792c;MasterWatt 600W;10;Corsair;1450.0;Energitilførsel
+9631b62f-c56b-4074-a494-ae13d4a48c55;Phil TAPH805;10;Philips;1790.0;Hodetelefoner
+48629e81-d40b-4dca-8208-504ee2b097cc;JBL T750;10;JBL;1290.0;Hodetelefoner
+413aa1d4-2524-4ced-92e1-db0824ca1664;PRO T5P;9;Beyerdynamic;8990.0;Hodetelefoner
+fb221fad-83a5-48bf-b606-4300abfea84b;Cooler SF360R;5;MasterFan;499.0;Vifter
+9c72556d-2d17-4dab-8a9c-4d89b3a244ae;LC 360RGB;40;Asus;2799.0;Vifter
+2661907c-35e9-41af-9491-8fb55ce5ec0b;DeepCool;20;Captain;1499.0;Vifter
+bd20760f-fa60-449f-a0af-ae64aa3d554f;MSI Optix 24;10;MSI;2690.0;Skjerm
+1dab1318-b79f-4641-8fe5-08df24360c54;Samsung 27LED;10;Samsung;1995.0;Skjerm
+cb899d31-abfc-4afc-8e51-cdd54e791ded;Samsung 49LED;10;Samsung;10199.0;Skjerm
+2b5611e0-aa02-4bd4-b99b-4065f2cb5d2a;Asus ROG;5;Asus;1549.0;Hovedkort
+39344d4c-5185-4c8b-afd1-05784833abf6;AMD Ryzen;20;AMD;5278.0;Hovedkort
+4a2a2fe0-97e4-4eb1-a08a-a410028a3820;Intel Core I5;60;IntelCore;3099.0;Prosessor
+62a6f93d-2648-4e6d-b47b-48c5f71b33ff;AMD Athol 3000G;40;AMD;599.0;Prosessor
+59782fd1-e1b1-48f8-8684-e1932fd32a83;Intel Xeon W2155;5;IntelXeon;15249.0;Prosessor
+e4d4e89d-8e88-41b2-8389-9f5148f443ab;Define 7XL;10;Fractal;2699.0;Kabinett
+b7dbe2b1-035b-42da-826c-ea2e8cbd76ec;Carbide 750Q;6;Corsair;890.0;Kabinett
+0cb3f8b0-2096-4626-8879-259a8b315623;ICUE Airflow;8;Corsair;1077.0;Kabinett
+7c40d96f-dda1-4a06-acaa-096efddd9263;ICUE 220T;10;Corsair;1299.0;Kabinett
+04c56f61-692c-4349-83a3-4a77369604eb;ScreenCart X55;50;SCMaster;2900.0;Skjermkort
+24920284-ca5e-4650-a7fa-b6d0f0c1929e;SC X900;50;Logitech;700.0;Skjermkort

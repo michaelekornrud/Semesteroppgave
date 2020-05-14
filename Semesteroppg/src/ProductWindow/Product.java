@@ -12,8 +12,6 @@ public class Product {
     private SimpleDoubleProperty txtPrice;
 
 
-
-
     public Product(String productNumber, String name, int numberOfProducts , String brand, double price, String type){
         if (name != null && brand != null && numberOfProducts > 0 && price > 0 ){
             this.txtProductNumber = new SimpleStringProperty(productNumber);
@@ -23,10 +21,7 @@ public class Product {
             this.txtPrice = new SimpleDoubleProperty(price);
             this.txtType = new SimpleStringProperty(type);
         }
-
     }
-
-
     public String getTxtProductName(){return txtProductName.getValue();}
     public void setTxtProductName(String txtProductName){this.txtProductName = new SimpleStringProperty(txtProductName);}
 
@@ -46,9 +41,6 @@ public class Product {
     public String getTxtType(){return txtType.getValue();}
     public void setTxtType(String txtType){this.txtType.set(txtType);}
 
-    public void decreaseNumberOfProducts(int amount){ //subtraherer amount of products
-        this.txtNumberOfProducts.subtract(amount);
-    }
 
     public String toString(){
         return String.format("%s;%s;%s;%s;%s;%s"+"\n", getTxtProductNumber(),getTxtProductName() ,getTxtNumberOfProducts() ,getTxtBrand() ,getTxtPrice(), getTxtType());

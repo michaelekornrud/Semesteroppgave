@@ -258,7 +258,7 @@ public class Controller_Admin {
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Produkt slettet!");
-                alert.setHeaderText("Produktet " +selectedName+ " er nå slette fra lageret.");
+                alert.setHeaderText("Produktet " +selectedName+ " er nå slettet fra lageret.");
                 alert.showAndWait();
             }
         }

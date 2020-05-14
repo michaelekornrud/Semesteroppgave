@@ -11,12 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -40,7 +36,6 @@ public class Controller_ProductWindow implements Initializable {
     @FXML
     private TextField txtProductName;
 
-
     @FXML
     private TextField txtNumberOfProducts;
 
@@ -52,7 +47,6 @@ public class Controller_ProductWindow implements Initializable {
 
     @FXML
     private TextField txtPrice;
-
 
 
     @FXML
@@ -117,7 +111,6 @@ public class Controller_ProductWindow implements Initializable {
                                 ,ProductValidator.testProductBrand(brand)
                                 ,ProductValidator.testPrice(price)
                                 ,ProductValidator.testProductType(value));
-
     }
 
     @FXML

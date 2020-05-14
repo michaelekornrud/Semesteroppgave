@@ -17,8 +17,6 @@ import java.util.Objects;
 
 public class controller_login {
 
-    private SleeperThread task;
-
     @FXML
     private TextField txtBrukernavn;
 
@@ -26,11 +24,7 @@ public class controller_login {
     private PasswordField txtPassord;
 
     @FXML
-    private Button btnLogInn;
-
-    @FXML
     private Button btnLukk;
-
 
 
     @FXML
@@ -77,12 +71,10 @@ public class controller_login {
             }
         }
 
-
-
     }
 
     @FXML
-    void LukkProgram (ActionEvent event){
+    void LukkProgram(){
         Stage lukkProgram = (Stage) btnLukk.getScene().getWindow();
         lukkProgram.close();
     }

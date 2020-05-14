@@ -2,7 +2,6 @@ package ProductWindow;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 
 public class ProductRegister {
 
