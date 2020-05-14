@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.text.BadLocationException;
@@ -44,6 +45,9 @@ public class controller extends Controller_ProductWindow {
     ComponentDataHandler cdh = new ComponentDataHandler();
     private Map<String, List<Products>> data;
     private SleeperThread task;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ChoiceBox<String> choCabinet;
@@ -171,6 +175,8 @@ public class controller extends Controller_ProductWindow {
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
         colStorage.setCellValueFactory((cellData -> cellData.getValue().storageProperty().asObject()));
 
+
+
     }
 
 
@@ -189,7 +195,7 @@ public class controller extends Controller_ProductWindow {
             Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Loginn/Loginn.fxml")));
              Scene PCByggingScene = new Scene(PCByggingParent);
 
-             AlertBox.display("Advarsel!", "Du logger nå ut");
+             AlertBox.display("Advarsel!", "Du logger nå ut", 1000);
 
              //Denne linjen henter stage info
              Stage PCWindow = (Stage) menuBar.getScene().getWindow();
@@ -238,7 +244,7 @@ public class controller extends Controller_ProductWindow {
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
-        AlertBox.display("Hurtighjelp" ,  ut );
+        AlertBox.display("Hurtighjelp" ,  ut, 0 );
     }
 
     public int checkStorage (int inValue) throws InvalidQuantityException {
@@ -248,12 +254,12 @@ public class controller extends Controller_ProductWindow {
         for (int i = 0; i < TVcart.getItems().size(); i++){
 
             if(inValue > number){
-                AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + number + " av denne varen på lager.");
+                AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + number + " av denne varen på lager.", 300);
 
                 inValue = 1;
             }
             else if (inValue < 1){
-                AlertBox.display("Oops!..." ,"Antallet kan ikke være mindre enn 1");
+                AlertBox.display("Oops!..." ,"Antallet kan ikke være mindre enn 1", 300);
                 inValue = 1;
             }
             else{
@@ -346,16 +352,7 @@ public class controller extends Controller_ProductWindow {
     void Handlekurv (ActionEvent event) throws NullPointerException {
 
 
-        task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
-        task.setOnSucceeded(this::threadDone);
-        task.setOnFailed(this::threadFailed);
-
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        btnHandlekurv.setDisable(true);
-        thread.start();
-        Alert.show("Laster..." , "Vent mens produktene lastes til handlekurven");
+        AlertBox.display("Laster..." , "Vent mens produktene lastes til handlekurven", 500);
 
 
         //Henter valgt komponent fra choiceboxene

@@ -1,5 +1,7 @@
 package CompleteOrder;
 
+import SleeperThread.SleeperThread;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,9 +14,10 @@ import javafx.stage.Stage;
 
 
 public class AlertBox {
+    private static SleeperThread task;
+    private static Button lukkBox = new Button("Lukk");
+    public static void display(String title, String message, int value){
 
-
-    public static void display(String title, String message){
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -28,9 +31,26 @@ public class AlertBox {
         label.setPadding(new Insets(10));
         label.setFont(new Font("Times New Roman", 16));
 
+        task = new SleeperThread(value);
+        task.setOnSucceeded(e -> {
+            lukkBox.setDisable(false);
+            lukkBox.setText("Lukk");
+        });
+        task.setOnFailed(e -> {
+            lukkBox.setDisable(false);
+            lukkBox.setText("Lukk");
+        });
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        lukkBox.setDisable(true);
+        lukkBox.setText("Vent...");
+        thread.start();
 
-        Button lukkBox = new Button("Lukk");
-        lukkBox.setOnAction(e -> window.close());
+
+        lukkBox.setOnAction(e -> {
+            window.close();
+        });
+
 
 
 
@@ -49,4 +69,8 @@ public class AlertBox {
 
 
     }
+
+
+
+
 }

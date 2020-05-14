@@ -6,7 +6,7 @@ import javafx.concurrent.Task;
 public class SleeperThread extends Task<Integer> {
     private final int value;
 
-    public SleeperThread(int value, String msg, String title){
+    public SleeperThread(int value){
         this.value = value;
     }
 

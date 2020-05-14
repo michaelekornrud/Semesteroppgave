@@ -57,7 +57,7 @@ public class controller_CO {
 
         String ut = "Ordren blir sendt til:" + "\n" + firstname + " " + lastname + "\n" + adress + "\n" + post + " " + city;
 
-        AlertBox.display("Fullført", ut);
+        AlertBox.display("Fullført", ut, 1000);
 
         try {
             Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
@@ -65,8 +65,7 @@ public class controller_CO {
 
             //Denne linjen henter stage info
             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-            PCWindow.setX(100);
-            PCWindow.setY(100);
+            PCWindow.centerOnScreen();
             PCWindow.setScene(PCByggingScene);
             PCWindow.setTitle("Build your own PC");
             PCWindow.show();

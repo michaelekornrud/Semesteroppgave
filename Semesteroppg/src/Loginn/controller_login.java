@@ -37,16 +37,15 @@ public class controller_login {
         checkUser = txtBrukernavn.getText();
         checkPW = txtPassord.getText();
         if(checkUser.equals(adminUser) && checkPW.equals(adminPW)){
-
+            AlertBox.display("Velkommen!", "I dette programmen kan du kofigurere din egen PC etter dine behov\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
             try {
                 Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info
                 Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-                PCWindow.setX(100);
-                PCWindow.setY(100);
                 PCWindow.setScene(PCByggingScene);
+                PCWindow.centerOnScreen();
                 PCWindow.setTitle("Build your own PC");
                 PCWindow.show();
             }
@@ -55,14 +54,14 @@ public class controller_login {
             }
         }
         else if (checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
+            AlertBox.display("Velkommen!", "I dette programmen kan du kofigurere din egen PC etter dine behov\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
             try {
                 Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
 
                 //Denne linjen henter stage info
                 Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-                PCWindow.setX(100);
-                PCWindow.setY(100);
+                PCWindow.centerOnScreen();
                 PCWindow.setScene(PCByggingScene);
                 PCWindow.setTitle("Build your own PC");
                 PCWindow.show();
@@ -72,7 +71,7 @@ public class controller_login {
             }
         }
         else {
-            AlertBox.display("Oops!..." , "Feil i brukernavn / passord");
+            AlertBox.display("Oops!..." , "Feil i brukernavn / passord",500);
         }
 
     }

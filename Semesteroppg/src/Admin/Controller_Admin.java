@@ -134,12 +134,13 @@ public class Controller_Admin {
 
 
         tableView.refresh();
+        AlertBox.display("Velkommen!", "Velkommen\nI dette programmet kan du konfigurere din egen PC etter dine egne behov.",300);
     }
 
    @FXML
     void btnSaveChanges() throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
      cdh.changeDataFromTableviewToCsvAndSave(data);
-     AlertBox.display("Hør her!", "Din data har blitt lagret :) ");
+     AlertBox.display("Hør her!", "Din data har blitt lagret :) ", 500);
 
        try {
            resetchoiceBoxes();
@@ -296,7 +297,7 @@ public class Controller_Admin {
             Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Loginn/Loginn.fxml")));
             Scene PCByggingScene = new Scene(PCByggingParent);
 
-            AlertBox.display("Advarsel!", "Du logger nå ut");
+            AlertBox.display("Advarsel!", "Du logger nå ut", 1000);
 
             //Denne linjen henter stage info
             Stage PCWindow = (Stage) menuBar.getScene().getWindow();
@@ -346,7 +347,7 @@ public class Controller_Admin {
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
-        AlertBox.display("Hurtighjelp" ,  ut );
+        AlertBox.display("Hurtighjelp" ,  ut , 500);
     }
 
     @FXML
