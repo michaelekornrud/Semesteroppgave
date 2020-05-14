@@ -154,8 +154,6 @@ public class controller extends Controller_ProductWindow {
         int index = TVcart.getSelectionModel().getSelectedIndex();
         int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
 
-        System.out.println("Index: " + index);
-        System.out.println("Number: " + number);
         if(index == number -1){
             event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(checkStorage(event1.getNewValue()));
             btnRefresh.fire();
@@ -249,8 +247,6 @@ public class controller extends Controller_ProductWindow {
         int number = colStorage.getCellObservableValue(index).getValue();
         for (int i = 0; i < TVcart.getItems().size(); i++){
 
-            System.out.println("CheckStorage. number: " + number);
-
             if(inValue > number){
                 AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + number + " av denne varen på lager.");
 
@@ -315,14 +311,10 @@ public class controller extends Controller_ProductWindow {
             int quantity = Integer.parseInt(String.valueOf(colQuantity.getCellObservableValue(price).getValue()));
             Double newPrice = quantity * priceUpdated;
             sum += newPrice;
-            System.out.println("Quantity" + quantity);
-            System.out.println("PriceUpdated: " + priceUpdated);
         }
 
         int mva = (sum * 25)/ 100;
         int pris = sum - mva;
-
-        System.out.println(sum);
 
         lblPris.setText((pris + ".00 kr,-"));
         lblMva.setText(mva + ".00 kr,-");
@@ -340,9 +332,7 @@ public class controller extends Controller_ProductWindow {
         ObservableList<Products> productChosen, allProducts;
         allProducts = TVcart.getItems();
         productChosen = TVcart.getSelectionModel().getSelectedItems();
-        System.out.println(productChosen);
         String  type = String.valueOf(productChosen.get(2));
-        System.out.println(type);
 
         allProducts.removeAll(productChosen);
         btnRefresh.fire();
@@ -527,7 +517,7 @@ public class controller extends Controller_ProductWindow {
         //Sender komponentene til handlekurven
         TVcart.setItems(observableList);
         totalPrice(TVcart,lblTotPris);
-        System.out.println(observableList);
+
 
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
@@ -737,8 +727,6 @@ public class controller extends Controller_ProductWindow {
                 System.err.println("Noe gikk galt");
             }
         }
-
-
     }
 
     @FXML
@@ -785,8 +773,6 @@ public class controller extends Controller_ProductWindow {
         lukkProgram.close();
 
     }
-
-
 }
 
 

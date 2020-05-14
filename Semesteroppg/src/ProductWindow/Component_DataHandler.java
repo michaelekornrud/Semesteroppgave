@@ -58,7 +58,6 @@ public class Component_DataHandler {
         try {
             br = new BufferedReader(new FileReader(csvFile));
             while ((currentLine = br.readLine()) != null) {
-                System.out.println(currentLine);
                 String[] component = currentLine.split(cvsSplitBy);
                 componentData.add(component);
             }
