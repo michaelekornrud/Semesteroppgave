@@ -45,6 +45,8 @@ public class controller_login {
 
                 //Denne linjen henter stage info
                 Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+                PCWindow.setX(100);
+                PCWindow.setY(100);
                 PCWindow.setScene(PCByggingScene);
                 PCWindow.setTitle("Build your own PC");
                 PCWindow.show();
@@ -60,8 +62,8 @@ public class controller_login {
 
                 //Denne linjen henter stage info
                 Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-                PCWindow.setX(500);
-                PCWindow.setY(500);
+                PCWindow.setX(100);
+                PCWindow.setY(100);
                 PCWindow.setScene(PCByggingScene);
                 PCWindow.setTitle("Build your own PC");
                 PCWindow.show();

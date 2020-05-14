@@ -1,9 +1,13 @@
 package User;
 
 import CompleteOrder.AlertBox;
+import CompleteOrder.Deviations;
 import Exceptions.InvalidQuantityException;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,11 +25,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import javax.swing.text.BadLocationException;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -105,7 +107,7 @@ public class controller extends Controller_ProductWindow {
     private Button btnRefresh;
 
     @FXML
-    private Button btnReset;
+    public Button btnReset;
 
     @FXML
     private Button btnLukkProgram;
@@ -153,6 +155,8 @@ public class controller extends Controller_ProductWindow {
 
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         addNewProduct.attachToTableView(TVcart);
@@ -164,6 +168,7 @@ public class controller extends Controller_ProductWindow {
         TVcart.setItems(observableList);
         TVcart.setEditable(true);
         colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToStringParse()));
+        btnRefresh.fire();
 
         colQuantity.setOnEditCommit(event1 -> {
 
@@ -173,7 +178,6 @@ public class controller extends Controller_ProductWindow {
         int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
 
         System.out.println("Index: " + index);
-        //System.out.println("Prod: " + prod);
         System.out.println("Number: " + number);
         if(index == number -1){
             event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(checkStorage(event1.getNewValue()));
@@ -192,6 +196,99 @@ public class controller extends Controller_ProductWindow {
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
         colStorage.setCellValueFactory((cellData -> cellData.getValue().storageProperty().asObject()));
 
+    }
+
+
+    @FXML
+    private MenuBar menuBar;
+    
+    @FXML
+    private Menu menuFile;
+
+    @FXML
+    private Menu  menuHelp;
+
+    @FXML
+    private MenuItem menuClose;
+
+    @FXML
+    private MenuItem menuSwitch;
+
+    @FXML
+    private MenuItem menuGetHelp;
+
+    @FXML
+    void closeFromMenu (ActionEvent event){
+        btnLukkProgram.fire();
+
+    }
+
+    @FXML
+    void switchUser (ActionEvent event){
+
+
+
+
+
+         try {
+            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("Loginn/Loginn.fxml")));
+             Scene PCByggingScene = new Scene(PCByggingParent);
+
+             AlertBox.display("Advarsel!", "Du logger nå ut");
+
+             //Denne linjen henter stage info
+             Stage PCWindow = (Stage) menuBar.getScene().getWindow();
+             PCWindow.setTitle("Build your own PC");                                                                                                              
+             PCWindow.setScene(PCByggingScene);
+             PCWindow.show();
+         }
+         catch (IOException e){
+             e.printStackTrace();
+         }
+
+    }
+
+    @FXML
+    void programHelp (ActionEvent event){
+
+        String ut = "Brukerveiledning: " +
+                "\nLogin vindu: " +
+                "\nBrukernavn 1: user Passord 1 : user " +
+                "\nBrukernavn 2: adminPassord 2: admin "   +
+                "\n-------------------------------------------------------------------------------------------------------------------------------------------------" +
+                "\nLogin som user: " +
+                "\nKnappenes funksjon:" +
+                "\n“legg til i handlekurv”: Her velger brukeren hvilke komponenter den ønsker, og dette blir lagt til å handlekurven " +
+                "\n(tableview)med antall = 1: Ønsker brukeren flere av samme komponent, kan den enten trykke på knappen en gang til " +
+                "\nmed samme produkt valgt, eller redigere antall direkte i handlekurven." +
+                "\n“Fjern produkt”: Her kan brukeren trykke på et produkt i handlekurven, og fjerne produktet derfra." +
+                "\n“Oppdater priser”: Hvis ikke prisene automatisk oppdateres når brukeren endrer antall, kan brukeren trykke her for å få riktig pris." +
+                "\n“Lagre som ønskeliste”: Her kan brukeren lagre handlelisten sin som en ønskeliste, og senere finne tilbake til den hvis de ønsker det."+
+                "\n“Åpne ønskeliste”: Finne fram ønskelistene man har lagret."+
+                "\n“Fullfør ordre”: Når brukeren føler at alt er på plass i handlekurven, kan den trykke på denne knappen, slik at ordren kan bli " +
+                "\nfullført. Man blir sendt videre til et annet vindu der brukeren skriver inn hvor produkte(ne) skal bli sendt. " +
+                "\n“Avslutt”: Avslutter programmet. " +
+                "\n“Start på nytt”: Fjerner alle produktene fra handlekurven, og det blir blanke ark slik at brukeren kan legge til komponenter på nytt."+
+                "\nFilter: Søke etter komponentene man har valgt til handlekurven. " +
+                "\n-------------------------------------------------------------------------------------------------------------------------------------------------" +
+                "\nLogin som admin"+
+                "\nKnappenes funksjon: " +
+                "\n“Legg til ny komponent”: Her blir man sendt videre til et nytt vindu der brukeren kan legge til nye komponenter med type," +
+                "\nnavn, antall, merke, pris. Dette blir da lagt til i choiceboksene (lageret). " +
+                "\n“Legg til data i tableview”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
+                "\n(med unntak av ID, siden IDen automatisk blir generert unikt pr produkt). " +
+                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret. Her må man “refreshe” "+
+                "\nvinduet, slik at slettingen blir registrert (trykk på legg til komponent vinduet, og gå deretter tilbake). " +
+                "\n“Lagre endringer”: Når admin har redigert innholdet i produktlisten, trykker h*n på knappen, og endringene blir deretter " +
+                "\nlagret i choiceboksene. (Her må man også refreshe siden før endringene blir lagret). " +
+                "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
+                "\n“Avslutt”: Avslutter programmet";
+
+
+
+
+
+        AlertBox.display("Hurtighjelp" ,  ut );
     }
 
     public int checkStorage (int inValue) throws InvalidQuantityException {
@@ -227,10 +324,10 @@ public class controller extends Controller_ProductWindow {
     }
 
 
-    public void totalPrice(Label lblTotPris) throws NullPointerException{
+    public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
         double totalPrice = 0;
-        double mva;
-        double price;
+        double mva = 0;
+        double price = 0;
         for(int i = 0; i <TVcart.getItems().size(); i++){
             try{
                 totalPrice = totalPrice + Double.parseDouble(String.valueOf((TVcart.getColumns().get(4).getCellObservableValue(i).getValue())));
@@ -262,8 +359,11 @@ public class controller extends Controller_ProductWindow {
     }
 
 
+    /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
 
-    public controller() {
+
+
+    public controller() throws FileNotFoundException {
         super();
     }
 
@@ -283,6 +383,7 @@ public class controller extends Controller_ProductWindow {
         int mva = (sum * 25)/ 100;
         int pris = sum - mva;
 
+        //String newPrice = String.valueOf(sum);
         System.out.println(sum);
 
         lblPris.setText((pris + ".00"));
@@ -292,6 +393,16 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
+
+
+
+
+
+
+
+       //ProductValidator.testIfProductsIsEmty(number); //For å sjekke om det er nok antall av produktet.
+
+
        TVcart.refresh();
 
     }
@@ -326,9 +437,15 @@ public class controller extends Controller_ProductWindow {
     //Denne listen ligger som public utenfor Handlekurv-metoden for at jeg skal få tilgang til den til filtrening.
     public static ObservableList<Products> observableList = FXCollections.observableArrayList();
 
+   /* private int counter = 0;
+    public int counter (int counter){
+        this.counter = counter++;
+        System.out.println(counter);
+        return counter;
+    }*/
 
     @FXML
-    void Handlekurv (ActionEvent event){
+    void Handlekurv (ActionEvent event) throws IOException {
 
 
         task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
@@ -508,16 +625,18 @@ public class controller extends Controller_ProductWindow {
 
         //Sender komponentene til handlekurven
         TVcart.setItems(observableList);
-        totalPrice(lblTotPris);
+        totalPrice(TVcart,lblTotPris);
         System.out.println(observableList);
 
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
+                //param.getValue();
+                //return param.getValue().numberProperty();
                 return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");
 
             }
-        });
+        });    
 
         for(int i = 0; i <=15; i++){
             if(!choCabinet.getItems().isEmpty() && !choMotherboard.getItems().isEmpty() && !choProcessor.getItems().isEmpty()
@@ -537,6 +656,7 @@ public class controller extends Controller_ProductWindow {
                 Products newProducts = new Products(number,name,type,quantity,price, sotrage);
                 CartRegister.addElement(newProducts);
             }
+            //resetChoiceBoxes(event);
         }
         btnRefresh.fire();
         colNumber.setSortable(false);
@@ -581,7 +701,7 @@ public class controller extends Controller_ProductWindow {
 
 
     @FXML
-    void resetChoiceBoxes() {
+    void resetChoiceBoxes(ActionEvent event) {
         int counter = 1;
         String cabinetCount = choCabinet.getSelectionModel().getSelectedItem();
         String motherboardCount = choMotherboard.getSelectionModel().getSelectedItem();
@@ -625,7 +745,7 @@ public class controller extends Controller_ProductWindow {
     }
 
     @FXML
-    private void filterField(){
+    private void filterField(KeyEvent ke){
 
         //Henter samme som observableList fra tidligere.
         FilteredList<Products> filteredData = new FilteredList<>(observableList, p -> true);
@@ -738,9 +858,11 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void FullførOrdre (ActionEvent event){
+        btnReset.fire();
+
         try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("CompleteOrder/OrderDone.fxml")));
-            Scene PCByggingScene = new Scene(PCByggingParent);
+             Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("CompleteOrder/OrderDone.fxml")));
+             Scene PCByggingScene = new Scene(PCByggingParent);
 
             //Denne linjen henter stage info
             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();

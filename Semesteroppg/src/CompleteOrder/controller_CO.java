@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import User.controller;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
@@ -73,10 +75,23 @@ public class controller_CO {
 
         AlertBox.display("Fullført", ut);
 
-        //cdh.removeAmount(data);
+        try {
+            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
+            Scene PCByggingScene = new Scene(PCByggingParent);
+
+            //Denne linjen henter stage info
+            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+            PCWindow.setX(500);
+            PCWindow.setY(500);
+            PCWindow.setScene(PCByggingScene);
+            PCWindow.setTitle("Build your own PC");
+            PCWindow.show();
 
 
-        ObservableList<Products>  temp = controller.observableList;
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
 
 

@@ -46,20 +46,3 @@ e4d4e89d-8e88-41b2-8389-9f5148f443ab;Define 7XL;10;Fractal;2699.0;Kabinett
 b7dbe2b1-035b-42da-826c-ea2e8cbd76ec;Carbide 750Q;6;Corsair;890.0;Kabinett
 0cb3f8b0-2096-4626-8879-259a8b315623;ICUE Airflow;8;Corsair;1077.0;Kabinett
 7c40d96f-dda1-4a06-acaa-096efddd9263;ICUE 220T;10;Corsair;1299.0;Kabinett
-
-
- public static final String CABINET = "Kabinett";
-    public static final String MAINCARD = "Hovedkort";
-    public static final String PROCESSOR  = "Prosessor";
-    public static final String VIDEOCARD = "Skjermkort";
-    public static final String MEMORY = "Minne";
-    public static final String POWERSUPPLY = "Strømforskyning";
-    public static final String HARDDRIVE = "Harddisk";
-    public static final String HDD = "HDD";
-    public static final String PROSESSOR_FAN_NAMES = "CPU-vifte";
-    public static final String FANS = "Vifter";
-    public static final String CASEMODS  = "Casemods";
-    public static final String SCREEN = "Skjerm";
-    public static final String KEYBOARD = "Tastatur";
-    public static final String HEADSET = "Hodetelefoner";
-    public static final String MOUSE = "Mus";
