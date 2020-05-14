@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadFromFile {
-    public static List<Products> openFile (Path filePath) throws IOException{
+    public static List<Products> openFile (Path filePath){
         ArrayList<Products> list = new ArrayList<>();
 
         try(BufferedReader reader = Files.newBufferedReader(Paths.get(String.valueOf(filePath)))){

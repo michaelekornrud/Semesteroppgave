@@ -234,10 +234,9 @@ public class controller extends Controller_ProductWindow {
                 "\nnavn, antall, merke, pris. Dette blir da lagt til i choiceboksene (lageret). " +
                 "\n“Legg til data i tableview”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
                 "\n(med unntak av ID, siden IDen automatisk blir generert unikt pr produkt). " +
-                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret. Her må man “refreshe” "+
-                "\nvinduet, slik at slettingen blir registrert (trykk på legg til komponent vinduet, og gå deretter tilbake). " +
+                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret." +
                 "\n“Lagre endringer”: Når admin har redigert innholdet i produktlisten, trykker h*n på knappen, og endringene blir deretter " +
-                "\nlagret i choiceboksene. (Her må man også refreshe siden før endringene blir lagret). " +
+                "\nlagret i choiceboksene." +
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
@@ -285,9 +284,9 @@ public class controller extends Controller_ProductWindow {
         mva = (totalPrice * 25)/ 100;
         price = totalPrice - mva;
 
-        lblTotPris.setText((totalPrice + "0"));
-        lblMva.setText((mva + "0"));
-        lblPris.setText((price + "0"));
+        lblTotPris.setText((totalPrice + "0")  + " kr,-");
+        lblMva.setText((mva + "0") + " kr,-");
+        lblPris.setText((price + "0") + " kr,-");
 
 
 
@@ -325,9 +324,9 @@ public class controller extends Controller_ProductWindow {
 
         System.out.println(sum);
 
-        lblPris.setText((pris + ".00"));
-        lblMva.setText(mva + ".00");
-        lblTotPris.setText(sum + ".00");
+        lblPris.setText((pris + ".00 kr,-"));
+        lblMva.setText(mva + ".00 kr,-");
+        lblTotPris.setText(sum + ".00 kr,-");
     }
 
     @FXML
@@ -354,7 +353,7 @@ public class controller extends Controller_ProductWindow {
     public static ObservableList<Products> observableList = FXCollections.observableArrayList();
 
     @FXML
-    void Handlekurv (ActionEvent event) throws IOException, NullPointerException {
+    void Handlekurv (ActionEvent event) throws NullPointerException {
 
 
         task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
@@ -599,13 +598,6 @@ public class controller extends Controller_ProductWindow {
     }
 
 
-    int value = 1;
-    private int resetQuantity (int value){
-        this.value = value;
-        return value;
-    }
-
-
     @FXML
     void resetChoiceBoxes(ActionEvent event) {
         int counter = 1;
@@ -750,7 +742,7 @@ public class controller extends Controller_ProductWindow {
     }
 
     @FXML
-    void OpenØnskeliste (ActionEvent event) throws IOException {
+    void OpenWishList(ActionEvent event) throws IOException {
         FileChooser openFile = new FileChooser();
         File chosenFile = openFile.showOpenDialog(null);
         Path filePath = Paths.get(chosenFile.getAbsolutePath());
@@ -768,7 +760,7 @@ public class controller extends Controller_ProductWindow {
     }
 
     @FXML
-    void FullførOrdre (ActionEvent event){
+    void CompleteOrder(ActionEvent event){
         btnReset.fire();
 
         try {
@@ -788,25 +780,7 @@ public class controller extends Controller_ProductWindow {
     }
 
     @FXML
-    void Tilbake (ActionEvent event){
-        try {
-            Parent PCByggingParent = FXMLLoader.load(java.util.Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
-            Scene PCByggingScene = new Scene(PCByggingParent);
-
-            //Denne linjen henter stage info
-            Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-            PCWindow.setTitle("Build your own PC");
-            PCWindow.setScene(PCByggingScene);
-            PCWindow.show();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    void LukkProgram (ActionEvent event){
+    void CloseProgram(ActionEvent event){
         Stage lukkProgram = (Stage) btnLukkProgram.getScene().getWindow();
         lukkProgram.close();
 

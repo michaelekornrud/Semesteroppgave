@@ -15,7 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -141,6 +140,17 @@ public class Controller_Admin {
     void btnSaveChanges() throws Exception { //Knapp som henter en metode som lagrer dataen som er endret i csv-filen
      cdh.changeDataFromTableviewToCsvAndSave(data);
      AlertBox.display("Hør her!", "Din data har blitt lagret :) ");
+
+       try {
+           resetchoiceBoxes();
+           updatedData();
+           LoadData();
+
+       }
+       catch (Exception e){
+           e.printStackTrace();
+
+       }
 
 
     }
@@ -329,10 +339,9 @@ public class Controller_Admin {
                 "\nnavn, antall, merke, pris. Dette blir da lagt til i choiceboksene (lageret). " +
                 "\n“Legg til data i tableview”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
                 "\n(med unntak av ID, siden IDen automatisk blir generert unikt pr produkt). " +
-                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret. Her må man “refreshe” "+
-                "\nvinduet, slik at slettingen blir registrert (trykk på legg til komponent vinduet, og gå deretter tilbake). " +
+                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret."+
                 "\n“Lagre endringer”: Når admin har redigert innholdet i produktlisten, trykker h*n på knappen, og endringene blir deretter " +
-                "\nlagret i choiceboksene. (Her må man også refreshe siden før endringene blir lagret). " +
+                "\nlagret i choiceboksene." +
                 "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 

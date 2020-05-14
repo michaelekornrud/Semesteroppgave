@@ -18,9 +18,4 @@ public class ProductParsing {
         }
         return str.toString();
     }
-
-    public static int getStorage (Products o){
-        return o.getTxtStorage();
-
-    }
 }

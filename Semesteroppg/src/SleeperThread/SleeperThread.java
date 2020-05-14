@@ -16,6 +16,7 @@ public class SleeperThread extends Task<Integer> {
             Thread.sleep(value);
         }
         catch (InterruptedException e){
+            e.printStackTrace();
 
         }
         return value;

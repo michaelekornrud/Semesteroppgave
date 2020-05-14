@@ -5,9 +5,6 @@ import Exceptions.InvalidPostcodeException;
 
 public class Deviations extends AlertBox {
 
-   private static AlertBox newAlert = new AlertBox();
-   private static String ut;
-
     public static String checkName (String inName) throws InvalidNameExeption {
         if (!inName.matches("^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")) {
             //regex hentet fra: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name

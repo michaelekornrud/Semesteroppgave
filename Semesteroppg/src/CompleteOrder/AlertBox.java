@@ -34,9 +34,11 @@ public class AlertBox {
 
 
 
+
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label,lukkBox);
         layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(20));
 
 
 

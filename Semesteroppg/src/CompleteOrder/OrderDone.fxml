@@ -23,7 +23,7 @@
       <TextField fx:id="txtAdresse" layoutX="129.0" layoutY="158.0" />
       <TextField fx:id="txtPostnummer" layoutX="129.0" layoutY="195.0" />
       <TextField fx:id="txtPoststed" layoutX="129.0" layoutY="236.0" />
-      <Button fx:id="btnFullfør" layoutX="238.0" layoutY="292.0" mnemonicParsing="false" onAction="#Fullfør" text="Fullfør" />
+      <Button fx:id="btnFullfør" layoutX="238.0" layoutY="292.0" mnemonicParsing="false" onAction="#Complete" text="Fullfør" />
       <Button fx:id="btnTilbake" layoutX="48.0" layoutY="292.0" mnemonicParsing="false" onAction="#Tilbake" text="Tilbake til handlekurv" />
    </children>
 </AnchorPane>

@@ -1,7 +1,6 @@
 package Exceptions;
 
 import CompleteOrder.AlertBox;
-import javafx.scene.control.Alert;
 
 public class InvalidBrandException extends IllegalArgumentException {
     public InvalidBrandException(String msg){

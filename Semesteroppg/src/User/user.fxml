@@ -73,7 +73,7 @@
          <tooltip>
             <Tooltip text="Lagrer handlekurven som øsnkeliste" />
          </tooltip></Button>
-      <Button fx:id="btnBetalinig" layoutX="1124.0" layoutY="207.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre">
+      <Button fx:id="btnBetalinig" layoutX="1124.0" layoutY="207.0" mnemonicParsing="false" onAction="#CompleteOrder" text="Fullfør ordre">
          <tooltip>
             <Tooltip text="Ferdig?" />
          </tooltip></Button>
@@ -81,11 +81,11 @@
          <tooltip>
             <Tooltip text="Dersom prisen ikke gir mening, trykk her! " />
          </tooltip></Button>
-      <Button fx:id="btnLukkProgram" layoutX="1124.0" layoutY="244.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt">
+      <Button fx:id="btnLukkProgram" layoutX="1124.0" layoutY="244.0" mnemonicParsing="false" onAction="#CloseProgram" text="Avslutt">
          <tooltip>
             <Tooltip text="Ferdig da" />
          </tooltip></Button>
-      <Button fx:id="btnOpenØnskeliste" layoutX="1124.0" layoutY="169.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste">
+      <Button fx:id="btnOpenØnskeliste" layoutX="1124.0" layoutY="169.0" mnemonicParsing="false" onAction="#OpenWishList" text="Åpne ønskeliste">
          <tooltip>
             <Tooltip text="Åpne en ønskeliste" />
          </tooltip></Button>
@@ -148,7 +148,6 @@
           <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
             <items>
               <MenuItem fx:id="menuGetHelp" mnemonicParsing="false" onAction="#programHelp" text="Hjelp til prorammet" />
-                  <MenuItem mnemonicParsing="false" text="Søk på nett" />
             </items>
           </Menu>
         </menus>

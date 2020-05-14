@@ -52,7 +52,7 @@ public class Component_DataHandler {
     }
     public Map<String, List<Product>> load() {  //Metode for å laste inn csv-data, og "mappe" dataen.
         BufferedReader br = null;
-        String currentLine = "";
+        String currentLine;
         String cvsSplitBy = ";";
         List<String[]> componentData = new ArrayList<>();
         try {

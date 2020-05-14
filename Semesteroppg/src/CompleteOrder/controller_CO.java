@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.*;
@@ -40,7 +39,7 @@ public class controller_CO {
 
 
     @FXML
-    void Fullfør(ActionEvent event) throws Exception {
+    void Complete(ActionEvent event) throws Exception {
 
         String firstname = txtFornavn.getText();
         String lastname = txtEtternavn.getText();

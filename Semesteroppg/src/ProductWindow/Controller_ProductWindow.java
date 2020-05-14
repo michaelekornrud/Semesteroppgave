@@ -76,9 +76,9 @@ public class Controller_ProductWindow implements Initializable {
     }
 
     @FXML
-    void back(ActionEvent event) throws IOException { //Knapp for å gå tilbake til admin-vinduet
+    void back(ActionEvent event) { //Knapp for å gå tilbake til admin-vinduet
         try {
-        Parent PCByggingParent = FXMLLoader.load(getClass().getClassLoader().getResource("Admin/PCBygging.fxml"));
+        Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
         Scene PCByggingScene = new Scene(PCByggingParent);
 
         //Denne linjen henter stage info

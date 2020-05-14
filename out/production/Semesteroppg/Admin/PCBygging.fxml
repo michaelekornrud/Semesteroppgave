@@ -134,7 +134,6 @@
             <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
                <items>
                   <MenuItem fx:id="menuGetHelp" mnemonicParsing="false" onAction="#programHelp" text="Hjelp til prorammet" />
-                  <MenuItem mnemonicParsing="false" text="Søk på nett" />
                </items>
             </Menu>
          </menus>
