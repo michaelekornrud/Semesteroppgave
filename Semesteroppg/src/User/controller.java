@@ -1,13 +1,9 @@
 package User;
 
 import CompleteOrder.AlertBox;
-import CompleteOrder.Deviations;
 import Exceptions.InvalidQuantityException;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -231,10 +227,10 @@ public class controller extends Controller_ProductWindow {
     }
 
 
-    public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
+    public void totalPrice(Label lblTotPris) throws NullPointerException{
         double totalPrice = 0;
-        double mva = 0;
-        double price = 0;
+        double mva;
+        double price;
         for(int i = 0; i <TVcart.getItems().size(); i++){
             try{
                 totalPrice = totalPrice + Double.parseDouble(String.valueOf((TVcart.getColumns().get(4).getCellObservableValue(i).getValue())));
@@ -266,11 +262,8 @@ public class controller extends Controller_ProductWindow {
     }
 
 
-    /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
 
-
-
-    public controller() throws FileNotFoundException {
+    public controller() {
         super();
     }
 
@@ -290,7 +283,6 @@ public class controller extends Controller_ProductWindow {
         int mva = (sum * 25)/ 100;
         int pris = sum - mva;
 
-        //String newPrice = String.valueOf(sum);
         System.out.println(sum);
 
         lblPris.setText((pris + ".00"));
@@ -300,16 +292,6 @@ public class controller extends Controller_ProductWindow {
 
     @FXML
     void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
-
-
-
-
-
-
-
-       //ProductValidator.testIfProductsIsEmty(number); //For å sjekke om det er nok antall av produktet.
-
-
        TVcart.refresh();
 
     }
@@ -344,15 +326,9 @@ public class controller extends Controller_ProductWindow {
     //Denne listen ligger som public utenfor Handlekurv-metoden for at jeg skal få tilgang til den til filtrening.
     public static ObservableList<Products> observableList = FXCollections.observableArrayList();
 
-   /* private int counter = 0;
-    public int counter (int counter){
-        this.counter = counter++;
-        System.out.println(counter);
-        return counter;
-    }*/
 
     @FXML
-    void Handlekurv (ActionEvent event) throws IOException {
+    void Handlekurv (ActionEvent event){
 
 
         task = new SleeperThread(1500, "Laster produkter til handlekurven", "Laster");
@@ -532,37 +508,16 @@ public class controller extends Controller_ProductWindow {
 
         //Sender komponentene til handlekurven
         TVcart.setItems(observableList);
-        totalPrice(TVcart,lblTotPris);
+        totalPrice(lblTotPris);
         System.out.println(observableList);
 
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
-                //param.getValue();
-                //return param.getValue().numberProperty();
                 return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");
 
             }
         });
-        /*colNumber.setCellFactory(new Callback<TableColumn<Products, String>, TableCell<Products, String>>() {
-            @Override
-            public TableCell<Products, String> call(TableColumn<Products, String> param) {
-                return new TableCell<Products,String>(){
-                    @Override
-                    public void updateItem (String p, boolean empty){
-                        super.updateItem(p, empty);
-                        if(this.getTableRow() != null && p != null){
-                            setText(this.getTableRow().getIndex() + 1 + "");
-                        }
-                        else {
-                            setText("");
-                        }
-                    }
-                };
-            }
-        });*/
-            //colNumber.setCellFactory(new RowNumberFactory<>());
-            //String number = new RowNumberFactory<>().getNumber();
 
         for(int i = 0; i <=15; i++){
             if(!choCabinet.getItems().isEmpty() && !choMotherboard.getItems().isEmpty() && !choProcessor.getItems().isEmpty()
@@ -582,7 +537,6 @@ public class controller extends Controller_ProductWindow {
                 Products newProducts = new Products(number,name,type,quantity,price, sotrage);
                 CartRegister.addElement(newProducts);
             }
-            //resetChoiceBoxes(event);
         }
         btnRefresh.fire();
         colNumber.setSortable(false);
@@ -627,7 +581,7 @@ public class controller extends Controller_ProductWindow {
 
 
     @FXML
-    void resetChoiceBoxes(ActionEvent event) {
+    void resetChoiceBoxes() {
         int counter = 1;
         String cabinetCount = choCabinet.getSelectionModel().getSelectedItem();
         String motherboardCount = choMotherboard.getSelectionModel().getSelectedItem();
@@ -671,7 +625,7 @@ public class controller extends Controller_ProductWindow {
     }
 
     @FXML
-    private void filterField(KeyEvent ke){
+    private void filterField(){
 
         //Henter samme som observableList fra tidligere.
         FilteredList<Products> filteredData = new FilteredList<>(observableList, p -> true);

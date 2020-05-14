@@ -1,7 +1,9 @@
 9381e7ae-9225-4fbe-a16f-f236edfba7f5;Samsung 970EVO;10;Samsung;5909.0;Harddisk
 e05581b8-613c-4e55-ae9d-6bda25181308;Noctua NHD15;49;Noctua;999.0;Harddisk
 da0b506a-f425-461b-a5af-cea0c1bba527;Noctua NHD9L;20;Noctua;649.0;Harddisk
-ff911e53-d0e0-4bae-9019-12a4cc1dc066;C7 CPU;34;CRYORIG;413.0;CPU-vifte
+7386abea-f474-4345-8be9-a3690cfa1b24;Endret;3;Byttet;750.0;Skjerm
+04c56f61-692c-4349-83a3-4a77369604eb;ScreenCart X55;50;SCMaster;2900.0;Skjermkort
+24920284-ca5e-4650-a7fa-b6d0f0c1929e;SC X900;50;Logitech;700.0;Skjermkort
 6278d019-f1e6-410b-b1f1-8aab3d35183f;Predator 16GB;100;Hyperx;1257.0;Minne
 f9ae303c-e0be-46f5-87db-b0b9509769e8;Trident 32GB;100;GSkill;2749.0;Minne
 f3312737-f363-4dae-89d0-888bd5eb8f70;Impact 32GB;100;Hyperx;2000.0;Minne
@@ -16,6 +18,7 @@ f8dbc743-3f03-4c61-848e-ff482a7224d4;iiglo M610;100;iiglo;299.0;Mus
 c875f568-4392-4267-be55-892122d608b7;CadMouse Wireless;100;CadMouse;1499.0;Mus
 5f99e7e8-2969-4026-a044-91f93821c27e;Log M545;50;Logitech;489.0;Mus
 8063b50e-fee1-4843-b1d8-9858b43a1ef3;Micro Arc;500;Microsoft;800.0;Mus
+ff911e53-d0e0-4bae-9019-12a4cc1dc066;C7 CPU;34;CRYORIG;413.0;CPU-vifte
 2965f0b5-4da0-44a9-a064-b38bddaa2b15;Corsair Force;10;Corsair;1315.0;CPU-vifte
 d916f76d-88f4-4b76-bddf-6a7311f6e58d;Corsair MP600;25;Corsair;3162.0;CPU-vifte
 0c35063c-ca1e-4269-93bb-460d651177ae;ASUS Radeon RX;25;ASUS;4099.0;Videokort
@@ -46,5 +49,3 @@ e4d4e89d-8e88-41b2-8389-9f5148f443ab;Define 7XL;10;Fractal;2699.0;Kabinett
 b7dbe2b1-035b-42da-826c-ea2e8cbd76ec;Carbide 750Q;6;Corsair;890.0;Kabinett
 0cb3f8b0-2096-4626-8879-259a8b315623;ICUE Airflow;8;Corsair;1077.0;Kabinett
 7c40d96f-dda1-4a06-acaa-096efddd9263;ICUE 220T;10;Corsair;1299.0;Kabinett
-04c56f61-692c-4349-83a3-4a77369604eb;ScreenCart X55;50;SCMaster;2900.0;Skjermkort
-24920284-ca5e-4650-a7fa-b6d0f0c1929e;SC X900;50;Logitech;700.0;Skjermkort
