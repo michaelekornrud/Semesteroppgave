@@ -1,5 +1,6 @@
 package CompleteOrder;
 
+import Exceptions.InvalidQuantityException;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
 import User.Products;
@@ -55,11 +56,21 @@ public class controller_CO {
     @FXML
     void Fullfør(ActionEvent event) throws Exception {
 
-        String navn = txtFornavn.getText() + " " + txtEtternavn.getText();
-        String adresse = txtAdresse.getText();
-        String post  = txtPostnummer.getText() + " " + txtPoststed.getText();
+        String firstname = txtFornavn.getText();
+        String lastname = txtEtternavn.getText();
+        String adress = txtAdresse.getText();
+        String postNUmber  = txtPostnummer.getText();
+        int post = Integer.parseInt(postNUmber);
 
-        String ut = "Ordren blir sendt til:" + "\n" + navn + "\n" + adresse + "\n" + post;
+        String city = txtPoststed.getText();
+
+        Deviations.checkName(firstname);
+        Deviations.checkName(lastname);
+        Deviations.checkAdress(adress);
+        Deviations.checkPostNumber(post);
+        Deviations.checkCity(city);
+
+        String ut = "Ordren blir sendt til:" + "\n" + firstname + " " + lastname + "\n" + adress + "\n" + post + " " + city;
 
         AlertBox.display("Fullført", ut);
 

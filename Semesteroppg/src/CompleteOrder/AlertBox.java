@@ -30,6 +30,7 @@ public class AlertBox {
         window.setMinHeight(250);
 
         Label label = new  Label();
+        label.setAlignment(Pos.CENTER);
         label.setText(message);
         label.setPadding(new Insets(10));
         label.setFont(new Font("Times New Roman", 16));

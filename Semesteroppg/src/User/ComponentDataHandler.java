@@ -76,9 +76,13 @@ public class ComponentDataHandler {
 
         Map<String, List<Products>> mappedComponents = new HashMap<>();
 
+
+
         for (String[] component : componentData){
-            String number;
-            String numberToString = String.valueOf(1);
+
+
+            int number = 0;
+            String numberToString = String.valueOf(number);
             String name = String.valueOf(component[1]);
             String type = component[5];
             int quantity = 1;

@@ -1,9 +1,13 @@
 package User;
 
 import CompleteOrder.AlertBox;
-import Exceptions.ProductValidator;
+import CompleteOrder.Deviations;
+import Exceptions.InvalidQuantityException;
 import ProductWindow.*;
 import SleeperThread.SleeperThread;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,20 +16,20 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+
 import javax.swing.text.BadLocationException;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -135,11 +139,10 @@ public class controller_User extends Controller_ProductWindow {
     private TableColumn<Products, Double> colPrice;
 
     @FXML
-    private TextField txtFiltered;
+    private TableColumn<Products, Integer> colStorage;
 
     @FXML
-    private ChoiceBox choSortBy;
-
+    private TextField txtFiltered;
 
     @FXML
     private Label lblPris;
@@ -165,67 +168,25 @@ public class controller_User extends Controller_ProductWindow {
         TVcart.setItems(observableList);
         TVcart.setEditable(true);
         colQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerToStringParse()));
-        ArrayList<Integer> storeList = new ArrayList<>();
-        try{
-            colQuantity.setOnEditCommit(event1 -> {
-                /*int index = TVcart.getSelectionModel().getSelectedItems().get(5).getTxtStorage();
-                System.out.println("Index: " + index);*/
 
-                int number = event1.getNewValue();
-                int store = 0;
-                //System.out.println(store);
-                for (int i = 0; i < observableList.size(); i++){
+        colQuantity.setOnEditCommit(event1 -> {
 
-                    try{
-                        store  = Integer.parseInt(String.valueOf(observableList.get(i).storageProperty().getValue()));
-                        System.out.println("I: " + i);
+        ///////////////Spar på denne!! //////////////
 
-                        if(!storeList.contains(store))      {
-                            storeList.add(store);
-                            System.out.println("StoreList : " + storeList);
-                        }
-                        for( int storage : storeList){
-                            storage = store;
+        int index = TVcart.getSelectionModel().getSelectedIndex();
+        int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
 
-                        if(number > storage){
-                            AlertBox.display("Oops!... ", "Antallet du har oppgitt er større enn vår lagerbeholdning" + "\nVår lagerbeholdning er: " + store);
-                            event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(1);
-
-
-                        }
-                        else if(number < 1){
-                            AlertBox.display("Oops!..." , "Antallet kan ikke være mindre enn 1");
-                            event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(1);
-
-                        }
-                        else{
-
-                            Products products = TVcart.getSelectionModel().getSelectedItem();
-                            ProductValidator.testNumberOfProducts(store);
-                            System.out.println("Storage: " + storage);
-                            System.out.println("Store: " + store);
-                            //products.setTxtQuantity(store);
-                            event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(number);
-                        }
-                    }
-                    }
-                    catch (Exception e){
-                        e.printStackTrace();
-                    }
-
-
-                    //storeList.removeAll(Collections.singleton());
-                    btnRefresh.fire();
-
-                }
-
-            });
-
+        System.out.println("Index: " + index);
+        //System.out.println("Prod: " + prod);
+        System.out.println("Number: " + number);
+        if(index == number -1){
+            event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(checkStorage(event1.getNewValue()));
+            btnRefresh.fire();
         }
-        catch (Exception e){
-            e.printStackTrace();
+        else {
+            System.out.println("Opppppps!");
         }
-
+    });
 
         //Initialliserer colonnene
         colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
@@ -233,12 +194,36 @@ public class controller_User extends Controller_ProductWindow {
         colType.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         colQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
         colPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-
-
-
-
+        colStorage.setCellValueFactory((cellData -> cellData.getValue().storageProperty().asObject()));
 
     }
+
+    public int checkStorage (int inValue) throws InvalidQuantityException {
+
+        for (int i = 0; i < observableList.size(); i++){
+
+            int check = Integer.parseInt(String.valueOf(TVcart.getColumns().get(5).getCellObservableValue(i++).getValue()));
+
+            System.out.println("checkStorage int check: " + check);
+
+
+            if(inValue > check){
+                AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + check + " av denne varen på lager.");
+
+                inValue = 1;
+            }
+            else if (inValue < 1){
+                AlertBox.display("Oops!..." ,"Antallet kan ikke være mindre enn 1");
+                inValue = 1;
+            }
+            else{
+                return inValue;
+            }
+            System.out.println(check);
+        }
+        return inValue;
+    }
+
 
     public void totalPrice(TableView<Products> tp, Label lblTotPris) throws NullPointerException{
         double totalPrice = 0;
@@ -274,6 +259,7 @@ public class controller_User extends Controller_ProductWindow {
         btnHandlekurv.setDisable(false);
     }
 
+
     /*Lag en metode som reseter choicebox når et produkt blir fjernet fra handlekurven*/
 
 
@@ -308,6 +294,7 @@ public class controller_User extends Controller_ProductWindow {
 
     @FXML
     void quantityEdited(TableColumn.CellEditEvent<Products, Integer> event){
+
 
 
 
@@ -545,10 +532,31 @@ public class controller_User extends Controller_ProductWindow {
         colNumber.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Products, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Products, String> param) {
+                //param.getValue();
+                //return param.getValue().numberProperty();
                 return new ReadOnlyObjectWrapper<>(TVcart.getItems().indexOf(param.getValue()) + 1 +"");
+
             }
         });
-
+        /*colNumber.setCellFactory(new Callback<TableColumn<Products, String>, TableCell<Products, String>>() {
+            @Override
+            public TableCell<Products, String> call(TableColumn<Products, String> param) {
+                return new TableCell<Products,String>(){
+                    @Override
+                    public void updateItem (String p, boolean empty){
+                        super.updateItem(p, empty);
+                        if(this.getTableRow() != null && p != null){
+                            setText(this.getTableRow().getIndex() + 1 + "");
+                        }
+                        else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });*/
+            //colNumber.setCellFactory(new RowNumberFactory<>());
+            //String number = new RowNumberFactory<>().getNumber();
 
         for(int i = 0; i <=15; i++){
             if(!choCabinet.getItems().isEmpty() && !choMotherboard.getItems().isEmpty() && !choProcessor.getItems().isEmpty()
@@ -561,10 +569,11 @@ public class controller_User extends Controller_ProductWindow {
                 String name  = colName.getCellObservableValue(i).getValue();
                 String type = colType.getCellObservableValue(i).getValue();
                 int quantity = colQuantity.getCellObservableValue(i).getValue();
+                int sotrage = colStorage.getCellObservableValue(i).getValue();
                 String priceAsString = String.valueOf(colPrice.getCellObservableValue(i).getValue());
                 Double price = Double.parseDouble(priceAsString);
 
-                Products newProducts = new Products(number,name,type,quantity,price, 0);
+                Products newProducts = new Products(number,name,type,quantity,price, sotrage);
                 CartRegister.addElement(newProducts);
             }
             //resetChoiceBoxes(event);

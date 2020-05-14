@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.controller_User" >
+<AnchorPane prefHeight="431.0" prefWidth="1278.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.controller">
     <children>
         <Label layoutX="45.0" layoutY="26.0" text="Bygg  din egen PC">
             <font>
@@ -61,11 +61,11 @@
       <Label fx:id="lblMva" layoutX="682.0" layoutY="368.0" text="mva  pris" />
       <Label layoutX="617.0" layoutY="342.0" text="Pris: " />
       <Label fx:id="lblPris" layoutX="682.0" layoutY="342.0" text="pris eksl mva." />
-      <Button fx:id="btnLagre" layoutX="1120.0" layoutY="135.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
-      <Button fx:id="btnBetalinig" layoutX="1120.0" layoutY="212.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre" />
+      <Button fx:id="btnLagre" layoutX="1118.0" layoutY="131.0" mnemonicParsing="false" onAction="#LagreOnskeliste" text="Lagre som øsnkeliste" />
+      <Button fx:id="btnBetalinig" layoutX="1118.0" layoutY="208.0" mnemonicParsing="false" onAction="#FullførOrdre" text="Fullfør ordre" />
       <Button fx:id="btnRefresh" layoutX="1006.0" layoutY="347.0" mnemonicParsing="false" onAction="#refreshPrice" text="Oppdater priser" />
-      <Button fx:id="btnLukkProgram" layoutX="1120.0" layoutY="249.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt" />
-      <Button fx:id="btnOpenØnskeliste" layoutX="1120.0" layoutY="174.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
+      <Button fx:id="btnLukkProgram" layoutX="1118.0" layoutY="245.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avslutt" />
+      <Button fx:id="btnOpenØnskeliste" layoutX="1118.0" layoutY="170.0" mnemonicParsing="false" onAction="#OpenØnskeliste" text="Åpne ønskeliste" />
       <TableView fx:id="TVcart" layoutX="617.0" layoutY="104.0" prefHeight="232.0" prefWidth="489.0">
         <columns>
           <TableColumn fx:id="colNumber" prefWidth="62.0" text="Number">
@@ -95,6 +95,11 @@
             <TableColumn fx:id="colPrice" prefWidth="85.0" text="Pris pr. stykk">
                 <cellValueFactory>
                     <PropertyValueFactory property="txtPrice" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="colStorage" prefWidth="75.0" text="Column X" visible="false">
+                <cellValueFactory>
+                    <PropertyValueFactory property="txtStorage" />
                 </cellValueFactory>
             </TableColumn>
         </columns>

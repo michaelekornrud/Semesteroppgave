@@ -23,6 +23,8 @@ public class Products {
     }
 
 
+
+
     public String getTxtNumber() {return txtNumber.getValue();}
     public void setTxtNumber(String txtNumber){this.txtNumber = new SimpleStringProperty(txtNumber);}
     public StringProperty numberProperty() {return this.txtNumber;}
