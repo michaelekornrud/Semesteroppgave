@@ -199,16 +199,23 @@ public class controller extends Controller_ProductWindow {
     }
 
     public int checkStorage (int inValue) throws InvalidQuantityException {
-
-        for (int i = 0; i < observableList.size(); i++){
-
-            int check = Integer.parseInt(String.valueOf(TVcart.getColumns().get(5).getCellObservableValue(i++).getValue()));
+        int check = 0;
+        int index = TVcart.getSelectionModel().getSelectedIndex();
+        int number = colStorage.getCellObservableValue(index).getValue();
+        for (int i = 0; i < TVcart.getItems().size(); i++){
+            try {
+                check = Integer.parseInt(String.valueOf(TVcart.getColumns().get(5).getCellObservableValue(i++).getValue()));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
 
             System.out.println("checkStorage int check: " + check);
+            System.out.println("CheckStorage. number: " + number);
 
 
-            if(inValue > check){
-                AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + check + " av denne varen på lager.");
+            if(inValue > number){
+                AlertBox.display("Oops!..." , "Antallet du oppga er større enn vår lagerbeholdning" + "\nVi har " + number + " av denne varen på lager.");
 
                 inValue = 1;
             }
@@ -219,7 +226,6 @@ public class controller extends Controller_ProductWindow {
             else{
                 return inValue;
             }
-            System.out.println(check);
         }
         return inValue;
     }

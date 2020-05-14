@@ -96,7 +96,7 @@ public class ComponentDataHandler {
 
             //Legg til fler om det skal være flere typer
             Products prod = new Products(numberToString,name, type, quantity,price,storage);
-            //String mapId = type.toLowerCase();
+
             List<Products> compList = mappedComponents.get(type);
 
             if(compList == null){ //Kontrollerer om det er data i complist
