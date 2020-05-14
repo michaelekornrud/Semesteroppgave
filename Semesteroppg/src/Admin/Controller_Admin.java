@@ -316,7 +316,8 @@ public class Controller_Admin {
         String ut = "Brukerveiledning: " +
                 "\nLogin vindu: " +
                 "\nBrukernavn 1: user Passord 1 : user " +
-                "\nBrukernavn 2: adminPassord 2: admin "   +
+                "\nBrukernavn 2: admin Passord 2: admin "   +
+
                 "\n-------------------------------------------------------------------------------------------------------------------------------------------------" +
                 "\nLogin som user: " +
                 "\nKnappenes funksjon:" +
