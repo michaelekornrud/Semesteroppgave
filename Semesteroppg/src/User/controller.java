@@ -14,6 +14,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.text.BadLocationException;
 import javafx.scene.input.KeyEvent;
@@ -155,17 +157,17 @@ public class controller extends Controller_ProductWindow {
         btnRefresh.fire();
 
         colQuantity.setOnEditCommit(event1 -> {
-        int index = TVcart.getSelectionModel().getSelectedIndex();
-        int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
+            int index = TVcart.getSelectionModel().getSelectedIndex();
+            int number = Integer.parseInt(colNumber.getCellObservableValue(index).getValue());
 
-        if(index == number -1){
-            event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(checkStorage(event1.getNewValue()));
-            btnRefresh.fire();
-        }
-        else {
-            System.out.println("Opppppps!");
-        }
-    });
+            if(index == number -1){
+                event1.getTableView().getItems().get(event1.getTablePosition().getRow()).setTxtQuantity(checkStorage(event1.getNewValue()));
+                btnRefresh.fire();
+            }
+             else {
+                System.out.println("Opppppps!");
+             }
+        });
 
         //Initialliserer colonnene
         colNumber.setCellValueFactory(cellData -> cellData.getValue().numberProperty());
@@ -201,6 +203,9 @@ public class controller extends Controller_ProductWindow {
              Stage PCWindow = (Stage) menuBar.getScene().getWindow();
              PCWindow.setTitle("Build your own PC");                                                                                                              
              PCWindow.setScene(PCByggingScene);
+             Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+             PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+             PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
              PCWindow.show();
          }
          catch (IOException e){
@@ -756,6 +761,9 @@ public class controller extends Controller_ProductWindow {
             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
             PCWindow.setTitle("Fullfør ordre");
             PCWindow.setScene(PCByggingScene);
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+            PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
             PCWindow.show();
         }
         catch (IOException e){

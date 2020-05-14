@@ -10,11 +10,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -134,7 +136,6 @@ public class Controller_Admin {
 
 
         tableView.refresh();
-        AlertBox.display("Velkommen!", "Velkommen\nI dette programmet kan du konfigurere din egen PC etter dine egne behov.",300);
     }
 
    @FXML
@@ -303,6 +304,9 @@ public class Controller_Admin {
             Stage PCWindow = (Stage) menuBar.getScene().getWindow();
             PCWindow.setTitle("Build your own PC");
             PCWindow.setScene(PCByggingScene);
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+            PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
             PCWindow.show();
         }
         catch (IOException e){
@@ -380,6 +384,9 @@ public class Controller_Admin {
             Stage PCWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
             PCWindow.setTitle("Legg til komponent");
             PCWindow.setScene(PCByggingScene);
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+            PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
             PCWindow.show();
         } catch (IOException e) {
             e.printStackTrace();

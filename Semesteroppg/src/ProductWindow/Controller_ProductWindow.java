@@ -7,11 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -78,14 +80,17 @@ public class Controller_ProductWindow implements Initializable {
     @FXML
     void back(ActionEvent event) { //Knapp for å gå tilbake til admin-vinduet
         try {
-        Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
-        Scene PCByggingScene = new Scene(PCByggingParent);
+            Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
+            Scene PCByggingScene = new Scene(PCByggingParent);
 
-        //Denne linjen henter stage info
-        Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-        PCWindow.setTitle("Build your own PC");
-        PCWindow.setScene(PCByggingScene);
-        PCWindow.show();
+             //Denne linjen henter stage info
+             Stage PCWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+             PCWindow.setTitle("Build your own PC");
+            PCWindow.setScene(PCByggingScene);
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+            PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
+            PCWindow.show();
     }
         catch (IOException e){
             e.printStackTrace();

@@ -3,14 +3,17 @@ package Loginn;
 import CompleteOrder.AlertBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -37,7 +40,7 @@ public class controller_login {
         checkUser = txtBrukernavn.getText();
         checkPW = txtPassord.getText();
         if(checkUser.equals(adminUser) && checkPW.equals(adminPW)){
-            AlertBox.display("Velkommen!", "I dette programmen kan du kofigurere din egen PC etter dine behov\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
+            AlertBox.display("Velkommen!", "Velkommen!\nI denne delen av programmet kan du laste inn og endre/slette komponenter fra sortementet\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
             try {
                 Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Admin/PCBygging.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
@@ -47,6 +50,10 @@ public class controller_login {
                 PCWindow.setScene(PCByggingScene);
                 PCWindow.centerOnScreen();
                 PCWindow.setTitle("Build your own PC");
+
+                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+                PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+                PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
                 PCWindow.show();
             }
             catch (IOException e){
@@ -54,7 +61,7 @@ public class controller_login {
             }
         }
         else if (checkUser.equals(brukerUser) && checkPW.equals(brukerPW)){
-            AlertBox.display("Velkommen!", "I dette programmen kan du kofigurere din egen PC etter dine behov\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
+            AlertBox.display("Velkommen!", "Velkommen\nI dette programmet kan du konfigurere din egen PC etter dine ønsker.\nNår lukknappen vises er programmet ferdig lastet inn og klar til bruk", 3000);
             try {
                 Parent PCByggingParent = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("User/user.fxml")));
                 Scene PCByggingScene = new Scene(PCByggingParent);
@@ -64,6 +71,10 @@ public class controller_login {
                 PCWindow.centerOnScreen();
                 PCWindow.setScene(PCByggingScene);
                 PCWindow.setTitle("Build your own PC");
+
+                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+                PCWindow.setX((screenSize.getWidth() - PCWindow.getWidth()) / 2);
+                PCWindow.setY((screenSize.getHeight() - PCWindow.getHeight()) / 2);
                 PCWindow.show();
             }
             catch (IOException e){

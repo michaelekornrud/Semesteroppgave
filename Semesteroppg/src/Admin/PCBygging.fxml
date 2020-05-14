@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="428.0" prefWidth="1079.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
+<AnchorPane fx:id="anchorPane" prefHeight="428.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
    <children>
       <Button fx:id="btnAdd" layoutX="44.0" layoutY="373.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til ny komponent">
          <tooltip>
@@ -56,16 +56,16 @@
       <ChoiceBox fx:id="choiceMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
       <ChoiceBox fx:id="choiceHeadset" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-      <TableView fx:id="tableView" layoutX="631.0" layoutY="101.0" prefHeight="245.0" prefWidth="426.0">
+      <TableView fx:id="tableView" layoutX="631.0" layoutY="101.0" prefHeight="250.0" prefWidth="528.0">
         <columns>
 
-           <TableColumn fx:id="colProdNr" prefWidth="64.0" text="Id">
+           <TableColumn fx:id="colProdNr" prefWidth="41.0" text="Id">
               <cellValueFactory>
                  <PropertyValueFactory property="txtProductNumber" />
               </cellValueFactory>
            </TableColumn>
 
-           <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="68.0" text="Navn">
+           <TableColumn fx:id="colName" onEditCommit="#editTableview_Name" prefWidth="124.0" text="Navn">
               <cellValueFactory>
                  <PropertyValueFactory property="txtProductName" />
               </cellValueFactory>
@@ -73,27 +73,27 @@
 
 
 
-           <TableColumn fx:id="colNumberOfProducts" onEditCommit="#editTableview_NumberOfProducts" prefWidth="37.0" text="Antall">
+           <TableColumn fx:id="colNumberOfProducts" onEditCommit="#editTableview_NumberOfProducts" prefWidth="56.0" text="Antall">
               <cellValueFactory>
                  <PropertyValueFactory property="txtNumberOfProducts" />
               </cellValueFactory>
            </TableColumn>
 
 
-           <TableColumn fx:id="colBrand" onEditCommit="#editTableview_Brand" prefWidth="76.0" text="Merke">
+           <TableColumn fx:id="colBrand" onEditCommit="#editTableview_Brand" prefWidth="114.0" text="Merke">
               <cellValueFactory>
                  <PropertyValueFactory property="txtBrand" />
               </cellValueFactory>
            </TableColumn>
 
 
-           <TableColumn fx:id="colPrice" onEditCommit="#editTableview_Price" prefWidth="75.0" text="Pris">
+           <TableColumn fx:id="colPrice" onEditCommit="#editTableview_Price" prefWidth="63.0" text="Pris">
               <cellValueFactory>
                  <PropertyValueFactory property="txtPrice" />
               </cellValueFactory>
            </TableColumn>
 
-           <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="97.0" text="Type">
+           <TableColumn fx:id="colType" onEditCommit="#editTableview_Type" prefWidth="122.0" text="Type">
               <cellValueFactory>
                  <PropertyValueFactory property="txtType" />
               </cellValueFactory>
@@ -105,15 +105,15 @@
          <tooltip>
             <Tooltip text="Knapp for å legge til valgt(e) komponenter til tableview der man kan redigere komponentene" />
          </tooltip></Button>
-      <Button fx:id="save" layoutX="726.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer">
+      <Button fx:id="save" layoutX="830.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer">
          <tooltip>
             <Tooltip text="Knapp for å lagre endringene som er skrevet i tableview" />
          </tooltip></Button>
-      <Button layoutX="836.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview">
+      <Button layoutX="940.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview">
          <tooltip>
             <Tooltip text="Fjerner valgt produkt fra tableview (Ikke fra lageret)" />
          </tooltip></Button>
-      <Button layoutX="631.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting">
+      <Button layoutX="735.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting">
          <tooltip>
             <Tooltip text="Knapp for å slette komponent(er) fra boksene og fra lageret" />
          </tooltip></Button>
@@ -122,16 +122,16 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnClose" layoutX="1002.0" layoutY="373.0" mnemonicParsing="false" onAction="#closeProgram" text="Avslutt" />
+      <Button fx:id="btnClose" layoutX="1106.0" layoutY="373.0" mnemonicParsing="false" onAction="#closeProgram" text="Avslutt" />
       <MenuBar fx:id="menuBar" layoutX="-6.0" opacity="0.98">
          <menus>
-            <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+            <Menu fx:id="menuFile" mnemonicParsing="false" text="Fil">
                <items>
                   <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#closeFromMenu" text="Lukk program" />
                   <MenuItem fx:id="menuSwitch" mnemonicParsing="false" onAction="#switchUser" text="Bytt Bruker" />
                </items>
             </Menu>
-            <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
+            <Menu fx:id="menuHelp" mnemonicParsing="false" text="Hjelp">
                <items>
                   <MenuItem fx:id="menuGetHelp" mnemonicParsing="false" onAction="#programHelp" text="Hjelp til prorammet" />
                </items>
