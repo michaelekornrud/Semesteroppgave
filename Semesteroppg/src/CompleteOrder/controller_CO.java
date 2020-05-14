@@ -1,6 +1,5 @@
 package CompleteOrder;
 
-import Exceptions.InvalidQuantityException;
 import ProductWindow.Component_DataHandler;
 import ProductWindow.Product;
 import User.Products;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
-import User.controller_User;
+import User.controller;
 
 //import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -77,7 +76,7 @@ public class controller_CO {
         //cdh.removeAmount(data);
 
 
-        ObservableList<Products>  temp = controller_User.observableList;
+        ObservableList<Products>  temp = controller.observableList;
 
 
 

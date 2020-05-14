@@ -39,7 +39,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 
-public class controller_User extends Controller_ProductWindow {
+public class controller extends Controller_ProductWindow {
 
 
     CartRegister addNewProduct = new CartRegister();
@@ -264,7 +264,7 @@ public class controller_User extends Controller_ProductWindow {
 
 
 
-    public controller_User() throws FileNotFoundException {
+    public controller() throws FileNotFoundException {
         super();
     }
 

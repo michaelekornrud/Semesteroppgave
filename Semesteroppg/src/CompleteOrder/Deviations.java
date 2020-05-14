@@ -2,14 +2,6 @@ package CompleteOrder;
 
 import Exceptions.InvalidNameExeption;
 import Exceptions.InvalidPostcodeException;
-import Exceptions.InvalidQuantityException;
-import User.CartRegister;
-import User.ProductParsing;
-import User.Products;
-import User.controller;
-
-import java.util.Collections;
-import java.util.List;
 
 public class Deviations extends AlertBox {
 

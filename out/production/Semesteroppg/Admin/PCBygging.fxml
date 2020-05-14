@@ -6,13 +6,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="428.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
+<AnchorPane fx:id="anchorPane" prefHeight="428.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Admin.Controller_Admin">
    <children>
-      <Button fx:id="btnAdd" layoutX="44.0" layoutY="373.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til/Fjern kompoent" />
+      <Button fx:id="btnAdd" layoutX="44.0" layoutY="373.0" mnemonicParsing="false" onAction="#addComponent" text="Legg til ny komponent">
+         <tooltip>
+            <Tooltip text="Knapp for å legge til nye komponenter" />
+         </tooltip></Button>
       <Label layoutX="45.0" layoutY="38.0" text="Bygg  din egen PC">
          <font>
             <Font size="24.0" />
@@ -32,7 +36,7 @@
       <ChoiceBox fx:id="choicePowerSupply" layoutX="229.0" layoutY="104.0" prefWidth="150.0" />
       <Label layoutX="229.0" layoutY="141.0" text="Harddisk" />
       <ChoiceBox fx:id="choiceHarddrive" layoutX="229.0" layoutY="158.0" prefWidth="150.0" />
-      <Label layoutX="229.0" layoutY="192.0" text="Harddisk" />
+      <Label layoutX="229.0" layoutY="192.0" text="HDD" />
       <ChoiceBox fx:id="choiceHDD" layoutX="229.0" layoutY="211.0" prefWidth="150.0" />
       <Label layoutX="229.0" layoutY="254.0" text="CPU -Vifte" />
       <ChoiceBox fx:id="choiceCPU" layoutX="229.0" layoutY="271.0" prefWidth="150.0" />
@@ -48,7 +52,7 @@
       <ChoiceBox fx:id="choiceMouse" layoutX="423.0" layoutY="271.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="307.0" text="Hodetelefoner" />
       <ChoiceBox fx:id="choiceHeadset" layoutX="423.0" layoutY="325.0" prefWidth="150.0" />
-      <TableView fx:id="tableView" layoutX="631.0" layoutY="101.0" prefHeight="245.0" prefWidth="461.0">
+      <TableView fx:id="tableView" layoutX="631.0" layoutY="101.0" prefHeight="245.0" prefWidth="398.0">
         <columns>
 
            <TableColumn fx:id="colProdNr" prefWidth="64.0" text="Id">
@@ -93,14 +97,27 @@
            </TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="431.0" layoutY="373.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview" />
-      <Button fx:id="save" layoutX="822.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer" />
-      <Button layoutX="936.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview" />
-      <Button layoutX="723.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting" />
+      <Button layoutX="431.0" layoutY="373.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview">
+         <tooltip>
+            <Tooltip text="Knapp for å legge til valgt(e) komponenter til tableview der man kan redigere komponentene" />
+         </tooltip></Button>
+      <Button fx:id="save" layoutX="726.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer">
+         <tooltip>
+            <Tooltip text="Knapp for å lagre endringene som er skrevet i tableview" />
+         </tooltip></Button>
+      <Button layoutX="836.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview">
+         <tooltip>
+            <Tooltip text="Fjerner valgt produkt fra tableview (Ikke fra lageret)" />
+         </tooltip></Button>
+      <Button layoutX="631.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting">
+         <tooltip>
+            <Tooltip text="Knapp for å slette komponent(er) fra boksene og fra lageret" />
+         </tooltip></Button>
       <Label layoutX="631.0" layoutY="38.0" text="Produktliste">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <Button fx:id="btnClose" layoutX="1002.0" layoutY="373.0" mnemonicParsing="false" onAction="#closeProgram" text="Avslutt" />
    </children>
 </AnchorPane>

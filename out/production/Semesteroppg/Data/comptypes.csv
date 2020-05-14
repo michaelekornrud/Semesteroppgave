@@ -1,4 +1,3 @@
-1950d812-871c-4f48-9e9c-32940111aaf1;Kabtest42;12;Merke;12.0;Kabinett
 8e3484aa-5e0e-45a9-a9e2-91d1d4f65f13;CaseTest;5;CaseMerke;600.0;Casemods
 9c2e7d25-1a1c-488f-9490-2d5aa5c9cf59;Kabtest;5;Merke;500.0;Kabinett
 b56d98f0-5681-40ad-adc1-cdc128a087d5;Casetest;5;Merke;600.0;Casemods
@@ -8,8 +7,18 @@ b83a1261-aa75-4577-bf10-d9abcf97d83a;HDDtest;5;Merke;500.0;HDD
 0249b1bb-48fa-46b5-81dd-ce8197e17852;Hodetelefonertest;5;merke;500.0;Hodetelefoner
 ef794264-5f30-4dff-b769-d23d2dc48763;Minnetest;5;merke;500.0;Minne
 9604917e-e368-46f3-898c-970d1f16a069;Mustest;5;Merke;500.0;Mus
-2f0a3041-aeaf-43f5-8bb1-5f482e468929;Prosessortest;5;Merke;500.0;Prosessor
-8962d52b-6a77-43dd-a527-71a6006aacc1;Skjermtest;5;Merke;500.0;Skjerm
-a6624073-977b-4553-ac6e-11d77cd25634;Tastaturtest;5;Merke;500.0;Tastatur
 1fb831a9-b26d-4d55-8acd-b1f5bad7b1b4;Viftetest;5;merke;500.0;Vifter
 46f6f21e-fe8f-4808-8145-2ce0055241bf;Videokort;500;Merke;500.0;Videokort
+b721f041-1430-4474-acd4-35b861aa480d;CPUJesus;50;Merke;750.0;CPU-vifte
+6d578699-ebe0-41ca-b639-c58bddae346a;ProsessorNavn;50;Merke;750.0;Prosessor
+21d79231-d9c3-4960-aae1-269712f3bea9;Kabinett;50;Merke;30.0;Kabinett
+1441a957-d4f1-420e-a500-01da5f6ba944;Bose;60;Merke;733.0;Hodetelefoner
+7b90c76d-9c73-469b-94e4-8a9d685bbc8e;Memory;789;Merke;890.0;Minne
+4ab107bb-5f7d-40d1-b6b8-f36df477eaa3;JesusVifter;70;Merke;300.0;Vifter
+806be2d3-2700-4654-8bf9-8a9a5cd02eef;MasterYoda;50;Merke;750.0;Tastatur
+9eaedb46-389e-425c-9b18-a1d073824e94;PussyMaster;69;Ferrari;800.0;Mus
+a4e97223-6374-4b27-81de-5f6ba78ca2b4;Jesus;60;Merke;900.0;Prosessor
+bba5bde5-227b-45b0-872b-7942c367312d;JesusKristus;80;Merke;900.0;Hovedkort
+637a2ea4-c511-4594-905b-9ecde0e4b36f;Merke;9;merke;899.0;Harddisk
+a362ec1c-ecb4-43d0-ace2-ad35f4555024;HK;70;Merke;900.0;Hovedkort
+8584aedd-d013-4566-96d1-65efd707e1b8;Jesus;9;Merke;900.0;HDD
