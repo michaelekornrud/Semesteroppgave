@@ -20,7 +20,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User.controller">
    <children>
-      <AnchorPane fx:id="anchorPane" prefHeight="134.0" prefWidth="238.0">
+      <AnchorPane fx:id="anchorPane" prefHeight="421.0" prefWidth="1269.0">
           <children>
               <Label layoutX="45.0" layoutY="41.0" text="Bygg  din egen PC">
                   <font>
@@ -146,9 +146,9 @@
                   <Tooltip text="Tilbakestiller alt!" />
                </tooltip>
             </Button>
-            <TextField fx:id="txtFiltered" layoutX="952.0" layoutY="74.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
-            <Label layoutX="907.0" layoutY="78.0" text="Filtrer:" />
-            <MenuBar fx:id="menuBar" layoutY="2.0" opacity="0.98" prefHeight="25.0" prefWidth="1271.0">
+            <TextField fx:id="txtFiltered" layoutX="964.0" layoutY="75.0" onKeyTyped="#filterField" promptText="Filtrer handlekurven" />
+            <Label layoutX="921.0" layoutY="78.0" text="Filtrer:" />
+            <MenuBar fx:id="menuBar" layoutY="8.0" opacity="0.98" prefHeight="25.0" prefWidth="1279.0">
               <menus>
                 <Menu fx:id="menuFile" mnemonicParsing="false" text="Fil">
                   <items>
@@ -174,7 +174,7 @@
             <Insets right="10.0" />
          </opaqueInsets>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="15.0" />
          </padding>
       </AnchorPane>
    </children>

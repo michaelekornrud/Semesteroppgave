@@ -47,6 +47,7 @@ public class controller_CO {
         String lastname = txtEtternavn.getText();
         String adress = txtAdresse.getText();
         String postNUmber  = txtPostnummer.getText();
+        String zero = "0";
         int post = Integer.parseInt(postNUmber);
 
         String city = txtPoststed.getText();
@@ -57,7 +58,11 @@ public class controller_CO {
         Deviations.checkPostNumber(post);
         Deviations.checkCity(city);
 
-        String ut = "Ordren blir sendt til:" + "\n" + firstname + " " + lastname + "\n" + adress + "\n" + post + " " + city;
+
+
+
+
+        String ut = "Ordren blir sendt til:" + "\n" + firstname + " " + lastname + "\n" + adress + "\n" + postNUmber + " " + city;
 
         AlertBox.display("Fullført", ut, 1000);
 

@@ -18,11 +18,12 @@ public class Deviations extends AlertBox {
 
     }
 
+
     public static String checkAdress (String inAdress) throws InvalidNameExeption {
         if (!inAdress.matches("^(.+) (\\d{1,3}[a-z]?)$")) {
             //regex hentet fra: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
 
-            throw new InvalidNameExeption("Det har skjedd en feil i Adressen");
+            throw new InvalidNameExeption("Det har skjedd en feil i Adressen\nDu har kanskje et mellomrom for mye?");
 
         }
         else {
@@ -34,7 +35,7 @@ public class Deviations extends AlertBox {
         if (!inCity.matches("^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$")) {
             //regex hentet fra: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
 
-            throw new InvalidNameExeption("Det har skjedd en feil i poststed");
+            throw new InvalidNameExeption("Det har skjedd en feil i poststed\nDu har kanskje et mellomrom for mye?");
 
         }
         else {
@@ -45,10 +46,10 @@ public class Deviations extends AlertBox {
 
     public static int checkPostNumber (int inNumber) throws InvalidPostcodeException {
         String zipToString = String.valueOf(inNumber);
-        if (!zipToString.matches("^\\d{4}([ \\-]\\d{4})?$")) {
+        if (!zipToString.matches("^[0-9]?[0-9]?[1-9]$")) { //^[0-9]{1}[0-9]{3,}$
             //regex hentet fra: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
 
-            throw new InvalidPostcodeException("Det har skjedd en feil i postnummer");
+            throw new InvalidPostcodeException("Det har skjedd en feil i postnummer\n4 tall, ingen mellomrom");
 
         }
         else {
