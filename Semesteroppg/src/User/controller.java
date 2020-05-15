@@ -357,7 +357,7 @@ public class controller extends Controller_ProductWindow {
     void Handlekurv (ActionEvent event) throws NullPointerException {
 
 
-        AlertBox.display("Laster..." , "Vent mens produktene lastes til handlekurven", 500);
+        //AlertBox.display("Laster..." , "Vent mens produktene lastes til handlekurven", 500);
 
 
         //Henter valgt komponent fra choiceboxene
@@ -406,7 +406,6 @@ public class controller extends Controller_ProductWindow {
                 observableList.add(getProductNames(processor));
             }
         }
-
 
         if(!choGraphicscard.getSelectionModel().isEmpty()){
             if(observableList.contains(getProductNames(graphicsCard))){

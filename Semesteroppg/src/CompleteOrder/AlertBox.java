@@ -16,8 +16,10 @@ import javafx.stage.Stage;
 
 
 public class AlertBox {
+
     private static SleeperThread task;
     private static Button lukkBox = new Button("Lukk");
+
     public static void display(String title, String message, int value){
 
         Stage window = new Stage();
@@ -48,31 +50,17 @@ public class AlertBox {
         lukkBox.setText("Vent...");
         thread.start();
 
-
         lukkBox.setOnAction(e -> {
             window.close();
         });
-
-
-
-
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label,lukkBox);
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(20));
 
-
-
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
-
-
-
     }
-
-
-
-
 }

@@ -10,10 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -87,9 +87,16 @@ public class controller_login {
 
     }
 
+    public void lblProbLogIn(MouseEvent event){
+        AlertBox.display("For å logge inn:" , "Det er to brukere registrert:\nFor å logge inn som admin, bruk brukernavn og passord: 'admin'.\nFor å logge inn som bruker, bruk brukernavn og passord: 'user'.", 0);
+    }
+
     @FXML
     void LukkProgram(){
         Stage lukkProgram = (Stage) btnLukk.getScene().getWindow();
         lukkProgram.close();
     }
+
+
+
 }

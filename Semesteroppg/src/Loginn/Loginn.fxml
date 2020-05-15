@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language javascript?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Loginn.controller_login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Loginn.controller_login">
    <children>
       <Label layoutX="51.0" layoutY="30.0" prefHeight="17.0" prefWidth="246.0" text="Logg  inn">
          <font>
@@ -19,7 +20,12 @@
       <TextField fx:id="txtBrukernavn" layoutX="139.0" layoutY="76.0" promptText="username" />
       <Label layoutX="51.0" layoutY="131.0" text="Passord" />
       <PasswordField fx:id="txtPassord" layoutX="139.0" layoutY="126.0" promptText="pasword" />
-      <Button fx:id="btnLogInn" layoutX="177.0" layoutY="187.0" mnemonicParsing="false" onAction="#LogInn" text="Log inn" />
-      <Button fx:id="btnLukk" layoutX="245.0" layoutY="187.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avbryt" />
+      <Button fx:id="btnLogInn" layoutX="166.0" layoutY="182.0" mnemonicParsing="false" onAction="#LogInn" text="Log inn" />
+      <Button fx:id="btnLukk" layoutX="237.0" layoutY="182.0" mnemonicParsing="false" onAction="#LukkProgram" text="Avbryt" />
+      <Label layoutX="140.0" layoutY="153.0" onMouseClicked="#lblProbLogIn" text="Problemer med innlogging?" textFill="#0f5e97" underline="true">
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>
