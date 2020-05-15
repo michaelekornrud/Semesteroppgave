@@ -101,21 +101,21 @@
            </TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="431.0" layoutY="373.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i tableview">
+      <Button layoutX="409.0" layoutY="373.0" mnemonicParsing="false" onAction="#addDataToTableview" text="Legg til data i produktlisten">
          <tooltip>
             <Tooltip text="Knapp for å legge til valgt(e) komponenter til tableview der man kan redigere komponentene" />
          </tooltip></Button>
-      <Button fx:id="save" layoutX="830.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer">
+      <Button fx:id="save" layoutX="808.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnSaveChanges" text="Lagre endringer">
          <tooltip>
             <Tooltip text="Knapp for å lagre endringene som er skrevet i tableview" />
          </tooltip></Button>
-      <Button layoutX="940.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra tableview">
+      <Button layoutX="919.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDelete" text="Slett produkt fra produktlisten">
          <tooltip>
             <Tooltip text="Fjerner valgt produkt fra tableview (Ikke fra lageret)" />
          </tooltip></Button>
-      <Button layoutX="735.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Total Sletting">
+      <Button layoutX="667.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteFromEveryWhere" text="Slett produkt fra lager">
          <tooltip>
-            <Tooltip text="Knapp for å slette komponent(er) fra boksene og fra lageret" />
+            <Tooltip text="Knapp for å slette komponent(er) fra boksene og fra lageret." />
          </tooltip></Button>
       <Label layoutX="631.0" layoutY="38.0" text="Produktliste">
          <font>

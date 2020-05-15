@@ -261,10 +261,8 @@ public class Controller_Admin {
             if (selectedName != null) {
                 cdh.removeObjectFromChoiceBoxAndCsvFile(selectedName);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Produkt slettet!");
-                alert.setHeaderText("Produktet " +selectedName+ " er nå slettet fra lageret.");
-                alert.showAndWait();
+                String ut = ("Produktet "+selectedName+" er nå slettet fra lagetet!");
+                AlertBox.display("Produkt slettet!", ut, 0);
             }
         }
         ObservableList<Product> productChosen, allProducts;
@@ -343,12 +341,12 @@ public class Controller_Admin {
                 "\nKnappenes funksjon: " +
                 "\n“Legg til ny komponent”: Her blir man sendt videre til et nytt vindu der brukeren kan legge til nye komponenter med type," +
                 "\nnavn, antall, merke, pris. Dette blir da lagt til i choiceboksene (lageret). " +
-                "\n“Legg til data i tableview”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
+                "\n“Legg til data i produktlisten”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
                 "\n(med unntak av ID, siden IDen automatisk blir generert unikt pr produkt). " +
-                "\n“Total sletting”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret."+
+                "\n“Slett produkt fra produktlisten”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret."+
                 "\n“Lagre endringer”: Når admin har redigert innholdet i produktlisten, trykker h*n på knappen, og endringene blir deretter " +
                 "\nlagret i choiceboksene." +
-                "\n“Slett produkt fra tableview”: Sletter valgt produkt fra produktlisten. " +
+                "\n“Slett produkt fra produktlisten”: Sletter valgt produkt fra produktlisten. " +
                 "\n“Avslutt”: Avslutter programmet";
 
         AlertBox.display("Hurtighjelp" ,  ut , 500);

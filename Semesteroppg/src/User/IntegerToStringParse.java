@@ -1,6 +1,6 @@
 package User;
 
-import javafx.scene.control.Alert;
+import CompleteOrder.AlertBox;
 
 public class IntegerToStringParse extends javafx.util.converter.IntegerStringConverter {
     public static boolean conversionSuccessful = true;
@@ -14,11 +14,8 @@ public class IntegerToStringParse extends javafx.util.converter.IntegerStringCon
         }
         catch (NumberFormatException e){
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Feil");
-            alert.setHeaderText("Ugyldig data!");
-            alert.setContentText("Du må skrive inn et gydig tall!");
-            alert.showAndWait();
+
+            AlertBox.display("Ugyldig data!", "Du må skrive inn et gyldig tall!", 0);
 
             conversionSuccessful = false;
             return 0;

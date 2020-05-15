@@ -1,5 +1,6 @@
 package ProductWindow;
 
+import CompleteOrder.AlertBox;
 import Exceptions.ProductValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,20 +62,14 @@ public class Controller_ProductWindow implements Initializable {
         double price = Double.parseDouble(stringPrice);
         String value = choiceType.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Nytt produkt!");
-        alert.setHeaderText("Produktet " +name+", med verdiene:\nMerke: "+brand+"\nAntall: "+numberOfProducts+"\nPris: "+price +" kr,-\ner å lagt til i boksen med" +
-                " typenavn: "+value);
-        alert.showAndWait();
-
+        String ut = "Produktet " +name+", med verdiene:\nMerke: "+brand+"\nAntall: "+numberOfProducts+"\nPris: "+price +" kr,-\ner å lagt til i boksen med" +
+                " typenavn: "+value;
+        AlertBox.display("Nytt Produkt!", ut, 0);
 
         Product newProduct = createProductObjectFromGUI();
         ProductRegister.addElement(newProduct);
         cdh.write(newProduct);
         resetTxtFields();
-
-
-
     }
 
     @FXML
