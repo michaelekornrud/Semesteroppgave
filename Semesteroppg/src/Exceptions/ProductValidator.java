@@ -12,10 +12,10 @@ public class ProductValidator {
     }
 
     public static String testProductType(String type) throws InvalidTypeException {
-        if (type.contains("Minne") || type.contains("Kabinett") || type.contains("Prosessor")
-                || type.contains("Skjermkort") || type.contains("Strømforskyning") || type.contains("Harddisk") || type.contains("HDD")
-                || type.contains("CPU-vifte") || type.contains("Vifter") || type.contains("Casemods") || type.contains("Skjerm")
-                || type.contains("Tastatur") || type.contains("Hodetelefoner") || type.contains("Mus") || type.contains("Hovedkort")) {
+        if (type.equals("Minne") || type.equals("Kabinett") || type.equals("Prosessor")
+                || type.equals("Skjermkort") || type.equals("Strømforskyning") || type.equals("Harddisk") || type.equals("HDD")
+                || type.equals("CPU-vifte") || type.equals("Vifter") || type.equals("Casemods") || type.equals("Skjerm")
+                || type.equals("Tastatur") || type.equals("Hodetelefoner") || type.equals("Mus") || type.equals("Hovedkort")) {
             return type;
         }
         throw new InvalidTypeException("Product-type: " + type + " is invalid");

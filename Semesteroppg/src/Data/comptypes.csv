@@ -1,4 +1,4 @@
-9381e7ae-9225-4fbe-a16f-f236edfba7f5;Samsung 970EVO;10;Samsung;5909.0;Harddisk
+9381e7ae-9225-4fbe-a16f-f236edfba7f5;Samsung 970EVO;10;Samsung;5910.0;Harddisk
 e05581b8-613c-4e55-ae9d-6bda25181308;Noctua NHD15;49;Noctua;999.0;Harddisk
 da0b506a-f425-461b-a5af-cea0c1bba527;Noctua NHD9L;20;Noctua;649.0;Harddisk
 0c35063c-ca1e-4269-93bb-460d651177ae;ASUS Radeon RX;25;ASUS;4099.0;Skjermkort
@@ -19,7 +19,6 @@ f8dbc743-3f03-4c61-848e-ff482a7224d4;iiglo M610;100;iiglo;299.0;Mus
 c875f568-4392-4267-be55-892122d608b7;CadMouse Wireless;100;CadMouse;1499.0;Mus
 5f99e7e8-2969-4026-a044-91f93821c27e;Log M545;50;Logitech;489.0;Mus
 8063b50e-fee1-4843-b1d8-9858b43a1ef3;Micro Arc;500;Microsoft;800.0;Mus
-e4d4e89d-8e88-41b2-8389-9f5148f443ab;Define 7XL;10;Fractal;2699.0;Kabinett
 ff911e53-d0e0-4bae-9019-12a4cc1dc066;C7 CPU;34;CRYORIG;413.0;CPU-vifte
 2965f0b5-4da0-44a9-a064-b38bddaa2b15;Corsair Force;10;Corsair;1315.0;CPU-vifte
 d916f76d-88f4-4b76-bddf-6a7311f6e58d;Corsair MP600;25;Corsair;3162.0;CPU-vifte
@@ -29,12 +28,14 @@ d916f76d-88f4-4b76-bddf-6a7311f6e58d;Corsair MP600;25;Corsair;3162.0;CPU-vifte
 9631b62f-c56b-4074-a494-ae13d4a48c55;Phil TAPH805;10;Philips;1790.0;Hodetelefoner
 48629e81-d40b-4dca-8208-504ee2b097cc;JBL T750;10;JBL;1290.0;Hodetelefoner
 413aa1d4-2524-4ced-92e1-db0824ca1664;PRO T5P;9;Beyerdynamic;8990.0;Hodetelefoner
+649246b0-8fa2-4cd3-b8e6-0d877ee4053d;Jabra elite 65t;50;Jabra;1790.0;Hodetelefoner
 fb221fad-83a5-48bf-b606-4300abfea84b;Cooler SF360R;5;MasterFan;499.0;Vifter
 9c72556d-2d17-4dab-8a9c-4d89b3a244ae;LC 360RGB;40;Asus;2799.0;Vifter
 2661907c-35e9-41af-9491-8fb55ce5ec0b;DeepCool;20;Captain;1499.0;Vifter
 bd20760f-fa60-449f-a0af-ae64aa3d554f;MSI Optix 24;10;MSI;2690.0;Skjerm
 1dab1318-b79f-4641-8fe5-08df24360c54;Samsung 27LED;10;Samsung;1995.0;Skjerm
 cb899d31-abfc-4afc-8e51-cdd54e791ded;Samsung 49LED;10;Samsung;10199.0;Skjerm
+6fd22666-7932-493b-8dbe-296a321cc358;Test;9;Test;750.0;Tastatur
 2b5611e0-aa02-4bd4-b99b-4065f2cb5d2a;Asus ROG;5;Asus;1549.0;Hovedkort
 39344d4c-5185-4c8b-afd1-05784833abf6;AMD Ryzen;20;AMD;5278.0;Hovedkort
 4190438b-ffb2-4c9d-827b-14d529fd5c16;Focus GX 750W;10;Seasonic;1500.0;Strømforskyning
@@ -43,6 +44,7 @@ dca26098-3f9c-40fe-97cd-a51ae2e8792c;MasterWatt 600W;10;Corsair;1450.0;Strømfor
 4a2a2fe0-97e4-4eb1-a08a-a410028a3820;Intel Core I5;60;IntelCore;3099.0;Prosessor
 62a6f93d-2648-4e6d-b47b-48c5f71b33ff;AMD Athol 3000G;40;AMD;599.0;Prosessor
 59782fd1-e1b1-48f8-8684-e1932fd32a83;Intel Xeon W2155;5;IntelXeon;15249.0;Prosessor
+e4d4e89d-8e88-41b2-8389-9f5148f443ab;Define 7XL;10;Fractal;2699.0;Kabinett
 b7dbe2b1-035b-42da-826c-ea2e8cbd76ec;Carbide 750Q;6;Corsair;890.0;Kabinett
 0cb3f8b0-2096-4626-8879-259a8b315623;ICUE Airflow;8;Corsair;1077.0;Kabinett
 7c40d96f-dda1-4a06-acaa-096efddd9263;ICUE 220T;10;Corsair;1299.0;Kabinett

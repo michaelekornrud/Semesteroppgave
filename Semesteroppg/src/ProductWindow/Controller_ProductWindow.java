@@ -63,7 +63,7 @@ public class Controller_ProductWindow implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Nytt produkt!");
-        alert.setHeaderText("Produktet " +name+", med verdiene:\nMerke: "+brand+"\nAntall: "+numberOfProducts+"\nPris: "+price +" KR\ner å lagt til i boksen med" +
+        alert.setHeaderText("Produktet " +name+", med verdiene:\nMerke: "+brand+"\nAntall: "+numberOfProducts+"\nPris: "+price +" kr,-\ner å lagt til i boksen med" +
                 " typenavn: "+value);
         alert.showAndWait();
 
