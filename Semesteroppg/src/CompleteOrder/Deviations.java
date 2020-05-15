@@ -44,9 +44,8 @@ public class Deviations extends AlertBox {
 
     }
 
-    public static int checkPostNumber (int inNumber) throws InvalidPostcodeException {
-        String zipToString = String.valueOf(inNumber);
-        if (!zipToString.matches("^[0-9]?[0-9]?[1-9]$")) { //^[0-9]{1}[0-9]{3,}$
+    public static String checkPostNumber (String inNumber) throws InvalidPostcodeException {
+        if (!inNumber.matches("^[0-9]{1}[0-9]{3,}$")) {
             //regex hentet fra: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
 
             throw new InvalidPostcodeException("Det har skjedd en feil i postnummer\n4 tall, ingen mellomrom");
