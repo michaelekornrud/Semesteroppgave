@@ -343,7 +343,7 @@ public class Controller_Admin {
                 "\nnavn, antall, merke, pris. Dette blir da lagt til i choiceboksene (lageret). " +
                 "\n“Legg til data i produktlisten”: Legger til valgt(e) komponenter i en produktliste(tableview), der admin kan redigere innholdet" +
                 "\n(med unntak av ID, siden IDen automatisk blir generert unikt pr produkt). " +
-                "\n“Slett produkt fra produktlisten”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret."+
+                "\n“Slett produkt fra lager”: Her velger man komponent(er) fra choiceboksene, og sletter de helt fra lageret."+
                 "\n“Lagre endringer”: Når admin har redigert innholdet i produktlisten, trykker h*n på knappen, og endringene blir deretter " +
                 "\nlagret i choiceboksene." +
                 "\n“Slett produkt fra produktlisten”: Sletter valgt produkt fra produktlisten. " +
