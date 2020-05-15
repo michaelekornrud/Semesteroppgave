@@ -1,0 +1,59 @@
+﻿Johannes Erdahl Andresen s341876 & Michael Ekornrud s341866
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Programmet vi har laget er til alternativ 1:datamaskin fra semesteroppgaven.
+Det første man gjør er å åpne main fra “login” pakken. Der får man muligheten til å logge inn. Brukernavn/Passord til administratoren er admin/admin.
+Brukernavn/Passord til user er user/user.
+
+
+Når man logger inn som “admin”, får man mulighet til å legge til nye komponenter, redigere gamle komponenter og slette komponenter.
+
+
+Når man logger inn som “user”, får man mulighet til å se alle komponentene som er lagt til av admin, samt legge de til i en handlekurv der antall kan redigeres, 
+og man får pris inkludert mva(25%) oppgitt. 
+Man kan lagre ønskelister, og åpne ønskelister.
+Man kan søke etter komponentene man har lagt til i handlekurven.
+Når man føler seg ferdig med en handleliste, kan man trykke på “fullfør ordre”, der man fullfører ordren. 
+
+Ps: Hvis det er noe som ikke er forståelig, kan man trykke på “hjelp” øverst i venstre hjørne av programvinduet. Da får man detaljert beskrivelse av knappenes funksjoner. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Kilder til der vi har sett på eksempler til kodingen:
+
+
+Generere unike prodNR
+https://kodejava.org/how-do-i-generate-uuid-guid-in-java/ 
+
+
+tidligere prosjekter fra semesteret
+
+
+ For å la bruker redigere tableview
+https://www.youtube.com/watch?v=z4LVoLg6ch0 
+
+
+For å lagre som csv-fil
+https://mkyong.com/java/how-to-read-and-parse-csv-file-in-java/ 
+
+
+Streammetode
+https://www.geeksforgeeks.org/stream-anymatch-java-examples/ 
+
+
+ sjekk om et array inneholder en spes verdi. 
+https://mkyong.com/java/java-check-if-array-contains-a-certain-value/
+
+
+Konvertere string-array til map
+https://stackoverflow.com/questions/31693781/convert-string-array-to-map-using-java-8-lambda-expressions
+
+
+konvertere string to int/double seteditable
+https://stackoverflow.com/questions/20020037/editing-a-number-cell-in-a-tableview 
+
+
+Dette er en guide til hvordan man kan sette boundaries på GUI til å ikke bli større enn skjermen en bruker. 
+https://stackoverflow.com/questions/26203674/keep-javafx-window-inside-screen-bounds
